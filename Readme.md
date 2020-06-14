@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Dmitry Kobylskikh](https://up.htmlacademy.ru/react/4/user/869123).
-* Наставник: `Неизвестно`.
+* Наставник: `Даниил Батаев`.
 
 ---
 
