@@ -8,6 +8,7 @@ const init = () => {
     movieTitle: `The Grand Budapest Hotel`,
     movieGenre: `Drama`,
     moviePromoDate: 2014,
+    movies: [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `Titanic`],
   };
 
   ReactDOM.render(
@@ -15,6 +16,7 @@ const init = () => {
         title={settings.movieTitle}
         genre={settings.movieGenre}
         date={settings.moviePromoDate}
+        movies={settings.movies}
       />,
       document.querySelector(`#root`)
   );
