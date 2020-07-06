@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import {Main} from './components/main/main.jsx';
+import {App} from './components/app/app.jsx';
 
 const init = () => {
   const settings = {
@@ -12,7 +12,7 @@ const init = () => {
   };
 
   ReactDOM.render(
-      <Main
+      <App
         title={settings.movieTitle}
         genre={settings.movieGenre}
         date={settings.moviePromoDate}
