@@ -8,12 +8,13 @@ import PropTypes from "prop-types";
 
 export const Main = (props) => {
 
-  const {title, genre, date, movies} = props;
+  const {title, genre, date, movies, onMovieTitleClickHandler} = props;
 
   const cards = movies.map((card) =>
     <MovieCard
       title={card}
       key={card}
+      onMovieTitleClickHandler={onMovieTitleClickHandler}
     />
   );
 
@@ -139,4 +140,5 @@ Main.propTypes = {
   genre: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
   movies: PropTypes.array.isRequired,
+  onMovieTitleClickHandler: PropTypes.func.isRequired,
 };
