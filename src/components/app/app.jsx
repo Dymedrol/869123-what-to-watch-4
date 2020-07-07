@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import {Main} from '../main/main.jsx';
 
+const onMovieTitleClickHandler = () => {};
+
 export const App = (props) => {
 
   const {title, genre, date, movies} = props;
@@ -13,6 +15,7 @@ export const App = (props) => {
     genre={genre}
     date={date}
     movies={movies}
+    onMovieTitleClickHandler={onMovieTitleClickHandler}
   />;
 };
 
