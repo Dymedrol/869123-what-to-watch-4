@@ -1,22 +1,11 @@
 import React from "react";
-
 import {PlayS, Add} from '../svg/svg.jsx';
-
-import {MovieCard} from '../movieCard/movieCard.jsx';
-
+import MovieList from '../movieList/movieList.jsx';
 import PropTypes from "prop-types";
 
-export const Main = (props) => {
+const Main = (props) => {
 
   const {title, genre, date, movies, onMovieTitleClickHandler} = props;
-
-  const cards = movies.map((card) =>
-    <MovieCard
-      title={card}
-      key={card}
-      onMovieTitleClickHandler={onMovieTitleClickHandler}
-    />
-  );
 
   return <div>
 
@@ -109,9 +98,10 @@ export const Main = (props) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {cards}
-        </div>
+        <MovieList
+          movies={movies}
+          onMovieTitleClickHandler={onMovieTitleClickHandler}
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -142,3 +132,5 @@ Main.propTypes = {
   movies: PropTypes.array.isRequired,
   onMovieTitleClickHandler: PropTypes.func.isRequired,
 };
+
+export default Main;

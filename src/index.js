@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-import {App} from './components/app/app.jsx';
+import App from './components/app/app.jsx';
+import movies from "./mocks/films.js";
 
 const init = () => {
   const settings = {
     movieTitle: `The Grand Budapest Hotel`,
     movieGenre: `Drama`,
     moviePromoDate: 2014,
-    movies: [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `Titanic`],
   };
 
   ReactDOM.render(
@@ -16,7 +15,7 @@ const init = () => {
         title={settings.movieTitle}
         genre={settings.movieGenre}
         date={settings.moviePromoDate}
-        movies={settings.movies}
+        movies={movies}
       />,
       document.querySelector(`#root`)
   );
