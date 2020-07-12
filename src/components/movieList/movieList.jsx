@@ -18,7 +18,7 @@ class MovieList extends PureComponent {
         <MovieCard
           title={card.title}
           pic={card.src}
-          key={`card-${i}`}
+          key={card.src}
           cardData={card}
           onMovieTitleClickHandler={onMovieTitleClickHandler}
           onCardHoverHandler={(cardData) => {

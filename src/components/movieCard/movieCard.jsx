@@ -16,8 +16,6 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  pic: PropTypes.string.isRequired,
   cardData: PropTypes.shape({
     src: PropTypes.string,
     title: PropTypes.string,
