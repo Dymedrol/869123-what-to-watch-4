@@ -14,10 +14,8 @@ class MovieList extends PureComponent {
   render() {
     const {movies, onMovieTitleClickHandler} = this.props;
     return <div className="catalog__movies-list">
-      {movies.map((card, i) => (
+      {movies.map((card) => (
         <MovieCard
-          title={card.title}
-          pic={card.src}
           key={card.src}
           cardData={card}
           onMovieTitleClickHandler={onMovieTitleClickHandler}

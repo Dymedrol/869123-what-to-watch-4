@@ -14,9 +14,7 @@ const card = {
 it(`Проверка снепшота компонента MovieCard`, () => {
   const tree = renderer
     .create(<MovieCard
-      title={card.title}
-      pic={card.src}
-      card={card}
+      cardData={card}
       onMovieTitleClickHandler={onMovieTitleClickHandler}
       onCardHoverHandler={() => {}}
     />)
