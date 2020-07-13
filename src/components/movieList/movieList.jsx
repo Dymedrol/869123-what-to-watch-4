@@ -13,6 +13,7 @@ class MovieList extends PureComponent {
 
   render() {
     const {movies, onMovieTitleClickHandler} = this.props;
+
     return <div className="catalog__movies-list">
       {movies.map((card) => (
         <MovieCard
@@ -34,6 +35,7 @@ MovieList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string,
     title: PropTypes.string,
+    preview: PropTypes.string.isRequired,
   })).isRequired,
   onMovieTitleClickHandler: PropTypes.func.isRequired
 };

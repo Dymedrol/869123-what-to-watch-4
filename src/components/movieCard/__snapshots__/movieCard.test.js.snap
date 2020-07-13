@@ -4,15 +4,15 @@ exports[`Проверка снепшота компонента MovieCard 1`] = 
 <article
   className="small-movie-card catalog__movies-card"
   onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
-    <img
-      alt="Movie title"
-      height="175"
-      src="img/we-need-to-talk-about-kevin.jpg"
-      width="280"
+    <video
+      className="player__video"
+      muted={true}
+      poster="img/macbeth.jpg"
     />
   </div>
   <h3
