@@ -280,14 +280,13 @@ exports[`Проверка снепшота компонента Main 1`] = `
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="{title}"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -297,21 +296,18 @@ exports[`Проверка снепшота компонента Main 1`] = `
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-            >
-              movie 1
-            </a>
+            />
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="{title}"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -321,21 +317,18 @@ exports[`Проверка снепшота компонента Main 1`] = `
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-            >
-              movie 2
-            </a>
+            />
           </h3>
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
             <img
-              alt="{title}"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
               width="280"
             />
           </div>
@@ -345,9 +338,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-            >
-              movie 3
-            </a>
+            />
           </h3>
         </article>
       </div>

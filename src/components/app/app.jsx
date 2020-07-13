@@ -1,12 +1,10 @@
 import React from "react";
-
 import PropTypes from "prop-types";
-
-import {Main} from '../main/main.jsx';
+import Main from '../main/main.jsx';
 
 const onMovieTitleClickHandler = () => {};
 
-export const App = (props) => {
+const App = (props) => {
 
   const {title, genre, date, movies} = props;
 
@@ -23,5 +21,10 @@ App.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    src: PropTypes.string,
+    title: PropTypes.string,
+  })).isRequired,
 };
+
+export default App;

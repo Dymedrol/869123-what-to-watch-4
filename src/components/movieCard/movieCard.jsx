@@ -1,22 +1,27 @@
 import React from "react";
-
 import PropTypes from "prop-types";
 
-export const MovieCard = (props) => {
+const MovieCard = (props) => {
 
-  const {title, onMovieTitleClickHandler} = props;
+  const {cardData, onMovieTitleClickHandler, onCardHoverHandler} = props;
 
-  return <article className="small-movie-card catalog__movies-card">
+  return <article className="small-movie-card catalog__movies-card" onMouseEnter={() => onCardHoverHandler(cardData)}>
     <div className="small-movie-card__image">
-      <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="{title}" width="280" height="175" />
+      <img src={cardData.src} alt={cardData.title} width="280" height="175" />
     </div>
-    <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link" href="movie-page.html" onClick={onMovieTitleClickHandler}>{title}</a>
+    <h3 className="small-movie-card__title" onClick={onMovieTitleClickHandler}>
+      <a className="small-movie-card__link" href="movie-page.html">{cardData.title}</a>
     </h3>
   </article>;
 };
 
 MovieCard.propTypes = {
-  title: PropTypes.string.isRequired,
+  cardData: PropTypes.shape({
+    src: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
   onMovieTitleClickHandler: PropTypes.func.isRequired,
+  onCardHoverHandler: PropTypes.func.isRequired,
 };
+
+export default MovieCard;
