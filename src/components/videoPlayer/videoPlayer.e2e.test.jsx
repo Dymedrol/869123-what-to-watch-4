@@ -1,6 +1,7 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import VideoPlayer from "./videoPlayer.jsx";
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import VideoPlayer from './videoPlayer.jsx';
 
 const movie = {
   title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -8,16 +9,32 @@ const movie = {
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
-it(`VideoPlayer e2e test`, () => {
-  const tree = renderer.create(<VideoPlayer
-    isPlaying = {true}
-    cardData = {movie}
-    isMuted = {true}
-  />, {
-    createNodeMock: () => {
-      return {};
-    }
-  }).toJSON();
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
-  expect(tree).toMatchSnapshot();
+describe(`Тест состояний плеера`, () => {
+  it(`Состояние Play`, () => {
+    const player = mount(
+        <VideoPlayer
+          isPlaying = {true}
+          cardData = {movie}
+          isMuted = {true}
+        />
+    );
+
+    expect(player.props().isPlaying).toEqual(true);
+  });
+
+  it(`Состояние stop`, () => {
+    const player = mount(
+        <VideoPlayer
+          isPlaying = {false}
+          cardData = {movie}
+          isMuted = {true}
+        />
+    );
+
+    expect(player.props().isPlaying).toEqual(false);
+  });
 });
