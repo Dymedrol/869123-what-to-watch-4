@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import MovieCard from "./movieCard.jsx";
 
@@ -17,7 +17,7 @@ it(`Simulate click on the title`, () => {
   const onMovieTitleClickHandler = jest.fn();
   const onCardHoverHandler = jest.fn();
 
-  const card = shallow(
+  const card = mount(
       <MovieCard
         title={movie.title}
         pic={movie.src}

@@ -14,7 +14,6 @@ exports[`Проверка снепшота компонента MovieList 1`] = 
     >
       <video
         className="player__video"
-        muted={true}
         poster="fantastic-beasts-the-crimes-of-grindelwald.jpg"
       />
     </div>

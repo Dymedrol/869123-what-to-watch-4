@@ -40,12 +40,10 @@ class VideoPlayer extends PureComponent {
 
   render() {
     const poster = this.props.cardData.src;
-    const isMuted = this.props.isMuted;
 
     return (
       <video
         ref = {this._videoRef}
-        muted = {isMuted}
         poster = {poster}
         className={`player__video`}
       />
