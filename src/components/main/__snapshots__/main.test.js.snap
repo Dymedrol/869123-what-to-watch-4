@@ -176,6 +176,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
       >
         <li
           className="catalog__genres-item catalog__genres-item--active"
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -185,17 +186,41 @@ exports[`Проверка снепшота компонента Main 1`] = `
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
           >
-            Comedies
+            comedy
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
+            drama
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+          onClick={[Function]}
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
+            science fiction
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
@@ -205,73 +230,14 @@ exports[`Проверка снепшота компонента Main 1`] = `
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item "
+          onClick={[Function]}
         >
           <a
             className="catalog__genres-link"
             href="#"
           >
             Documentary
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Dramas
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Horror
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Kids & Family
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Romance
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Sci-Fi
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item"
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Thrillers
           </a>
         </li>
       </ul>

@@ -1,7 +1,14 @@
 import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import Main from './main.jsx';
+
+import {Genres} from "../../const.js";
+import MOVIES from "../../mocks/films.js";
+
+const mockStore = configureStore([]);
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -23,15 +30,23 @@ const movies = [
 
 describe(`Main e2e test`, () => {
   it(`Клик на title каротчки`, () =>{
+
+    const store = mockStore({
+      genre: Genres.ALL,
+      movies: MOVIES,
+    });
+
     const onMovieTitleClickHandler = jest.fn();
     const main = mount(
-        <Main
-          title={mainMovie.title}
-          genre={mainMovie.genre}
-          date={mainMovie.date}
-          movies={movies}
-          onMovieTitleClickHandler={onMovieTitleClickHandler}
-        />
+        <Provider store={store}>
+          <Main
+            title={mainMovie.title}
+            genre={mainMovie.genre}
+            date={mainMovie.date}
+            movies={movies}
+            onMovieTitleClickHandler={onMovieTitleClickHandler}
+          />
+        </Provider>
     );
     const titles = main.find(`.small-movie-card__link`);
     expect(titles).toHaveLength(movies.length);

@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render GenresList 1`] = `
+Array [
+  <li
+    className="catalog__genres-item catalog__genres-item--active"
+    onClick={[Function]}
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      All genres
+    </a>
+  </li>,
+  <li
+    className="catalog__genres-item "
+    onClick={[Function]}
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      comedy
+    </a>
+  </li>,
+  <li
+    className="catalog__genres-item "
+    onClick={[Function]}
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      drama
+    </a>
+  </li>,
+  <li
+    className="catalog__genres-item "
+    onClick={[Function]}
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      science fiction
+    </a>
+  </li>,
+  <li
+    className="catalog__genres-item "
+    onClick={[Function]}
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      Crime
+    </a>
+  </li>,
+  <li
+    className="catalog__genres-item "
+    onClick={[Function]}
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      Documentary
+    </a>
+  </li>,
+]
+`;
