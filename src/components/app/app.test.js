@@ -13,9 +13,9 @@ const movies = [
 it(`Проверка снепшота компонента App`, () => {
   const tree = renderer.create(
       <App
-        title={`movie title`}
-        genre={`movie genre`}
-        date={2020}
+        movieTitle={`movie title`}
+        movieGenre={`movie genre`}
+        moviePromoDate={2020}
         movies={movies}
       />, {
         createNodeMock: () => {

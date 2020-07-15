@@ -2,29 +2,46 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from '../main/main.jsx';
 
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
+
 const onMovieTitleClickHandler = () => {};
 
 const App = (props) => {
 
-  const {title, genre, date, movies} = props;
+  const {movieTitle, movieGenre, moviePromoDate, movies} = props;
 
   return <Main
-    title={title}
-    genre={genre}
-    date={date}
+    title={movieTitle}
+    genre={movieGenre}
+    date={moviePromoDate}
     movies={movies}
     onMovieTitleClickHandler={onMovieTitleClickHandler}
   />;
 };
 
 App.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired,
+  movieTitle: PropTypes.string.isRequired,
+  movieGenre: PropTypes.string.isRequired,
+  moviePromoDate: PropTypes.number.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     src: PropTypes.string,
     title: PropTypes.string,
   })).isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  genre: state.genre,
+  movies: state.movies,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+    dispatch(ActionCreator.getFilmsByGenre());
+  }
+});
+
+export {App};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
