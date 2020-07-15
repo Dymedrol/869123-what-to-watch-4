@@ -7,8 +7,9 @@ const onMovieTitleClickHandler = (event) => {
 };
 
 const card = {
-  src: `img/we-need-to-talk-about-kevin.jpg`,
+  src: `img/macbeth.jpg`,
   title: `Movie title`,
+  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 it(`Проверка снепшота компонента MovieCard`, () => {
@@ -17,7 +18,10 @@ it(`Проверка снепшота компонента MovieCard`, () => {
       cardData={card}
       onMovieTitleClickHandler={onMovieTitleClickHandler}
       onCardHoverHandler={() => {}}
-    />)
+    />, {
+      createNodeMock: () => {
+        return {};
+      }})
     .toJSON();
 
   expect(tree).toMatchSnapshot();

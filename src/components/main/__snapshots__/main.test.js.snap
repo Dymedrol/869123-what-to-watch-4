@@ -281,64 +281,26 @@ exports[`Проверка снепшота компонента Main 1`] = `
         <article
           className="small-movie-card catalog__movies-card"
           onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
         >
           <div
             className="small-movie-card__image"
           >
-            <img
-              height="175"
-              width="280"
+            <video
+              className="player__video"
+              poster="img/macbeth.jpg"
             />
           </div>
           <h3
             className="small-movie-card__title"
+            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-            />
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              height="175"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            />
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              height="175"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            />
+            >
+              Macbeth
+            </a>
           </h3>
         </article>
       </div>

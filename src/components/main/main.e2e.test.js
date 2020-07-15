@@ -13,10 +13,12 @@ const mainMovie = {
   date: 2020,
 };
 
-const movieTitles = [
-  `Movie title 1`,
-  `Movie title 2`,
-  `Movie title 3`
+const movies = [
+  {
+    src: `img/macbeth.jpg`,
+    title: `Macbeth`,
+    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  },
 ];
 
 describe(`Main e2e test`, () => {
@@ -27,12 +29,12 @@ describe(`Main e2e test`, () => {
           title={mainMovie.title}
           genre={mainMovie.genre}
           date={mainMovie.date}
-          movies={movieTitles}
+          movies={movies}
           onMovieTitleClickHandler={onMovieTitleClickHandler}
         />
     );
     const titles = main.find(`.small-movie-card__link`);
-    expect(titles).toHaveLength(movieTitles.length);
+    expect(titles).toHaveLength(movies.length);
     titles.at(0).simulate(`click`);
     expect(onMovieTitleClickHandler.mock.calls.length).toBe(1);
   });

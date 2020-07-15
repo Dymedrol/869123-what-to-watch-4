@@ -1,5 +1,5 @@
 import React from "react";
-import Enzyme, {shallow} from "enzyme";
+import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import MovieCard from "./movieCard.jsx";
 
@@ -8,15 +8,16 @@ Enzyme.configure({
 });
 
 const movie = {
-  src: `img/bohemian-rhapsody.jpg`,
-  title: `Bohemian Rhapsody`,
+  title: `Fantastic Beasts: The Crimes of Grindelwald`,
+  src: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 it(`Simulate click on the title`, () => {
   const onMovieTitleClickHandler = jest.fn();
   const onCardHoverHandler = jest.fn();
 
-  const card = shallow(
+  const card = mount(
       <MovieCard
         title={movie.title}
         pic={movie.src}
