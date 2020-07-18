@@ -5,6 +5,7 @@ import MOVIES from "./mocks/films.js";
 const initialState = {
   genre: Genres.ALL,
   movies: MOVIES,
+  allMovies: MOVIES,
 };
 
 const ActionType = {
@@ -20,21 +21,19 @@ const ActionCreator = {
     };
   },
 
-  getFilmsByGenre: (movies, genre) => {
+  getFilmsByGenre: (genre) => {
     return {
       type: ActionType.FILTER_MOVIE_BY_GENRE,
-      payload: filterMoviesByGenre(genre, movies),
+      payload: filterMoviesByGenre(genre),
     };
   }
 };
 
-const allMovies = initialState.movies;
-
 const filterMoviesByGenre = (genre) => {
   if (genre === Genres.ALL) {
-    return allMovies;
+    return initialState.allMovies;
   }
-  return allMovies.filter((movie) => movie.genre === genre);
+  return initialState.allMovies.filter((movie) => movie.genre === genre);
 };
 
 const reducer = (state = initialState, action) => {

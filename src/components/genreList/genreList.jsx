@@ -46,7 +46,6 @@ class GenreList extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  genre: state.genre,
   movies: state.movies,
 });
 

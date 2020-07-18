@@ -69,7 +69,6 @@ const Main = (props) => {
 
         <ul className="catalog__genres-list">
           <GenreList
-            movies={movies}
           />
         </ul>
 
