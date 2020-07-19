@@ -8,6 +8,7 @@ class GenreList extends PureComponent {
     super(props);
 
     this.allMovies = this.props.movies;
+    this.genre = this.props.genre;
 
     this.getGenreList = this.getGenreList.bind(this);
   }
@@ -24,8 +25,10 @@ class GenreList extends PureComponent {
   }
 
   render() {
-    const {genre, onClick} = this.props;
+    const {genre, onClick, setActiveItem} = this.props;
     const genreList = this.getGenreList();
+
+    console.log(genre);
 
     return <React.Fragment>
       {genreList.map((item) => {
@@ -36,6 +39,7 @@ class GenreList extends PureComponent {
           className={`catalog__genres-item ${activeClass}`}
           onClick={() => {
             onClick(item);
+            setActiveItem(item);
           }}
         >
           <a href="#" className="catalog__genres-link">{item}</a>
@@ -47,6 +51,7 @@ class GenreList extends PureComponent {
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
+  genre: state.genre,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -9,20 +9,18 @@ class MovieList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activeCard: null,
-    };
   }
 
   render() {
-    const {movies, onMovieTitleClickHandler} = this.props;
+    const {movies, onMovieTitleClickHandler, setActiveItem, removeActiveItem} = this.props;
 
     return <div className="catalog__movies-list">
       {movies.map((card) => (
         <MovieCardWrapper
           key={card.src}
           cardData={card}
-          onMovieTitleClickHandler={onMovieTitleClickHandler}
+          setActiveItem={setActiveItem}
+          removeActiveItem={removeActiveItem}
         />
       ))}
     </div>;

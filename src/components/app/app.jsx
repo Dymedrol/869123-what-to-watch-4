@@ -5,8 +5,6 @@ import Main from '../main/main.jsx';
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 
-const onMovieTitleClickHandler = () => {};
-
 const App = (props) => {
 
   const {movieTitle, movieGenre, moviePromoDate, movies} = props;
@@ -16,7 +14,6 @@ const App = (props) => {
     genre={movieGenre}
     date={moviePromoDate}
     movies={movies}
-    onMovieTitleClickHandler={onMovieTitleClickHandler}
   />;
 };
 

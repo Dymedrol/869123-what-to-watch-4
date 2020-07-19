@@ -1,13 +1,19 @@
 import React from "react";
-import {PlayS, Add} from '../svg/svg.jsx';
+import PropTypes from "prop-types";
 
 import MovieList from '../movieList/movieList.jsx';
 import GenreList from '../genreList/genreList.jsx';
-import PropTypes from "prop-types";
+import {PlayS, Add} from '../svg/svg.jsx';
+import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
+
+const MovieListWrapper = withActiveItem(MovieList);
+const GenreListWrapper = withActiveItem(GenreList);
 
 const Main = (props) => {
 
-  const {title, genre, date, movies, onMovieTitleClickHandler} = props;
+  const {title, genre, date, movies} = props;
+
+
 
   return <div>
 
@@ -68,13 +74,13 @@ const Main = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <ul className="catalog__genres-list">
-          <GenreList
+          <GenreListWrapper
+
           />
         </ul>
 
-        <MovieList
+        <MovieListWrapper
           movies={movies}
-          onMovieTitleClickHandler={onMovieTitleClickHandler}
         />
 
         <div className="catalog__more">
@@ -104,7 +110,6 @@ Main.propTypes = {
   genre: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
   movies: PropTypes.array.isRequired,
-  onMovieTitleClickHandler: PropTypes.func.isRequired,
 };
 
 export default Main;

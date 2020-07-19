@@ -2,21 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const MovieCard = (props) => {
-  const {cardData, onMovieTitleClickHandler, onMouseEnter, onMouseLeave, renderPlayer} = props;
+  const {cardData, onMouseEnter, onMouseLeave, renderPlayer, setActiveItem, removeActiveItem} = props;
 
   return <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={() => {
       onMouseEnter();
+      setActiveItem(cardData.title);
     }}
     onMouseLeave = {() => {
       onMouseLeave();
+      removeActiveItem();
     }}
   >
     <div className="small-movie-card__image">
       {renderPlayer(cardData)}
     </div>
-    <h3 className="small-movie-card__title" onClick={onMovieTitleClickHandler}>
+    <h3 className="small-movie-card__title">
       <a className="small-movie-card__link" href="movie-page.html">{cardData.title}</a>
     </h3>
   </article>
