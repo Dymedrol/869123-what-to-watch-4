@@ -1,6 +1,9 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import MovieCard from '../movieCard/movieCard.jsx';
+import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
+
+const MovieCardWrapper = withVideoPlayer(MovieCard);
 
 class MovieList extends PureComponent {
   constructor(props) {
@@ -16,15 +19,10 @@ class MovieList extends PureComponent {
 
     return <div className="catalog__movies-list">
       {movies.map((card) => (
-        <MovieCard
+        <MovieCardWrapper
           key={card.src}
           cardData={card}
           onMovieTitleClickHandler={onMovieTitleClickHandler}
-          onCardHoverHandler={(cardData) => {
-            this.setState({
-              activeCard: cardData,
-            });
-          }}
         />
       ))}
     </div>;

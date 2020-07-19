@@ -56,15 +56,15 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-GenreList.propTypes = {
-  genre: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-  })),
-};
+// GenreList.propTypes = {
+//   genre: PropTypes.string.isRequired,
+//   onClick: PropTypes.func.isRequired,
+//   movies: PropTypes.arrayOf(PropTypes.shape({
+//     title: PropTypes.string.isRequired,
+//     src: PropTypes.string.isRequired,
+//     genre: PropTypes.string.isRequired,
+//   })),
+// };
 
 export {GenreList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
