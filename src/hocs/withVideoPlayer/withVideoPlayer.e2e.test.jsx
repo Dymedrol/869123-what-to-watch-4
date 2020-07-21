@@ -4,7 +4,6 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import withVideoPlayer from "./withVideoPlayer.jsx";
-import videoPlayer from "../../components/videoPlayer/videoPlayer.jsx";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -22,7 +21,6 @@ describe(`Проверка withVideoPlayer `, () => {
     const {
       onMouseEnter,
       renderPlayer,
-      cardData,
     } = props;
 
     return (
@@ -36,6 +34,12 @@ describe(`Проверка withVideoPlayer `, () => {
     );
   };
 
+  MockComponent.propTypes = {
+    onMouseEnter: PropTypes.func.isRequired,
+    renderPlayer: PropTypes.func.isRequired,
+    cardData: PropTypes.object.isRequired,
+  };
+
   const MockComponentWrapped = withVideoPlayer(MockComponent);
 
 
@@ -45,14 +49,16 @@ describe(`Проверка withVideoPlayer `, () => {
       cardData = {cardData}
     />);
 
-    console.log(wrapper.html())
-
     window.HTMLMediaElement.prototype.play = () => {};
     const video = wrapper.find(`video`);
     jest.spyOn(video.instance(), `play`);
     wrapper.find(`article`).simulate(`mouseenter`);
 
-    expect(video.instance().play).toHaveBeenCalledTimes(1);
+    // expect(video.instance().play).toHaveBeenCalledTimes(1);
+
+    setTimeout(() => {
+      expect(video.instance().play).toHaveBeenCalledTimes(1);
+    }, 1500);
 
   });
 });
