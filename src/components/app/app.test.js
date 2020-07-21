@@ -1,6 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 import App from './app.jsx';
+
+import {Genres} from "../../const.js";
+import MOVIES from "../../mocks/films.js";
+
+const mockStore = configureStore([]);
 
 const movies = [
   {
@@ -11,13 +18,20 @@ const movies = [
 ];
 
 it(`Проверка снепшота компонента App`, () => {
+  const store = mockStore({
+    genre: Genres.ALL,
+    movies: MOVIES,
+    allMovies: MOVIES,
+  });
   const tree = renderer.create(
-      <App
-        title={`movie title`}
-        genre={`movie genre`}
-        date={2020}
-        movies={movies}
-      />, {
+      <Provider store={store}>
+        <App
+          movieTitle={`movie title`}
+          movieGenre={`movie genre`}
+          moviePromoDate={2020}
+          movies={movies}
+        />
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }})
