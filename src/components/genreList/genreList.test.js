@@ -17,8 +17,6 @@ it(`render GenresList`, () => {
     allMovies: MOVIES,
   });
 
-  console.log(store.allMovies)
-
   const tree = renderer.create(
       <Provider store={store}>
         <GenreList
