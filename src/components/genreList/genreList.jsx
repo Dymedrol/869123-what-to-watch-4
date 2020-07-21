@@ -7,16 +7,13 @@ class GenreList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.allMovies = this.props.movies;
-    this.genre = this.props.genre;
-
     this.getGenreList = this.getGenreList.bind(this);
   }
 
   getGenreList() {
     const genres = new Set();
     genres.add(`All genres`);
-    this.allMovies.forEach((movie) => {
+    this.props.allMovies.forEach((movie) => {
       genres.add(movie.genre);
     });
     const genreList = Array.from(genres);
@@ -25,8 +22,9 @@ class GenreList extends PureComponent {
   }
 
   render() {
-    const {genre, onClick, setActiveItem} = this.props;
+    const {genre, onClick} = this.props;
     const genreList = this.getGenreList();
+    const genre = this.props.genre;
 
     return <React.Fragment>
       {genreList.map((item) => {
@@ -49,6 +47,7 @@ class GenreList extends PureComponent {
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
+  allMovies: state.allMovies,
   genre: state.genre,
 });
 
@@ -61,6 +60,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 GenreList.propTypes = {
   genre: PropTypes.string.isRequired,
+  allMovies: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
