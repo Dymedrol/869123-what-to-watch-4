@@ -34,6 +34,7 @@ describe(`Main e2e test`, () => {
     const store = mockStore({
       genre: Genres.ALL,
       movies: MOVIES,
+      allMovies: MOVIES,
     });
 
     const onMovieTitleClickHandler = jest.fn();

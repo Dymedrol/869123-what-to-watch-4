@@ -21,6 +21,7 @@ it(`Проверка снепшота компонента Main`, () => {
   const store = mockStore({
     genre: Genres.ALL,
     movies: MOVIES,
+    allMovies: MOVIES,
   });
   const tree = renderer.create(
       <Provider store={store}>
