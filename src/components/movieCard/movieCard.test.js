@@ -2,10 +2,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import MovieCard from "./movieCard.jsx";
 
-const onMovieTitleClickHandler = (event) => {
-  event.preventDefault();
-};
-
 const card = {
   src: `img/macbeth.jpg`,
   title: `Movie title`,
@@ -16,8 +12,12 @@ it(`Проверка снепшота компонента MovieCard`, () => {
   const tree = renderer
     .create(<MovieCard
       cardData={card}
-      onMovieTitleClickHandler={onMovieTitleClickHandler}
       onCardHoverHandler={() => {}}
+      onMouseEnter={() => {}}
+      onMouseLeave={() => {}}
+      renderPlayer={() => {}}
+      setActiveItem={() => {}}
+      removeActiveItem={() => {}}
     />, {
       createNodeMock: () => {
         return {};

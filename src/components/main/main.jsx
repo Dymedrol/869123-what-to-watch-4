@@ -13,8 +13,6 @@ const Main = (props) => {
 
   const {title, genre, date, movies} = props;
 
-
-
   return <div>
 
     <section className="movie-card">

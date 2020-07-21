@@ -8,15 +8,9 @@ exports[`Проверка снепшота компонента MovieCard 1`] = 
 >
   <div
     className="small-movie-card__image"
-  >
-    <video
-      className="player__video"
-      poster="img/macbeth.jpg"
-    />
-  </div>
+  />
   <h3
     className="small-movie-card__title"
-    onClick={[Function]}
   >
     <a
       className="small-movie-card__link"

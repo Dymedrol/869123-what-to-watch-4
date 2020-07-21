@@ -28,8 +28,6 @@ class GenreList extends PureComponent {
     const {genre, onClick, setActiveItem} = this.props;
     const genreList = this.getGenreList();
 
-    console.log(genre);
-
     return <React.Fragment>
       {genreList.map((item) => {
         const activeClass = genre === item ? `catalog__genres-item--active` : ``;
@@ -61,15 +59,16 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-// GenreList.propTypes = {
-//   genre: PropTypes.string.isRequired,
-//   onClick: PropTypes.func.isRequired,
-//   movies: PropTypes.arrayOf(PropTypes.shape({
-//     title: PropTypes.string.isRequired,
-//     src: PropTypes.string.isRequired,
-//     genre: PropTypes.string.isRequired,
-//   })),
-// };
+GenreList.propTypes = {
+  genre: PropTypes.string.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+  })),
+  onClick: PropTypes.func.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+};
 
 export {GenreList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenreList);

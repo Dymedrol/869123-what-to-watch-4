@@ -25,7 +25,6 @@ const withActiveItem = (Component) => {
       });
     }
 
-
     render() {
 
       return (
@@ -45,6 +44,5 @@ const withActiveItem = (Component) => {
 
   return WithActiveItem;
 };
-
 
 export default withActiveItem;

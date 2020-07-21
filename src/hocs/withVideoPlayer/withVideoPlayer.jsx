@@ -1,7 +1,5 @@
 import React, {PureComponent} from "react";
-
 import VideoPlayer from "../../components/videoPlayer/videoPlayer.jsx";
-
 
 const withVideoPlayer = (Component) => {
   class WithVideoPlayer extends PureComponent {
@@ -28,7 +26,6 @@ const withVideoPlayer = (Component) => {
       });
     }
 
-
     render() {
       const {isPlaying} = this.state;
 
@@ -42,7 +39,7 @@ const withVideoPlayer = (Component) => {
           onMouseLeave = {() => {
             this.onMouseLeaveHandler();
           }}
-          renderPlayer={(cardData, id) => {
+          renderPlayer={(cardData) => {
             return (
               <VideoPlayer
                 cardData = {cardData}
@@ -58,6 +55,5 @@ const withVideoPlayer = (Component) => {
 
   return WithVideoPlayer;
 };
-
 
 export default withVideoPlayer;

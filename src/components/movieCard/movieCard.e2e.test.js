@@ -14,24 +14,26 @@ const movie = {
 };
 
 it(`Simulate click on the title`, () => {
-  const onMovieTitleClickHandler = jest.fn();
-  const onCardHoverHandler = jest.fn();
+  const onMouseEnter = jest.fn();
+  const onMouseLeave = jest.fn();
+  const renderPlayer = jest.fn();
+  const setActiveItem = jest.fn();
+  const removeActiveItem = jest.fn();
 
   const card = mount(
       <MovieCard
         title={movie.title}
         pic={movie.src}
         cardData={movie}
-        onMovieTitleClickHandler={onMovieTitleClickHandler}
-        onCardHoverHandler={onCardHoverHandler}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        renderPlayer={renderPlayer}
+        setActiveItem={setActiveItem}
+        removeActiveItem={removeActiveItem}
       />
   );
 
-  const title = card.find(`.small-movie-card__title`);
-  title.simulate(`click`);
-
   card.simulate(`mouseenter`);
 
-  expect(onMovieTitleClickHandler).toHaveBeenCalledTimes(1);
-  expect(onCardHoverHandler).toHaveBeenCalledTimes(1);
+  expect(onMouseEnter).toHaveBeenCalledTimes(1);
 });

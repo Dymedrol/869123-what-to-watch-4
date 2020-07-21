@@ -29,14 +29,13 @@ const movies = [
 ];
 
 describe(`Main e2e test`, () => {
-  it(`Клик на title каротчки`, () =>{
+  it(`ПРоверяем отрисовку карточек`, () =>{
 
     const store = mockStore({
       genre: Genres.ALL,
       movies: MOVIES,
     });
 
-    const onMovieTitleClickHandler = jest.fn();
     const main = mount(
         <Provider store={store}>
           <Main
@@ -44,13 +43,10 @@ describe(`Main e2e test`, () => {
             genre={mainMovie.genre}
             date={mainMovie.date}
             movies={movies}
-            onMovieTitleClickHandler={onMovieTitleClickHandler}
           />
         </Provider>
     );
     const titles = main.find(`.small-movie-card__link`);
     expect(titles).toHaveLength(movies.length);
-    titles.at(0).simulate(`click`);
-    expect(onMovieTitleClickHandler.mock.calls.length).toBe(1);
   });
 });
