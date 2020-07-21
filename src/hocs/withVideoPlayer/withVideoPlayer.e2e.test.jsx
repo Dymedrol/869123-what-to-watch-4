@@ -4,6 +4,7 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import withVideoPlayer from "./withVideoPlayer.jsx";
+import videoPlayer from "../../components/videoPlayer/videoPlayer.jsx";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -20,13 +21,16 @@ describe(`Проверка withVideoPlayer `, () => {
   const MockComponent = (props) => {
     const {
       onMouseEnter,
-      onMouseLeave,
       renderPlayer,
       cardData,
     } = props;
 
     return (
-      <article>
+      <article
+        onMouseEnter={() => {
+          onMouseEnter();
+        }}
+      >
         {renderPlayer(cardData)}
       </article>
     );
@@ -39,29 +43,16 @@ describe(`Проверка withVideoPlayer `, () => {
 
     const wrapper = mount(<MockComponentWrapped
       cardData = {cardData}
-        setActiveItem = {false}
-        onActiveItemChange = {() => {}}
-        removeActiveItem = {() => {}}
     />);
 
+    console.log(wrapper.html())
+
     window.HTMLMediaElement.prototype.play = () => {};
+    const video = wrapper.find(`video`);
+    jest.spyOn(video.instance(), `play`);
+    wrapper.find(`article`).simulate(`mouseenter`);
 
-    // console.log('asdasd  ', wrapper.find('video').instance());
-
-    const video = wrapper.find('video');
-
-    console.log('11111  ', video.instance())
-
-    const {_videoRef} = video.instance();
-
-    jest.spyOn(_videoRef.current, `play`);
-
-    wrapper.instance().componentDidMount();
-
-    wrapper.find(`article`).simulate(`mouseover`);
-
-    expect(_videoRef.current.play).toHaveBeenCalledTimes(1);
-
+    expect(video.instance().play).toHaveBeenCalledTimes(1);
 
   });
 });
