@@ -22,7 +22,7 @@ class GenreList extends PureComponent {
   }
 
   render() {
-    const {genre, onClick} = this.props;
+    const {onClick, setActiveItem} = this.props;
     const genreList = this.getGenreList();
     const genre = this.props.genre;
 
@@ -67,7 +67,6 @@ GenreList.propTypes = {
     src: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
   })),
-  onClick: PropTypes.func.isRequired,
   setActiveItem: PropTypes.func.isRequired,
 };
 
