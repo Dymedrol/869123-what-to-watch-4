@@ -259,7 +259,6 @@ exports[`Проверка снепшота компонента App 1`] = `
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
@@ -284,7 +283,6 @@ exports[`Проверка снепшота компонента App 1`] = `
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
@@ -309,7 +307,6 @@ exports[`Проверка снепшота компонента App 1`] = `
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
@@ -334,7 +331,6 @@ exports[`Проверка снепшота компонента App 1`] = `
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
@@ -359,7 +355,6 @@ exports[`Проверка снепшота компонента App 1`] = `
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
@@ -384,7 +379,6 @@ exports[`Проверка снепшота компонента App 1`] = `
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
@@ -409,7 +403,6 @@ exports[`Проверка снепшота компонента App 1`] = `
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"
@@ -434,7 +427,6 @@ exports[`Проверка снепшота компонента App 1`] = `
           </div>
           <h3
             className="small-movie-card__title"
-            onClick={[Function]}
           >
             <a
               className="small-movie-card__link"

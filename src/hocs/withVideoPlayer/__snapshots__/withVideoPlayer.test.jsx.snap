@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Проверка снэпшота withVideoPlayer рендер withVideoPlayer 1`] = `
+<article
+  cardData={
+    Object {
+      "preview": "https://www.kinomania.ru/load/n?file=//fs.kinomania.ru/media/video/a/e1/ae1ea61fe9c315fbd913c38d6ddc7c0d.480.mp4",
+      "src": "img/fantastic-beasts-the-crimes-of-grindelwald.jpg",
+      "title": "Fantastic Beasts: The Crimes of Grindelwald",
+    }
+  }
+  isPlaying={false}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  <video
+    className="player__video"
+    poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+  />
+</article>
+`;

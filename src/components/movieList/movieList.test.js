@@ -12,7 +12,8 @@ it(`Проверка снепшота компонента MovieList`, () => {
   const tree = renderer
     .create(<MovieList
       movies={movies}
-      onMovieTitleClickHandler={() => {}}
+      setActiveItem={() => {}}
+      removeActiveItem={() => {}}
     />, {
       createNodeMock: () => {
         return {};

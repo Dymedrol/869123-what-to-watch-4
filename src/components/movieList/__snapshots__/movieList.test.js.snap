@@ -19,7 +19,6 @@ exports[`Проверка снепшота компонента MovieList 1`] = 
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={[Function]}
     >
       <a
         className="small-movie-card__link"

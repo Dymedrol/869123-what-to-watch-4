@@ -1,48 +1,28 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import VideoPlayer from "../videoPlayer/videoPlayer.jsx";
 
-class MovieCard extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isPlaying: false
-    };
-  }
+const MovieCard = (props) => {
+  const {cardData, onMouseEnter, onMouseLeave, renderPlayer, setActiveItem, removeActiveItem} = props;
 
-  render() {
-    const {cardData, onMovieTitleClickHandler, onCardHoverHandler} = this.props;
-
-    return (
-      <article
-        className="small-movie-card catalog__movies-card"
-        onMouseEnter={() => {
-          onCardHoverHandler(cardData);
-          this.setState({
-            isPlaying: true
-          });
-        }}
-        onMouseLeave = {() => {
-          onCardHoverHandler(null);
-          this.setState({
-            isPlaying: false
-          });
-        }}
-      >
-        <div className="small-movie-card__image">
-          <VideoPlayer
-            isPlaying={this.state.isPlaying}
-            cardData = {cardData}
-            isMuted = {true}
-          />
-        </div>
-        <h3 className="small-movie-card__title" onClick={onMovieTitleClickHandler}>
-          <a className="small-movie-card__link" href="movie-page.html">{cardData.title}</a>
-        </h3>
-      </article>
-    );
-  }
-}
+  return <article
+    className="small-movie-card catalog__movies-card"
+    onMouseEnter={() => {
+      onMouseEnter();
+      setActiveItem(cardData.title);
+    }}
+    onMouseLeave = {() => {
+      onMouseLeave();
+      removeActiveItem();
+    }}
+  >
+    <div className="small-movie-card__image">
+      {renderPlayer(cardData)}
+    </div>
+    <h3 className="small-movie-card__title">
+      <a className="small-movie-card__link" href="movie-page.html">{cardData.title}</a>
+    </h3>
+  </article>;
+};
 
 MovieCard.propTypes = {
   cardData: PropTypes.shape({
@@ -50,8 +30,11 @@ MovieCard.propTypes = {
     title: PropTypes.string,
     preview: PropTypes.string.isRequired,
   }).isRequired,
-  onMovieTitleClickHandler: PropTypes.func.isRequired,
-  onCardHoverHandler: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+  removeActiveItem: PropTypes.func.isRequired,
 };
 
 export default MovieCard;

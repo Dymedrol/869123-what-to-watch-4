@@ -24,6 +24,7 @@ it(`render GenresList`, () => {
           onClick={()=>{}}
           movies={MOVIES}
           allMovies={MOVIES}
+          setActiveItem={()=>{}}
         />
       </Provider>, {
         createNodeMock: () => {
