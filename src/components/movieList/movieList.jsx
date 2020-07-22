@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
 import {Genres} from "./../../const.js";
-import {ActionCreator} from "./../../reducer.js";
+import {ActionCreator} from "./../../reducer/reducer.js";
 import MovieCard from '../movieCard/movieCard.jsx';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
+import {getGenre} from '../../reducer/app/selectors.js';
 
 const MovieCardWrapper = withVideoPlayer(MovieCard);
 
@@ -39,7 +40,7 @@ class MovieList extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  genre: state.genre,
+  genre: getGenre(state),
 });
 
 // MovieList.propTypes = {

@@ -21,11 +21,12 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.LOAD_MOVIES:
+    case ActionType.CHANGE_GENRE:
       return extend(state, {
-        movies: action.payload
+        genre: action.payload
       });
   }
+
   return state;
 };
 

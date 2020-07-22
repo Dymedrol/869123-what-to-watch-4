@@ -1,7 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer.js";
+
+import {ActionCreator} from '../../reducer/app/app.js';
+import {getGenre} from '../../reducer/app/selectors.js';
+import {getMovies} from '../../reducer/data/selectors.js';
 
 class GenreList extends PureComponent {
   constructor(props) {
@@ -47,17 +50,13 @@ class GenreList extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  // allMovies: state.allMovies,
-  genre: state.genre,
+  movies: getMovies(state),
+  genre: getGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
-    // console.log(genre);
-    // console.log('ghfg  ', allMovies)
     dispatch(ActionCreator.changeGenre(genre));
-    // dispatch(ActionCreator.getFilmsByGenre(genre, allMovies));
   }
 });
 

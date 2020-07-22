@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 import Main from '../main/main.jsx';
 
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from '../../reducer/app/app.js';
+import {getGenre} from '../../reducer/app/selectors.js';
+import {getMovies} from '../../reducer/data/selectors.js';
 
 const App = (props) => {
 
@@ -28,14 +30,13 @@ const App = (props) => {
 // };
 
 const mapStateToProps = (state) => ({
-  genre: state.genre,
-  movies: state.movies,
+  genre: getGenre(state),
+  movies: getMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
     dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.getFilmsByGenre());
   }
 });
 
