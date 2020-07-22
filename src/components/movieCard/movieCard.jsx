@@ -8,7 +8,7 @@ const MovieCard = (props) => {
     className="small-movie-card catalog__movies-card"
     onMouseEnter={() => {
       onMouseEnter();
-      setActiveItem(cardData.title);
+      setActiveItem(cardData.name);
     }}
     onMouseLeave = {() => {
       onMouseLeave();
@@ -24,17 +24,17 @@ const MovieCard = (props) => {
   </article>;
 };
 
-// MovieCard.propTypes = {
-//   cardData: PropTypes.shape({
-//     src: PropTypes.string,
-//     title: PropTypes.string,
-//     preview: PropTypes.string.isRequired,
-//   }).isRequired,
-//   onMouseEnter: PropTypes.func.isRequired,
-//   onMouseLeave: PropTypes.func.isRequired,
-//   renderPlayer: PropTypes.func.isRequired,
-//   setActiveItem: PropTypes.func.isRequired,
-//   removeActiveItem: PropTypes.func.isRequired,
-// };
+MovieCard.propTypes = {
+  cardData: PropTypes.shape({
+    src: PropTypes.string,
+    name: PropTypes.string,
+    preview: PropTypes.string.isRequired,
+  }).isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+  removeActiveItem: PropTypes.func.isRequired,
+};
 
 export default MovieCard;

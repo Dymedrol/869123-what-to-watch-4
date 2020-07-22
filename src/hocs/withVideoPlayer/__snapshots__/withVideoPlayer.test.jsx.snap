@@ -15,7 +15,6 @@ exports[`Проверка снэпшота withVideoPlayer рендер withVide
 >
   <video
     className="player__video"
-    poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
   />
 </article>
 `;

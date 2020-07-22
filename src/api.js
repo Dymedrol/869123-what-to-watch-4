@@ -10,8 +10,10 @@ export const createAPI = () => {
   const onSuccess = (response) => response;
 
   const onError = (err) => {
-    const {response} = err;
-    alert(`При загрузке ${response.config.url} возникла ошибка: ${err}`);
+    const node = document.createElement(`div`);
+    node.style.cssText = `z-index: 9999; margin: auto; text-align: center; position: fixed; top: 0; right: 0; bottom: 0; left: 0; fontSize: 24px; color: #fff; background-color: red;`;
+    node.textContent = `Внимание, возникла ошибка: ${err}`;
+    document.body.insertAdjacentElement(`afterbegin`, node);
     throw err;
   };
 

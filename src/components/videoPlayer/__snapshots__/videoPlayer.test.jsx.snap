@@ -3,6 +3,5 @@
 exports[`VideoPlayer is rendered correctly 1`] = `
 <video
   className="player__video"
-  poster="fantastic-beasts-the-crimes-of-grindelwald.jpg"
 />
 `;

@@ -15,9 +15,7 @@ exports[`Проверка снепшота компонента MovieCard 1`] = 
     <a
       className="small-movie-card__link"
       href="movie-page.html"
-    >
-      Movie title
-    </a>
+    />
   </h3>
 </article>
 `;

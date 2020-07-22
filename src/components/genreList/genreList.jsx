@@ -28,7 +28,6 @@ class GenreList extends PureComponent {
     const {onClick, setActiveItem} = this.props;
     const genreList = this.getGenreList();
     const genre = this.props.genre;
-    const allMovies = this.props.allMovies;
 
     return <React.Fragment>
       {genreList.map((item) => {
@@ -38,7 +37,7 @@ class GenreList extends PureComponent {
           key={item}
           className={`catalog__genres-item ${activeClass}`}
           onClick={() => {
-            onClick(item, allMovies);
+            onClick(item);
             setActiveItem(item);
           }}
         >
@@ -60,17 +59,16 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-// GenreList.propTypes = {
-//   genre: PropTypes.string.isRequired,
-//   // allMovies: PropTypes.array.isRequired,
-//   onClick: PropTypes.func.isRequired,
-//   movies: PropTypes.arrayOf(PropTypes.shape({
-//     title: PropTypes.string.isRequired,
-//     src: PropTypes.string.isRequired,
-//     genre: PropTypes.string.isRequired,
-//   })),
-//   setActiveItem: PropTypes.func.isRequired,
-// };
+GenreList.propTypes = {
+  genre: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+  })),
+  setActiveItem: PropTypes.func.isRequired,
+};
 
 export {GenreList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenreList);
