@@ -7,9 +7,9 @@ import withVideoPlayer from "./withVideoPlayer.jsx";
 describe(`Проверка снэпшота withVideoPlayer`, () => {
 
   const card = {
-    title: `Fantastic Beasts: The Crimes of Grindelwald`,
-    src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    preview: `https://www.kinomania.ru/load/n?file=//fs.kinomania.ru/media/video/a/e1/ae1ea61fe9c315fbd913c38d6ddc7c0d.480.mp4`,
+    name: `Fantastic Beasts: The Crimes of Grindelwald`,
+    previewImage: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    previewVideoLink: `https://www.kinomania.ru/load/n?file=//fs.kinomania.ru/media/video/a/e1/ae1ea61fe9c315fbd913c38d6ddc7c0d.480.mp4`,
   };
 
   const MockComponent = (props) => {
@@ -35,9 +35,9 @@ describe(`Проверка снэпшота withVideoPlayer`, () => {
   MockComponent.propTypes = {
     isPlaying: PropTypes.bool.isRequired,
     cardData: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      src: PropTypes.string.isRequired,
-      preview: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      previewImage: PropTypes.string.isRequired,
+      previewVideoLink: PropTypes.string.isRequired,
     }),
     onMouseEnter: PropTypes.func.isRequired,
     onMouseLeave: PropTypes.func.isRequired,

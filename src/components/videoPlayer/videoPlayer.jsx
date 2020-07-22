@@ -55,7 +55,7 @@ VideoPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   isMuted: PropTypes.bool.isRequired,
   cardData: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     previewVideoLink: PropTypes.string.isRequired,
     previewImage: PropTypes.string.isRequired,
   }),

@@ -26,9 +26,9 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   cardData: PropTypes.shape({
-    src: PropTypes.string,
+    previewImage: PropTypes.string,
     name: PropTypes.string,
-    preview: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
   }).isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,

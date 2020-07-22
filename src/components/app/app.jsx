@@ -24,8 +24,8 @@ App.propTypes = {
   movieGenre: PropTypes.string.isRequired,
   moviePromoDate: PropTypes.number.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
+    previewImage: PropTypes.string,
+    name: PropTypes.string,
   })).isRequired,
 };
 

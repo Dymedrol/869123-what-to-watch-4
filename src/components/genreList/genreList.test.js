@@ -14,7 +14,6 @@ it(`render GenresList`, () => {
   const store = mockStore({
     genre: Genres.ALL,
     movies: MOVIES,
-    allMovies: MOVIES,
   });
 
   const tree = renderer.create(

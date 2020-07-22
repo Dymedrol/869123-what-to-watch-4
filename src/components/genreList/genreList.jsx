@@ -63,9 +63,9 @@ GenreList.propTypes = {
   genre: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
   })),
   setActiveItem: PropTypes.func.isRequired,
 };

@@ -28,7 +28,7 @@ class MovieList extends PureComponent {
     return <div className="catalog__movies-list">
       {filterMoviesByGenre(genre, movies).map((card) => (
         <MovieCardWrapper
-          key={card.preview_image}
+          key={card.previewImage}
           cardData={card}
           setActiveItem={setActiveItem}
           removeActiveItem={removeActiveItem}
@@ -44,9 +44,9 @@ const mapStateToProps = (state) => ({
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-    preview: PropTypes.string.isRequired,
+    previewImage: PropTypes.string,
+    name: PropTypes.string,
+    previewVideoLink: PropTypes.string.isRequired,
   })).isRequired,
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,

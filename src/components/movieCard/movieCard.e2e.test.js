@@ -8,9 +8,9 @@ Enzyme.configure({
 });
 
 const movie = {
-  title: `Fantastic Beasts: The Crimes of Grindelwald`,
-  src: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  name: `Fantastic Beasts: The Crimes of Grindelwald`,
+  previewImage: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 it(`Simulate click on the title`, () => {
