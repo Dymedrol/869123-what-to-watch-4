@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
+import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from "react-redux";
+import thunk from 'redux-thunk';
+
 import App from './components/app/app.jsx';
-import movies from "./mocks/films.js";
-import {reducer} from "./reducer.js";
+import {reducer, Operation} from "./reducer.js";
+import {createAPI} from './api.js';
+
+const api = createAPI();
 
 const init = () => {
   const settings = {
@@ -15,8 +19,13 @@ const init = () => {
 
   const store = createStore(
       reducer,
-      window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+      compose(
+        applyMiddleware(thunk.withExtraArgument(api)),
+        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+        )
   );
+
+  store.dispatch(Operation.loadMovies());
 
   ReactDOM.render(
       <Provider store={store}>
@@ -24,7 +33,7 @@ const init = () => {
           movieTitle={settings.movieTitle}
           movieGenre={settings.movieGenre}
           moviePromoDate={settings.moviePromoDate}
-          movies={movies}
+          // movies={movies}
         />
       </Provider>,
       document.querySelector(`#root`)

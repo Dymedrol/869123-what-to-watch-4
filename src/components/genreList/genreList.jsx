@@ -13,7 +13,7 @@ class GenreList extends PureComponent {
   getGenreList() {
     const genres = new Set();
     genres.add(`All genres`);
-    this.props.allMovies.forEach((movie) => {
+    this.props.movies.forEach((movie) => {
       genres.add(movie.genre);
     });
     const genreList = Array.from(genres);
@@ -25,6 +25,7 @@ class GenreList extends PureComponent {
     const {onClick, setActiveItem} = this.props;
     const genreList = this.getGenreList();
     const genre = this.props.genre;
+    const allMovies = this.props.allMovies;
 
     return <React.Fragment>
       {genreList.map((item) => {
@@ -34,7 +35,7 @@ class GenreList extends PureComponent {
           key={item}
           className={`catalog__genres-item ${activeClass}`}
           onClick={() => {
-            onClick(item);
+            onClick(item, allMovies);
             setActiveItem(item);
           }}
         >
@@ -47,28 +48,30 @@ class GenreList extends PureComponent {
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
-  allMovies: state.allMovies,
+  // allMovies: state.allMovies,
   genre: state.genre,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
+    // console.log(genre);
+    // console.log('ghfg  ', allMovies)
     dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.getFilmsByGenre());
+    // dispatch(ActionCreator.getFilmsByGenre(genre, allMovies));
   }
 });
 
-GenreList.propTypes = {
-  genre: PropTypes.string.isRequired,
-  allMovies: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-  })),
-  setActiveItem: PropTypes.func.isRequired,
-};
+// GenreList.propTypes = {
+//   genre: PropTypes.string.isRequired,
+//   // allMovies: PropTypes.array.isRequired,
+//   onClick: PropTypes.func.isRequired,
+//   movies: PropTypes.arrayOf(PropTypes.shape({
+//     title: PropTypes.string.isRequired,
+//     src: PropTypes.string.isRequired,
+//     genre: PropTypes.string.isRequired,
+//   })),
+//   setActiveItem: PropTypes.func.isRequired,
+// };
 
 export {GenreList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenreList);

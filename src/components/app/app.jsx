@@ -17,15 +17,15 @@ const App = (props) => {
   />;
 };
 
-App.propTypes = {
-  movieTitle: PropTypes.string.isRequired,
-  movieGenre: PropTypes.string.isRequired,
-  moviePromoDate: PropTypes.number.isRequired,
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-  })).isRequired,
-};
+// App.propTypes = {
+//   movieTitle: PropTypes.string.isRequired,
+//   movieGenre: PropTypes.string.isRequired,
+//   moviePromoDate: PropTypes.number.isRequired,
+//   movies: PropTypes.arrayOf(PropTypes.shape({
+//     src: PropTypes.string,
+//     title: PropTypes.string,
+//   })).isRequired,
+// };
 
 const mapStateToProps = (state) => ({
   genre: state.genre,

@@ -1,15 +1,12 @@
-import {extend} from "./utils.js";
-import {Genres} from "./const.js";
-// import MOVIES from "./mocks/films.js";
+import {extend} from "../../utils.js";
+import {Genres} from "../../const.js";
 
 const initialState = {
-  genre: Genres.ALL,
   movies: [],
 };
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
-  CHANGE_GENRE: `CHANGE_GENRE`,
 };
 
 const ActionCreator = {
@@ -19,13 +16,6 @@ const ActionCreator = {
       payload: allMovies,
     };
   },
-  changeGenre: (genre) => {
-    return {
-      type: ActionType.CHANGE_GENRE,
-      payload: genre,
-    };
-  },
-
 };
 
 const Operation = {
@@ -43,10 +33,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         movies: action.payload
-      });
-    case ActionType.CHANGE_GENRE:
-      return extend(state, {
-        genre: action.payload
       });
   }
 

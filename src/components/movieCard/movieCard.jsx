@@ -19,22 +19,22 @@ const MovieCard = (props) => {
       {renderPlayer(cardData)}
     </div>
     <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link" href="movie-page.html">{cardData.title}</a>
+      <a className="small-movie-card__link" href="movie-page.html">{cardData.name}</a>
     </h3>
   </article>;
 };
 
-MovieCard.propTypes = {
-  cardData: PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-    preview: PropTypes.string.isRequired,
-  }).isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
-  setActiveItem: PropTypes.func.isRequired,
-  removeActiveItem: PropTypes.func.isRequired,
-};
+// MovieCard.propTypes = {
+//   cardData: PropTypes.shape({
+//     src: PropTypes.string,
+//     title: PropTypes.string,
+//     preview: PropTypes.string.isRequired,
+//   }).isRequired,
+//   onMouseEnter: PropTypes.func.isRequired,
+//   onMouseLeave: PropTypes.func.isRequired,
+//   renderPlayer: PropTypes.func.isRequired,
+//   setActiveItem: PropTypes.func.isRequired,
+//   removeActiveItem: PropTypes.func.isRequired,
+// };
 
 export default MovieCard;
