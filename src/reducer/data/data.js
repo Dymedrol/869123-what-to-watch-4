@@ -12,7 +12,7 @@ const ActionCreator = {
   loadMovies: (allMovies) => {
     return {
       type: ActionType.LOAD_MOVIES,
-      payload: allMovies.map((movie) => parceMovietoCamalCase(movie)),
+      payload: allMovies.map(parceMovietoCamalCase),
     };
   },
 };
