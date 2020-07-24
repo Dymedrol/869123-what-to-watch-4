@@ -103,7 +103,6 @@ Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  movies: PropTypes.array.isRequired,
 };
 
 export default Main;
