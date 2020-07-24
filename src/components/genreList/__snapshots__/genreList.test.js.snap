@@ -21,51 +21,7 @@ Array [
       className="catalog__genres-link"
       href="#"
     >
-      comedy
-    </a>
-  </li>,
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      drama
-    </a>
-  </li>,
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      science fiction
-    </a>
-  </li>,
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
       Crime
-    </a>
-  </li>,
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Documentary
     </a>
   </li>,
 ]

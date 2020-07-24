@@ -13,7 +13,7 @@ class VideoPlayer extends PureComponent {
   componentDidMount() {
     const video = this._videoRef.current;
 
-    video.src = this.props.cardData.preview;
+    video.src = this.props.cardData.previewVideoLink;
     video.muted = this.props.isMuted;
   }
 
@@ -39,12 +39,12 @@ class VideoPlayer extends PureComponent {
   }
 
   render() {
-    const poster = this.props.cardData.src;
+    const previewImage = this.props.cardData.previewImage;
 
     return (
       <video
         ref = {this._videoRef}
-        poster = {poster}
+        poster = {previewImage}
         className={`player__video`}
       />
     );
@@ -55,9 +55,9 @@ VideoPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   isMuted: PropTypes.bool.isRequired,
   cardData: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
   }),
 };
 

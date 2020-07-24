@@ -7,6 +7,7 @@ import Main from './main.jsx';
 
 import {Genres} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
+import NameSpace from "../../reducer/nameSpace.js";
 
 const mockStore = configureStore([]);
 
@@ -20,21 +21,16 @@ const mainMovie = {
   date: 2020,
 };
 
-const movies = [
-  {
-    src: `img/macbeth.jpg`,
-    title: `Macbeth`,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  },
-];
-
 describe(`Main e2e test`, () => {
   it(`ПРоверяем отрисовку карточек`, () =>{
 
     const store = mockStore({
-      genre: Genres.ALL,
-      movies: MOVIES,
-      allMovies: MOVIES,
+      [NameSpace.APP]: {
+        genre: Genres.ALL,
+      },
+      [NameSpace.DATA]: {
+        movies: MOVIES,
+      },
     });
 
     const main = mount(
@@ -43,11 +39,10 @@ describe(`Main e2e test`, () => {
             title={mainMovie.title}
             genre={mainMovie.genre}
             date={mainMovie.date}
-            movies={movies}
           />
         </Provider>
     );
     const titles = main.find(`.small-movie-card__link`);
-    expect(titles).toHaveLength(movies.length);
+    expect(titles).toHaveLength(MOVIES.length);
   });
 });

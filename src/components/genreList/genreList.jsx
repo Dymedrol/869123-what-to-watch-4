@@ -1,30 +1,18 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "./../../reducer.js";
+
+import {ActionCreator} from '../../reducer/app/app.js';
+import {getGenre, getGenreList} from '../../reducer/app/selectors.js';
+import {getMovies} from '../../reducer/data/selectors.js';
 
 class GenreList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.getGenreList = this.getGenreList.bind(this);
-  }
-
-  getGenreList() {
-    const genres = new Set();
-    genres.add(`All genres`);
-    this.props.allMovies.forEach((movie) => {
-      genres.add(movie.genre);
-    });
-    const genreList = Array.from(genres);
-
-    return genreList;
   }
 
   render() {
-    const {onClick, setActiveItem} = this.props;
-    const genreList = this.getGenreList();
-    const genre = this.props.genre;
+    const {onClick, setActiveItem, genreList, genre} = this.props;
 
     return <React.Fragment>
       {genreList.map((item) => {
@@ -46,28 +34,27 @@ class GenreList extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  allMovies: state.allMovies,
-  genre: state.genre,
+  movies: getMovies(state),
+  genre: getGenre(state),
+  genreList: getGenreList(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
     dispatch(ActionCreator.changeGenre(genre));
-    dispatch(ActionCreator.getFilmsByGenre());
   }
 });
 
 GenreList.propTypes = {
   genre: PropTypes.string.isRequired,
-  allMovies: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    previewVideoLink: PropTypes.string.isRequired,
   })),
   setActiveItem: PropTypes.func.isRequired,
+  genreList: PropTypes.array.isRequired,
 };
 
 export {GenreList};

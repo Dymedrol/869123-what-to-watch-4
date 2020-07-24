@@ -8,7 +8,7 @@ const MovieCard = (props) => {
     className="small-movie-card catalog__movies-card"
     onMouseEnter={() => {
       onMouseEnter();
-      setActiveItem(cardData.title);
+      setActiveItem(cardData.name);
     }}
     onMouseLeave = {() => {
       onMouseLeave();
@@ -19,16 +19,16 @@ const MovieCard = (props) => {
       {renderPlayer(cardData)}
     </div>
     <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link" href="movie-page.html">{cardData.title}</a>
+      <a className="small-movie-card__link" href="movie-page.html">{cardData.name}</a>
     </h3>
   </article>;
 };
 
 MovieCard.propTypes = {
   cardData: PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-    preview: PropTypes.string.isRequired,
+    previewImage: PropTypes.string,
+    name: PropTypes.string,
+    previewVideoLink: PropTypes.string.isRequired,
   }).isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,

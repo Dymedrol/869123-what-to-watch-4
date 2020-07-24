@@ -1,23 +1,42 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
 import MovieList from "./movieList.jsx";
+import NameSpace from "../../reducer/nameSpace.js";
+import {Genres} from "../../const.js";
+
+
+const mockStore = configureStore([]);
 
 const movies = [{
-  title: `Title`,
-  src: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  name: `Title`,
+  previewImage: `fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 }];
 
 it(`Проверка снепшота компонента MovieList`, () => {
+  const store = mockStore({
+    [NameSpace.APP]: {
+      genre: Genres.ALL,
+    },
+    [NameSpace.DATA]: {
+      movies,
+    },
+  });
+
   const tree = renderer
-    .create(<MovieList
-      movies={movies}
-      setActiveItem={() => {}}
-      removeActiveItem={() => {}}
-    />, {
-      createNodeMock: () => {
-        return {};
-      }})
+    .create(
+        <Provider store={store}>
+          <MovieList
+            setActiveItem={() => {}}
+            removeActiveItem={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }})
     .toJSON();
 
   expect(tree).toMatchSnapshot();

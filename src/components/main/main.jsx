@@ -11,7 +11,7 @@ const GenreListWrapper = withActiveItem(GenreList);
 
 const Main = (props) => {
 
-  const {title, genre, date, movies} = props;
+  const {title, genre, date} = props;
 
   return <div>
 
@@ -72,14 +72,10 @@ const Main = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <ul className="catalog__genres-list">
-          <GenreListWrapper
-
-          />
+          <GenreListWrapper/>
         </ul>
 
-        <MovieListWrapper
-          movies={movies}
-        />
+        <MovieListWrapper/>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -107,7 +103,6 @@ Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  movies: PropTypes.array.isRequired,
 };
 
 export default Main;

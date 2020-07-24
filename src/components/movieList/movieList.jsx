@@ -1,7 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+
 import MovieCard from '../movieCard/movieCard.jsx';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
+import {getMoviesByGenre} from '../../reducer/app/selectors.js';
 
 const MovieCardWrapper = withVideoPlayer(MovieCard);
 
@@ -17,7 +20,7 @@ class MovieList extends PureComponent {
     return <div className="catalog__movies-list">
       {movies.map((card) => (
         <MovieCardWrapper
-          key={card.src}
+          key={card.previewImage}
           cardData={card}
           setActiveItem={setActiveItem}
           removeActiveItem={removeActiveItem}
@@ -27,14 +30,19 @@ class MovieList extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  movies: getMoviesByGenre(state),
+});
+
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({
-    src: PropTypes.string,
-    title: PropTypes.string,
-    preview: PropTypes.string.isRequired,
+    previewImage: PropTypes.string,
+    name: PropTypes.string,
+    previewVideoLink: PropTypes.string.isRequired,
   })).isRequired,
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,
 };
 
-export default MovieList;
+export {MovieList};
+export default connect(mapStateToProps)(MovieList);
