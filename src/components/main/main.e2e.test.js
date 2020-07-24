@@ -21,14 +21,6 @@ const mainMovie = {
   date: 2020,
 };
 
-const movies = [
-  {
-    previewImage: `img/macbeth.jpg`,
-    name: `Macbeth`,
-    previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  },
-];
-
 describe(`Main e2e test`, () => {
   it(`ПРоверяем отрисовку карточек`, () =>{
 
@@ -47,11 +39,10 @@ describe(`Main e2e test`, () => {
             title={mainMovie.title}
             genre={mainMovie.genre}
             date={mainMovie.date}
-            movies={movies}
           />
         </Provider>
     );
     const titles = main.find(`.small-movie-card__link`);
-    expect(titles).toHaveLength(movies.length);
+    expect(titles).toHaveLength(MOVIES.length);
   });
 });

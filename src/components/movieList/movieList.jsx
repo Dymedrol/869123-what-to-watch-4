@@ -2,10 +2,9 @@ import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 
-import {Genres} from "./../../const.js";
 import MovieCard from '../movieCard/movieCard.jsx';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
-import {getGenre} from '../../reducer/app/selectors.js';
+import {getMoviesByGenre} from '../../reducer/app/selectors.js';
 
 const MovieCardWrapper = withVideoPlayer(MovieCard);
 
@@ -16,17 +15,10 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {movies, setActiveItem, removeActiveItem, genre} = this.props;
-
-    const filterMoviesByGenre = (currentGenre, allMovies) => {
-      if (currentGenre === Genres.ALL) {
-        return allMovies;
-      }
-      return allMovies.filter((movie) => movie.genre === currentGenre);
-    };
+    const {movies, setActiveItem, removeActiveItem} = this.props;
 
     return <div className="catalog__movies-list">
-      {filterMoviesByGenre(genre, movies).map((card) => (
+      {movies.map((card) => (
         <MovieCardWrapper
           key={card.previewImage}
           cardData={card}
@@ -39,7 +31,7 @@ class MovieList extends PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  genre: getGenre(state),
+  movies: getMoviesByGenre(state),
 });
 
 MovieList.propTypes = {
@@ -50,7 +42,6 @@ MovieList.propTypes = {
   })).isRequired,
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,
-  genre: PropTypes.string.isRequired,
 };
 
 export {MovieList};

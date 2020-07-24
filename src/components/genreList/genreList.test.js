@@ -16,6 +16,8 @@ it(`render GenresList`, () => {
     movies: MOVIES,
   });
 
+  const genres = [`All genres`, `Crime`];
+
   const tree = renderer.create(
       <Provider store={store}>
         <GenreList
@@ -24,6 +26,7 @@ it(`render GenresList`, () => {
           movies={MOVIES}
           allMovies={MOVIES}
           setActiveItem={()=>{}}
+          genreList = {genres}
         />
       </Provider>, {
         createNodeMock: () => {

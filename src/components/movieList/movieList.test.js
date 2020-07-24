@@ -21,14 +21,15 @@ it(`Проверка снепшота компонента MovieList`, () => {
     [NameSpace.APP]: {
       genre: Genres.ALL,
     },
-    [NameSpace.DATA]: movies,
+    [NameSpace.DATA]: {
+      movies,
+    },
   });
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <MovieList
-            movies={movies}
             setActiveItem={() => {}}
             removeActiveItem={() => {}}
           />
