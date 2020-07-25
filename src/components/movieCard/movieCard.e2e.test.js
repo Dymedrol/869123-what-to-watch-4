@@ -19,6 +19,7 @@ it(`Simulate click on the title`, () => {
   const renderPlayer = jest.fn();
   const setActiveItem = jest.fn();
   const removeActiveItem = jest.fn();
+  const onMovieCardClickHandler = jest.fn();
 
   const card = mount(
       <MovieCard
@@ -30,6 +31,8 @@ it(`Simulate click on the title`, () => {
         renderPlayer={renderPlayer}
         setActiveItem={setActiveItem}
         removeActiveItem={removeActiveItem}
+        onMovieCardClickHandler={onMovieCardClickHandler}
+
       />
   );
 

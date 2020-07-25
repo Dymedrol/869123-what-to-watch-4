@@ -39,6 +39,7 @@ describe(`Main e2e test`, () => {
             title={mainMovie.title}
             genre={mainMovie.genre}
             date={mainMovie.date}
+            onMovieCardClickHandler={() => {}}
           />
         </Provider>
     );

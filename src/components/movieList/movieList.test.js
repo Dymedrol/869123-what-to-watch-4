@@ -32,6 +32,7 @@ it(`Проверка снепшота компонента MovieList`, () => {
           <MovieList
             setActiveItem={() => {}}
             removeActiveItem={() => {}}
+            onMovieCardClickHandler={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
