@@ -15,7 +15,7 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {movies, setActiveItem, removeActiveItem} = this.props;
+    const {movies, setActiveItem, removeActiveItem, onMovieCardClickHandler} = this.props;
 
     return <div className="catalog__movies-list">
       {movies.map((card) => (
@@ -24,6 +24,7 @@ class MovieList extends PureComponent {
           cardData={card}
           setActiveItem={setActiveItem}
           removeActiveItem={removeActiveItem}
+          onMovieCardClickHandler={onMovieCardClickHandler}
         />
       ))}
     </div>;
@@ -42,6 +43,7 @@ MovieList.propTypes = {
   })).isRequired,
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,
+  onMovieCardClickHandler: PropTypes.func.isRequired,
 };
 
 export {MovieList};

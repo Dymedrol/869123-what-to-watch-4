@@ -11,7 +11,7 @@ const GenreListWrapper = withActiveItem(GenreList);
 
 const Main = (props) => {
 
-  const {title, genre, date} = props;
+  const {title, genre, date, onMovieCardClickHandler} = props;
 
   return <div>
 
@@ -75,7 +75,9 @@ const Main = (props) => {
           <GenreListWrapper/>
         </ul>
 
-        <MovieListWrapper/>
+        <MovieListWrapper
+          onMovieCardClickHandler = {onMovieCardClickHandler}
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -103,6 +105,7 @@ Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
+  onMovieCardClickHandler: PropTypes.func.isRequired,
 };
 
 export default Main;

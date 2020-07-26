@@ -246,6 +246,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -262,7 +263,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               Macbeth
             </a>
@@ -270,6 +270,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -286,7 +287,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               Johnny English
             </a>
@@ -294,6 +294,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -310,7 +311,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               Fantastic Beasts: The Crimes of Grindelwald
             </a>
@@ -318,6 +318,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -334,7 +335,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               Aviator
             </a>
@@ -342,6 +342,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -358,7 +359,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               We need to talk about Kevin
             </a>
@@ -366,6 +366,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -382,7 +383,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               What We Do in the Shadows
             </a>
@@ -390,6 +390,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -406,7 +407,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               Revenant
             </a>
@@ -414,6 +414,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -430,7 +431,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
             >
               Bohemian Rhapsody
             </a>

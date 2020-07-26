@@ -18,6 +18,7 @@ it(`Проверка снепшота компонента MovieCard`, () => {
       renderPlayer={() => {}}
       setActiveItem={() => {}}
       removeActiveItem={() => {}}
+      onMovieCardClickHandler={() => {}}
     />, {
       createNodeMock: () => {
         return {};

@@ -34,6 +34,7 @@ it(`Проверка снепшота компонента App`, () => {
           movieGenre={`movie genre`}
           moviePromoDate={2020}
           movies={movies}
+          onMovieCardClickHandler={() => {}}
         />
       </Provider>, {
         createNodeMock: () => {

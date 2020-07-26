@@ -27,6 +27,21 @@ const Operation = {
 };
 
 const parceMovietoCamalCase = (movie) => {
+
+  const getRating = (rating) => {
+    if (rating < 3) {
+      return `Bad`;
+    } else if (rating < 5) {
+      return `Normal`;
+    } else if (rating < 8) {
+      return `Good`;
+    } else if (rating < 10) {
+      return `Very good`;
+    } else {
+      return `Awesome`;
+    }
+  };
+
   const newMovie = {
     backgroundColor: movie.background_color,
     backgroundImage: movie.background_image,
@@ -40,6 +55,7 @@ const parceMovietoCamalCase = (movie) => {
     previewImage: movie.preview_image,
     previewVideoLink: movie.preview_video_link,
     rating: movie.rating,
+    ratingString: getRating(movie.rating),
     released: movie.released,
     runTime: movie.run_time,
     scoresCount: movie.scores_count,
