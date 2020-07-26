@@ -1,6 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+
 import MoviePage from "./moviePage.jsx";
+import NameSpace from "../../reducer/nameSpace.js";
+import {Genres} from "../../const.js";
+import MOVIES from "../../mocks/films.js";
+
+const mockStore = configureStore([]);
 
 const movie = {
   backgroundColor: `#D8E3E5`,
@@ -23,13 +31,26 @@ const movie = {
   videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
 };
 
-describe(`MoviePage`, () => {
-  it(`Should render correctly`, () => {
-    const tree = renderer
-      .create(<MoviePage
-        movie={movie} />)
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
+it(`Проверка снепшота компонента Main`, () => {
+  const store = mockStore({
+    [NameSpace.APP]: {
+      genre: Genres.ALL,
+    },
+    [NameSpace.DATA]: {
+      movies: MOVIES,
+    },
   });
+  const tree = renderer.create(
+      <Provider store={store}>
+        <MoviePage
+          movie={movie}
+        />
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }})
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
 });
+

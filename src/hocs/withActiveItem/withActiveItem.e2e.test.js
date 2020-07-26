@@ -19,6 +19,6 @@ describe(`Тестируем компонент withActiveItem`, () => {
     );
 
     wrapper.props().setActiveItem(`Item`);
-    expect(wrapper.state().activeCard).toEqual(`Item`);
+    expect(wrapper.state().activeElement).toEqual(`Item`);
   });
 });

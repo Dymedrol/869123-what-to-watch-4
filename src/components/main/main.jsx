@@ -1,17 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
-import MovieList from '../movieList/movieList.jsx';
+import {MovieList} from '../movieList/movieList.jsx';
 import GenreList from '../genreList/genreList.jsx';
 import {PlayS, Add} from '../svg/svg.jsx';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
+import {getMoviesByGenre} from '../../reducer/app/selectors.js';
 
 const MovieListWrapper = withActiveItem(MovieList);
 const GenreListWrapper = withActiveItem(GenreList);
 
 const Main = (props) => {
 
-  const {title, genre, date, onMovieCardClickHandler} = props;
+  const {title, genre, date, onMovieCardClickHandler, movies} = props;
 
   return <div>
 
@@ -77,6 +79,7 @@ const Main = (props) => {
 
         <MovieListWrapper
           onMovieCardClickHandler = {onMovieCardClickHandler}
+          movies = {movies}
         />
 
         <div className="catalog__more">
@@ -101,11 +104,17 @@ const Main = (props) => {
   </div>;
 };
 
+const mapStateToProps = (state) => ({
+  movies: getMoviesByGenre(state),
+});
+
 Main.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
   onMovieCardClickHandler: PropTypes.func.isRequired,
+  movies: PropTypes.array.isRequired,
 };
 
-export default Main;
+export {Main};
+export default connect(mapStateToProps)(Main);

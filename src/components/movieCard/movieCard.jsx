@@ -31,11 +31,7 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  cardData: PropTypes.shape({
-    previewImage: PropTypes.string,
-    name: PropTypes.string,
-    previewVideoLink: PropTypes.string.isRequired,
-  }).isRequired,
+  cardData: PropTypes.object.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,

@@ -6,7 +6,7 @@ const withActiveItem = (Component) => {
       super(props);
 
       this.state = {
-        activeCard: null
+        activeElement: null
       };
 
       this.setActiveItem = this.setActiveItem.bind(this);
@@ -15,13 +15,13 @@ const withActiveItem = (Component) => {
 
     setActiveItem(item) {
       this.setState({
-        activeCard: item
+        activeElement: item
       });
     }
 
     removeActiveItem() {
       this.setState({
-        activeCard: null
+        activeElement: null
       });
     }
 
@@ -36,7 +36,7 @@ const withActiveItem = (Component) => {
           removeActiveItem={() => {
             this.removeActiveItem();
           }}
-
+          activeElement = {this.state.activeElement}
         />
       );
     }

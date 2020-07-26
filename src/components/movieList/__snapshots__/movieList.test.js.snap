@@ -15,7 +15,7 @@ exports[`Проверка снепшота компонента MovieList 1`] = 
     >
       <video
         className="player__video"
-        poster="fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
       />
     </div>
     <h3
@@ -24,7 +24,31 @@ exports[`Проверка снепшота компонента MovieList 1`] = 
       <a
         className="small-movie-card__link"
       >
-        Title
+        Gangs of new york
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        className="player__video"
+        poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+      >
+        Moonrise Kingdom
       </a>
     </h3>
   </article>
