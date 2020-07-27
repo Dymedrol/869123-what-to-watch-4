@@ -9,7 +9,7 @@ import MoviePage from '../moviePage/moviePage.jsx';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre} from '../../reducer/app/selectors.js';
 import {getMovies} from '../../reducer/data/selectors.js';
-import {MovieListStep} from '../../const.js';
+import {MovieListStep, videoPlayerModes} from '../../const.js';
 
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 const PlayerWrapper = withVideoPlayer(Player);
@@ -108,6 +108,7 @@ class App extends PureComponent {
               onPlayButtonHandler = {this.onPlayButtonHandler}
               onExitButtonHandler = {this.onExitButtonHandler}
               isMuted={true}
+              videoMode={videoPlayerModes.FULLSCREEN}
             />
           </Route>
         </Switch>
@@ -143,7 +144,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  promoMovie: PropTypes.array.isRequired,
+  promoMovie: PropTypes.object.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     previewImage: PropTypes.string,
     name: PropTypes.string,

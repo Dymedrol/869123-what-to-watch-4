@@ -1,24 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
-import App from './app.jsx';
+import {Player} from './player.jsx';
 
-import {Genres} from "../../const.js";
-import MOVIES from "../../mocks/films.js";
-import NameSpace from "../../reducer/nameSpace.js";
-
-const mockStore = configureStore([]);
-
-const movies = [
-  {
-    previewImage: `img/macbeth.jpg`,
-    name: `Macbeth`,
-    previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  },
-];
-
-const promoMovie = {
+const movie= {
   backgroundColor: `#D8E3E5`,
   backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
   description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
@@ -39,27 +23,26 @@ const promoMovie = {
   videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
 };
 
-it(`Проверка снепшота компонента App`, () => {
-  const store = mockStore({
-    [NameSpace.APP]: {
-      genre: Genres.ALL,
-    },
-    [NameSpace.DATA]: {
-      movies: MOVIES,
-    },
-  });
+it(`ПРоверка снепшота компонента Player`, () => {
   const tree = renderer.create(
-      <Provider store={store}>
-        <App
-          promoMovie={promoMovie}
-          movies={movies}
-          onMovieCardClickHandler={() => {}}
-        />
-      </Provider>, {
+      <Player
+        movie={movie}
+        playVideo={() => {}}
+        onExitButtonHandler={() => {}}
+        renderPlayer={() => {}}
+        pauseVideo={() => {}}
+        changeFullScreen={() => {}}
+        isVideoPlaying={false}
+        isVideoPaused={false}
+        progress={0}
+        duration={100}
+      />, {
         createNodeMock: () => {
-          return {};
-        }})
-          .toJSON();
+          return {
+            addEventListener: () => {}
+          };
+        }}
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

@@ -20,6 +20,7 @@ describe(`Тест состояний плеера`, () => {
           isPlaying = {true}
           cardData = {movie}
           isMuted = {true}
+          videoMode = {`small`}
         />
     );
 
@@ -32,6 +33,7 @@ describe(`Тест состояний плеера`, () => {
           isPlaying = {false}
           cardData = {movie}
           isMuted = {true}
+          videoMode = {`small`}
         />
     );
 

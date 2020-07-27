@@ -32,8 +32,6 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   cardData: PropTypes.object.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,

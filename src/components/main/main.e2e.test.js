@@ -15,10 +15,25 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const mainMovie = {
-  title: `Main movie title`,
-  genre: `Main movie genre`,
-  date: 2020,
+const movieMock = {
+  backgroundColor: `#D8E3E5`,
+  backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
+  description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
+  director: `Wes Anderson`,
+  genre: `Adventure`,
+  id: 2,
+  isFavorite: false,
+  name: `Moonrise Kingdom`,
+  posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg`,
+  previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg`,
+  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  rating: 7.9,
+  ratingString: `good`,
+  released: 2012,
+  runTime: 94,
+  scoresCount: 291183,
+  starring: [`Jared Gilman`, `Kara Hayward`, `Bruce Willis`],
+  videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
 };
 
 describe(`Main e2e test`, () => {
@@ -36,9 +51,7 @@ describe(`Main e2e test`, () => {
     const main = mount(
         <Provider store={store}>
           <Main
-            title={mainMovie.title}
-            genre={mainMovie.genre}
-            date={mainMovie.date}
+            promoMovie={movieMock}
             onMovieCardClickHandler={() => {}}
             onShowMoreClickHandler={() => {}}
             movieListCount={8}

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Проверка снепшота компонента Main 1`] = `
+exports[`Проверка снепшота компонента MoviePage 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -98,6 +98,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg

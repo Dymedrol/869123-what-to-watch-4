@@ -31,7 +31,9 @@ const movie = {
   videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
 };
 
-it(`Проверка снепшота компонента Main`, () => {
+const isMoviePlaying = false;
+
+it(`Проверка снепшота компонента MoviePage`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       genre: Genres.ALL,
@@ -44,6 +46,9 @@ it(`Проверка снепшота компонента Main`, () => {
       <Provider store={store}>
         <MoviePage
           movie={movie}
+          onPlayButtonHandler={() => {}}
+          onExitButtonHandler={() => {}}
+          isMoviePlaying={isMoviePlaying}
         />
       </Provider>, {
         createNodeMock: () => {
