@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Player} from './player.jsx';
 
-const movie= {
+const movie = {
   backgroundColor: `#D8E3E5`,
   backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
   description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,

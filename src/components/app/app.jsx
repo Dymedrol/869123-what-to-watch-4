@@ -149,7 +149,6 @@ App.propTypes = {
     previewImage: PropTypes.string,
     name: PropTypes.string,
   })).isRequired,
-  onMovieCardClickHandler: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

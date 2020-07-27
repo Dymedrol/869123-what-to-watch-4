@@ -2,9 +2,8 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {Player} from './player.jsx';
-import {Router} from 'react-router-dom';
 
-const movie= {
+const movie = {
   backgroundColor: `#D8E3E5`,
   backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
   description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
@@ -32,18 +31,18 @@ Enzyme.configure({
 it(`ПРоверка вызова коллбэка по нажатию на кнопу EXIT`, () => {
   const onExitButtonClick = jest.fn();
   const player = mount(
-        <Player
-            movie={movie}
-            playVideo={() => {}}
-            onExitButtonHandler={onExitButtonClick}
-            renderPlayer={() => {}}
-            pauseVideo={() => {}}
-            changeFullScreen={() => {}}
-            isVideoPlaying={false}
-            isVideoPaused={false}
-            progress={0}
-            duration={100}
-        />
+      <Player
+        movie={movie}
+        playVideo={() => {}}
+        onExitButtonHandler={onExitButtonClick}
+        renderPlayer={() => {}}
+        pauseVideo={() => {}}
+        changeFullScreen={() => {}}
+        isVideoPlaying={false}
+        isVideoPaused={false}
+        progress={0}
+        duration={100}
+      />
   );
 
   player.find(`.player__exit`).simulate(`click`);
@@ -55,18 +54,18 @@ it(`ПРоверка вызова коллбэков по нажатию на к
   const playVideo = jest.fn();
   const pauseVideo = jest.fn();
   const player = mount(
-        <Player
-            movie={movie}
-            playVideo={playVideo}
-            onExitButtonHandler={() => {}}
-            renderPlayer={() => {}}
-            pauseVideo={pauseVideo}
-            changeFullScreen={() => {}}
-            isVideoPlaying={false}
-            isVideoPaused={false}
-            progress={0}
-            duration={100}
-        />
+      <Player
+        movie={movie}
+        playVideo={playVideo}
+        onExitButtonHandler={() => {}}
+        renderPlayer={() => {}}
+        pauseVideo={pauseVideo}
+        changeFullScreen={() => {}}
+        isVideoPlaying={false}
+        isVideoPaused={false}
+        progress={0}
+        duration={100}
+      />
   );
 
   player.find(`.player__play`).simulate(`click`);
