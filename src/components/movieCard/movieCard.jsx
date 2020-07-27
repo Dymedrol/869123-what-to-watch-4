@@ -30,14 +30,16 @@ const MovieCard = (props) => {
   </article>;
 };
 
-// MovieCard.propTypes = {
-//   cardData: PropTypes.object.isRequired,
-//   onMouseEnter: PropTypes.func.isRequired,
-//   onMouseLeave: PropTypes.func.isRequired,
-//   renderPlayer: PropTypes.func.isRequired,
-//   setActiveItem: PropTypes.func.isRequired,
-//   removeActiveItem: PropTypes.func.isRequired,
-//   onMovieCardClickHandler: PropTypes.func.isRequired,
-// };
+MovieCard.propTypes = {
+  cardData: PropTypes.object.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+  removeActiveItem: PropTypes.func.isRequired,
+  onMovieCardClickHandler: PropTypes.func.isRequired,
+  playVideo: PropTypes.func.isRequired,
+  stopVideo: PropTypes.func.isRequired,
+};
 
 export default MovieCard;

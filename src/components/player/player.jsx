@@ -1,56 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-// const Player = (props) => {
-
-//   const {movie, onExitButtonHandler, renderPlayer, playVideo, stopVideo, isVideoPlaying} = props;
-
-//   const toggleButton = () =>{
-//     if (isVideoPlaying) {
-//       stopVideo();
-//     } else {
-//       playVideo();
-//     }
-//   }
-
-//   return <div className="player">
-//       {renderPlayer(movie)}
-
-//       <button type="button" className="player__exit" onClick={onExitButtonHandler}>Exit</button>
-
-//       <div className="player__controls">
-//         <div className="player__controls-row">
-//           <div className="player__time">
-//             <progress className="player__progress" value="30" max="100"></progress>
-//             <div className="player__toggler" style={{style : '30%'}}>Toggler</div>
-//           </div>
-//           <div className="player__time-value">1:30:29</div>
-//         </div>
-
-//         <div className="player__controls-row">
-//           <button type="button" className="player__play" onClick={toggleButton}>
-//             {isVideoPlaying &&
-//               <svg viewBox="0 0 14 21" width="14" height="21">
-//                 <use xlinkHref="#pause" />
-//               </svg>
-//               ||
-//               <svg viewBox="0 0 19 19" width="19" height="19">
-//                 <use xlinkHref="#play-s" />
-//               </svg>
-//             }
-//           </button>
-//           <div className="player__name">{movie.name}</div>
-
-//           <button type="button" className="player__full-screen">
-//             <svg viewBox="0 0 27 27" width="27" height="27">
-//               <use xlinkHref="#full-screen"></use>
-//             </svg>
-//             <span>Full screen</span>
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-// };
+import moment from 'moment';
 
 class Player extends React.Component {
   constructor(props) {
@@ -63,15 +13,42 @@ class Player extends React.Component {
 
   render() {
 
-  const {movie, onExitButtonHandler, renderPlayer, playVideo, stopVideo, isVideoPlaying} = this.props;
+    const {
+      movie,
+      onExitButtonHandler,
+      renderPlayer,
+      playVideo,
+      pauseVideo,
+      changeFullScreen,
+      isVideoPaused,
+      progress,
+      duration,
+    } = this.props;
 
-  const toggleButton = () =>{
-    if (isVideoPlaying) {
-      stopVideo();
-    } else {
-      playVideo();
-    }
-  }
+    const toggleButton = () =>{
+      if (isVideoPaused) {
+        playVideo();
+      } else {
+        pauseVideo();
+      }
+    };
+
+    const getProgressBarValue = () => {
+      if (isNaN(duration) || duration === 0) {
+        return 0;
+      } else {
+        return progress * 100 / duration;
+      }
+    };
+
+    const getTimeValue = () => {
+      if (duration) {
+        return moment.utc(duration * 1000).format(`H:mm:ss`);
+      }
+
+      return `0:00:00`;
+    };
+
     return (
       <div className="player">
         {renderPlayer(movie)}
@@ -81,27 +58,27 @@ class Player extends React.Component {
         <div className="player__controls">
           <div className="player__controls-row">
             <div className="player__time">
-              <progress className="player__progress" value="30" max="100"></progress>
-              <div className="player__toggler" style={{style : '30%'}}>Toggler</div>
+              <progress className="player__progress" value={getProgressBarValue()} max="100"></progress>
+              <div className="player__toggler" style={{left: `${getProgressBarValue()}%`}}>Toggler</div>
             </div>
-            <div className="player__time-value">1:30:29</div>
+            <div className="player__time-value">{getTimeValue()}</div>
           </div>
 
           <div className="player__controls-row">
             <button type="button" className="player__play" onClick={toggleButton}>
-              {isVideoPlaying &&
-                <svg viewBox="0 0 14 21" width="14" height="21">
-                  <use xlinkHref="#pause" />
-                </svg>
-                ||
+              {isVideoPaused &&
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s" />
+                </svg>
+                ||
+                <svg viewBox="0 0 14 21" width="14" height="21">
+                  <use xlinkHref="#pause" />
                 </svg>
               }
             </button>
             <div className="player__name">{movie.name}</div>
 
-            <button type="button" className="player__full-screen">
+            <button type="button" className="player__full-screen" onClick={changeFullScreen}>
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>
               </svg>
@@ -113,5 +90,18 @@ class Player extends React.Component {
     );
   }
 }
+
+Player.propTypes = {
+  playVideo: PropTypes.func.isRequired,
+  movie: PropTypes.object.isRequired,
+  onExitButtonHandler: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
+  pauseVideo: PropTypes.func.isRequired,
+  changeFullScreen: PropTypes.func.isRequired,
+  isVideoPlaying: PropTypes.bool.isRequired,
+  isVideoPaused: PropTypes.bool.isRequired,
+  progress: PropTypes.number.isRequired,
+  duration: PropTypes.number.isRequired,
+};
 
 export {Player};

@@ -12,7 +12,7 @@ import {getMovies} from '../../reducer/data/selectors.js';
 import {MovieListStep} from '../../const.js';
 
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
-const PlayerWrapper = withVideoPlayer(Player)
+const PlayerWrapper = withVideoPlayer(Player);
 
 const movieMock = {
   backgroundColor: `#D8E3E5`,
@@ -135,16 +135,14 @@ class App extends PureComponent {
   }
 }
 
-// App.propTypes = {
-//   movieTitle: PropTypes.string.isRequired,
-//   movieGenre: PropTypes.string.isRequired,
-//   moviePromoDate: PropTypes.number.isRequired,
-//   movies: PropTypes.arrayOf(PropTypes.shape({
-//     previewImage: PropTypes.string,
-//     name: PropTypes.string,
-//   })).isRequired,
-//   // onMovieCardClickHandler: PropTypes.func.isRequired,
-// };
+App.propTypes = {
+  promoMovie: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    previewImage: PropTypes.string,
+    name: PropTypes.string,
+  })).isRequired,
+  onMovieCardClickHandler: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   genre: getGenre(state),

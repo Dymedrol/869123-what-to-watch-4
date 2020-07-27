@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import MovieCard from '../movieCard/movieCard.jsx';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
+import {videoPlayerModes} from '../../const.js';
 
 const MovieCardWrapper = withVideoPlayer(MovieCard);
 
@@ -24,6 +25,7 @@ class MovieList extends PureComponent {
           removeActiveItem={removeActiveItem}
           onMovieCardClickHandler={onMovieCardClickHandler}
           isMuted={true}
+          videoMode={videoPlayerModes.SMALL}
         />
       ))}
     </div>;

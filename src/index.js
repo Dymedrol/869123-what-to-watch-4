@@ -12,7 +12,7 @@ import {createAPI} from './api.js';
 const api = createAPI();
 
 const init = () => {
-  const promoMovie =   {
+  const promoMovie = {
     backgroundColor: `#A6B7AC`,
     backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg`,
     description: `In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.`,
