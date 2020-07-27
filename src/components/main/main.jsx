@@ -137,9 +137,6 @@ const mapStateToProps = (state) => ({
 });
 
 Main.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired,
   onMovieCardClickHandler: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
   onShowMoreClickHandler: PropTypes.func.isRequired,

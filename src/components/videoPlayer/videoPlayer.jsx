@@ -121,10 +121,10 @@ VideoPlayer.propTypes = {
     previewVideoLink: PropTypes.string.isRequired,
     previewImage: PropTypes.string.isRequired,
   }),
-  changeFullScreen: PropTypes.func.isRequired,
-  changeProgress: PropTypes.func.isRequired,
-  isPaused: PropTypes.bool.isRequired,
-  isFullScreen: PropTypes.bool.isRequired,
+  changeFullScreen: PropTypes.func,
+  changeProgress: PropTypes.func,
+  isPaused: PropTypes.bool,
+  isFullScreen: PropTypes.bool,
   videoMode: PropTypes.string.isRequired,
 };
 

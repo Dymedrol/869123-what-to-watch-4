@@ -76,6 +76,9 @@ class App extends PureComponent {
       return (
         <MoviePage
           movie={selectedMovie}
+          onPlayButtonHandler = {this.onPlayButtonHandler}
+          onExitButtonHandler = {this.onExitButtonHandler}
+          isMoviePlaying = {isMoviePlaying}
         />
       );
     }
@@ -84,6 +87,7 @@ class App extends PureComponent {
   }
 
   render() {
+    const {isMoviePlaying} = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -93,6 +97,9 @@ class App extends PureComponent {
           <Route exact path='/movie-page'>
             <MoviePage
               movie={movieMock}
+              onPlayButtonHandler = {this.onPlayButtonHandler}
+              onExitButtonHandler = {this.onExitButtonHandler}
+              isMoviePlaying = {isMoviePlaying}
             />
           </Route>
           <Route exact path='/player'>
