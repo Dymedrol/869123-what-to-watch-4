@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import MoviePageOverview from './moviePageOverView.jsx';
+import MoviePageOverview from './moviePageOverview.jsx';
 import MOVIES from "../../mocks/films.js";
 
 const movie = MOVIES[1];
