@@ -10,17 +10,17 @@ const withVideoPlayer = (Component) => {
         isPlaying: false
       };
 
-      this.onMouseEnterHandler = this.onMouseEnterHandler.bind(this);
-      this.onMouseLeaveHandler = this.onMouseLeaveHandler.bind(this);
+      this._playVideo = this._playVideo.bind(this);
+      this._stopVideo = this._stopVideo.bind(this);
     }
 
-    onMouseEnterHandler() {
+    _playVideo() {
       this.setState({
         isPlaying: true
       });
     }
 
-    onMouseLeaveHandler() {
+    _stopVideo() {
       this.setState({
         isPlaying: false
       });
@@ -28,22 +28,24 @@ const withVideoPlayer = (Component) => {
 
     render() {
       const {isPlaying} = this.state;
+      const {isMuted} = this.props;
 
       return (
         <Component
           {...this.props}
           isPlaying={isPlaying}
-          onMouseEnter={() => {
-            this.onMouseEnterHandler();
+          playVideo={() => {
+            this._playVideo();
           }}
-          onMouseLeave = {() => {
-            this.onMouseLeaveHandler();
+          stopVideo = {() => {
+            this._stopVideo();
           }}
+          isVideoPlaying={this.state.isPlaying}
           renderPlayer={(cardData) => {
             return (
               <VideoPlayer
                 cardData = {cardData}
-                isMuted = {true}
+                isMuted = {isMuted}
                 isPlaying={this.state.isPlaying}
               />
             );

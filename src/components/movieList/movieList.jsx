@@ -23,6 +23,7 @@ class MovieList extends PureComponent {
           setActiveItem={setActiveItem}
           removeActiveItem={removeActiveItem}
           onMovieCardClickHandler={onMovieCardClickHandler}
+          isMuted={true}
         />
       ))}
     </div>;

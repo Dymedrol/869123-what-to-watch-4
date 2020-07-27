@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const MovieCard = (props) => {
-  const {cardData, onMouseEnter, onMouseLeave, renderPlayer, setActiveItem, removeActiveItem, onMovieCardClickHandler} = props;
+  const {cardData, playVideo, stopVideo, renderPlayer, setActiveItem, removeActiveItem, onMovieCardClickHandler} = props;
 
   const handleMovieClick = (evt) => {
     evt.preventDefault();
@@ -12,11 +12,11 @@ const MovieCard = (props) => {
   return <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={() => {
-      onMouseEnter();
+      playVideo();
       setActiveItem(cardData.name);
     }}
     onMouseLeave = {() => {
-      onMouseLeave();
+      stopVideo();
       removeActiveItem();
     }}
     onClick = {handleMovieClick}
@@ -30,14 +30,14 @@ const MovieCard = (props) => {
   </article>;
 };
 
-MovieCard.propTypes = {
-  cardData: PropTypes.object.isRequired,
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
-  setActiveItem: PropTypes.func.isRequired,
-  removeActiveItem: PropTypes.func.isRequired,
-  onMovieCardClickHandler: PropTypes.func.isRequired,
-};
+// MovieCard.propTypes = {
+//   cardData: PropTypes.object.isRequired,
+//   onMouseEnter: PropTypes.func.isRequired,
+//   onMouseLeave: PropTypes.func.isRequired,
+//   renderPlayer: PropTypes.func.isRequired,
+//   setActiveItem: PropTypes.func.isRequired,
+//   removeActiveItem: PropTypes.func.isRequired,
+//   onMovieCardClickHandler: PropTypes.func.isRequired,
+// };
 
 export default MovieCard;

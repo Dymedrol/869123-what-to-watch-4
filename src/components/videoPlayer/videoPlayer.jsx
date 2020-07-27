@@ -7,6 +7,7 @@ class VideoPlayer extends PureComponent {
     super(props);
 
     this._videoRef = createRef();
+    this._duration = null;
     this._timeoutPlayHandler = null;
   }
 
