@@ -18,7 +18,7 @@ class MoviePage extends PureComponent {
     super(props);
 
     this.state = {
-      activeTab: `Overview`,
+      activeTab: Tabs.OVERVIEW,
     };
 
     this.onTabClickHandler = this.onTabClickHandler.bind(this);
@@ -34,13 +34,13 @@ class MoviePage extends PureComponent {
 
     const renderSwitch = () => {
       switch (this.state.activeTab) {
-        case `Overview`:
+        case Tabs.OVERVIEW:
           return <MoviePageOverview movie={movie}/>;
 
-        case `Details`:
+        case Tabs.DETAILS:
           return <MoviePageDetails movie={movie}/>;
 
-        case `Reviews`:
+        case Tabs.REVIEWS:
           return <MoviePageReviews movie={movie}/>;
       }
 
