@@ -11,11 +11,11 @@ const Genres = {
   THRILLERS: `Thrillers`,
 };
 
-const Tabs = [
-  `Overview`,
-  `Details`,
-  `Reviews`
-];
+const Tabs = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`
+};
 
 const MovieListStep = {
   MAIN: 8,
