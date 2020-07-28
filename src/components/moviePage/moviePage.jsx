@@ -21,7 +21,7 @@ class MoviePage extends PureComponent {
     super(props);
 
     this.state = {
-      activeTab: `Overview`,
+      activeTab: Tabs.OVERVIEW,
     };
 
     this.onTabClickHandler = this.onTabClickHandler.bind(this);
@@ -40,13 +40,13 @@ class MoviePage extends PureComponent {
 
     const renderSwitch = () => {
       switch (this.state.activeTab) {
-        case `Overview`:
+        case Tabs.OVERVIEW:
           return <MoviePageOverview movie={movie}/>;
 
-        case `Details`:
+        case Tabs.DETAILS:
           return <MoviePageDetails movie={movie}/>;
 
-        case `Reviews`:
+        case Tabs.REVIEWS:
           return <MoviePageReviews movie={movie}/>;
       }
 
@@ -115,13 +115,13 @@ class MoviePage extends PureComponent {
                 <img src={movie.posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
               </div>
 
-              <div className="movie-card__desc">
-                <nav className="movie-nav movie-card__nav">
-                  <TabListWrapper
-                    tabs={Tabs}
-                    onTabClickHandler={this.onTabClickHandler}
-                  />
-                </nav>
+            <div className="movie-card__desc">
+              <nav className="movie-nav movie-card__nav">
+                <TabListWrapper
+                  tabs={Object.values(Tabs)}
+                  onTabClickHandler={this.onTabClickHandler}
+                />
+              </nav>
 
                 {renderSwitch()}
               </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Tabs} from '../../const.js';
 
 const TabList = (props) => {
   const {tabs, setActiveItem, activeElement, onTabClickHandler} = props;
@@ -7,7 +8,7 @@ const TabList = (props) => {
   let activeTab = activeElement;
 
   if (activeTab === null) {
-    activeTab = `Overview`;
+    activeTab = Tabs.OVERVIEW;
   }
 
   return (
