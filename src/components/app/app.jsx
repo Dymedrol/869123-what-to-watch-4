@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import Main from '../main/main.jsx';
 import {Player} from '../player/player.jsx';
 import MoviePage from '../moviePage/moviePage.jsx';
+import SignIn from '../signIn/signIn.jsx';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre} from '../../reducer/app/selectors.js';
 import {getMovies} from '../../reducer/data/selectors.js';
@@ -110,6 +111,9 @@ class App extends PureComponent {
               isMuted={true}
               videoMode={videoPlayerModes.FULLSCREEN}
             />
+          </Route>
+          <Route exact path='/login'>
+            <SignIn/>
           </Route>
         </Switch>
       </BrowserRouter>

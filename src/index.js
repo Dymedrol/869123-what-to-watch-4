@@ -6,10 +6,16 @@ import thunk from 'redux-thunk';
 
 import App from './components/app/app.jsx';
 import reducer from "./reducer/reducer.js";
-import {Operation} from "./reducer/data/data.js";
+import {Operation as dataOperation} from "./reducer/data/data.js";
+import {Operation as userOperation, ActionCreator as userActionCreator} from "./reducer/user/user.js";
 import {createAPI} from './api.js';
 
-const api = createAPI();
+const onUnauthorized = () => {
+  store.dispatch(userActionCreator.requiredAuthorization(AuthorizationStatus.NO_AUTH));
+  console.log('Не авторизован')
+};
+
+const api = createAPI(onUnauthorized);
 
 const init = () => {
   const promoMovie = {
@@ -41,7 +47,8 @@ const init = () => {
       )
   );
 
-  store.dispatch(Operation.loadMovies());
+  store.dispatch(userOperation.requiredAuthorization());
+  store.dispatch(dataOperation.loadMovies());
 
   ReactDOM.render(
       <Provider store={store}>
