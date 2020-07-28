@@ -17,4 +17,9 @@ const Tabs = {
   REVIEWS: `Reviews`
 };
 
-export {Genres, Tabs};
+const MovieListStep = {
+  MAIN: 8,
+  MOVIEPAGE: 4,
+};
+
+export {Genres, Tabs, MovieListStep};

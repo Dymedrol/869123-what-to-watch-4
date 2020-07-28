@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {Tabs} from '../../const.js';
+import {Tabs, MovieListStep} from '../../const.js';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
 import TabList from '../tabList/tabList.jsx';
 import MoviePageOverview from './../moviePageOverview/moviePageOverview.jsx';
@@ -30,7 +30,10 @@ class MoviePage extends PureComponent {
       background: movie.backgroundColor,
     };
     const TabListWrapper = withActiveItem(TabList);
-    const filtredMovies = allMovies.filter((item) => item.genre === movie.genre);
+    const movieListrestriction = MovieListStep.MOVIEPAGE - 1;
+    let filtredMovies = allMovies.filter((item) => item.genre === movie.genre);
+    filtredMovies = filtredMovies.slice(0, movieListrestriction);
+
 
     const renderSwitch = () => {
       switch (this.state.activeTab) {

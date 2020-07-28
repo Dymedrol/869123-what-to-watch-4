@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import {MovieList} from '../movieList/movieList.jsx';
 import GenreList from '../genreList/genreList.jsx';
+import ShowMore from '../showMore/showMore.jsx';
 import {PlayS, Add} from '../svg/svg.jsx';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
 import {getMoviesByGenre} from '../../reducer/app/selectors.js';
@@ -13,7 +14,11 @@ const GenreListWrapper = withActiveItem(GenreList);
 
 const Main = (props) => {
 
-  const {title, genre, date, onMovieCardClickHandler, movies} = props;
+  const {title, genre, date, onMovieCardClickHandler, movies, onShowMoreClickHandler, movieListCount} = props;
+
+  const filtredMovies = movies.slice(0, movieListCount);
+  const allMoviesLength = movies.length;
+  const filtredMoviesLength = filtredMovies.length;
 
   return <div>
 
@@ -79,12 +84,14 @@ const Main = (props) => {
 
         <MovieListWrapper
           onMovieCardClickHandler = {onMovieCardClickHandler}
-          movies = {movies}
+          movies = {filtredMovies}
         />
 
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        <ShowMore
+          onShowMoreClickHandler={onShowMoreClickHandler}
+          allMoviesLength = {allMoviesLength}
+          filtredMoviesLength = {filtredMoviesLength}
+        />
       </section>
 
       <footer className="page-footer">
@@ -106,6 +113,7 @@ const Main = (props) => {
 
 const mapStateToProps = (state) => ({
   movies: getMoviesByGenre(state),
+
 });
 
 Main.propTypes = {
@@ -114,6 +122,8 @@ Main.propTypes = {
   date: PropTypes.number.isRequired,
   onMovieCardClickHandler: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
+  onShowMoreClickHandler: PropTypes.func.isRequired,
+  movieListCount: PropTypes.number.isRequired,
 };
 
 export {Main};

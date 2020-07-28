@@ -8,6 +8,7 @@ import MoviePage from '../moviePage/moviePage.jsx';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre} from '../../reducer/app/selectors.js';
 import {getMovies} from '../../reducer/data/selectors.js';
+import {MovieListStep} from '../../const.js';
 
 const movieMock = {
   backgroundColor: `#D8E3E5`,
@@ -36,16 +37,18 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
+      movieListCount: MovieListStep.MAIN,
       currentPage: `main`,
       selectedMovie: null,
     };
 
     this.onMovieCardClickHandler = this.onMovieCardClickHandler.bind(this);
+    this.onShowMoreClickHandler = this.onShowMoreClickHandler.bind(this);
   }
 
   _renderApp() {
     const {movieTitle, movieGenre, moviePromoDate, movies} = this.props;
-    const {currentPage, selectedMovie} = this.state;
+    const {currentPage, selectedMovie, movieListCount} = this.state;
 
     if (currentPage === `main`) {
       return (
@@ -55,6 +58,8 @@ class App extends PureComponent {
           date={moviePromoDate}
           movies={movies}
           onMovieCardClickHandler = {this.onMovieCardClickHandler}
+          onShowMoreClickHandler = {this.onShowMoreClickHandler}
+          movieListCount = {movieListCount}
         />
       );
     }
@@ -91,6 +96,13 @@ class App extends PureComponent {
     this.setState({
       currentPage: `movie`,
       selectedMovie: movie,
+    });
+  }
+
+  onShowMoreClickHandler() {
+    const prevState = this.state.movieListCount;
+    this.setState({
+      movieListCount: prevState + MovieListStep.MAIN,
     });
   }
 }

@@ -40,6 +40,8 @@ describe(`Main e2e test`, () => {
             genre={mainMovie.genre}
             date={mainMovie.date}
             onMovieCardClickHandler={() => {}}
+            onShowMoreClickHandler={() => {}}
+            movieListCount={8}
           />
         </Provider>
     );

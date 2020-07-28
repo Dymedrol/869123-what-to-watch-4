@@ -37,6 +37,8 @@ it(`Проверка снепшота компонента Main`, () => {
           movies={movies}
           onMovieTitleClickHandler = {() => {}}
           onMovieCardClickHandler={() => {}}
+          onShowMoreClickHandler={() => {}}
+          movieListCount={8}
         />
       </Provider>, {
         createNodeMock: () => {
