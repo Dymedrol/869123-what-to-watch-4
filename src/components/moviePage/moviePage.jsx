@@ -115,13 +115,13 @@ class MoviePage extends PureComponent {
                 <img src={movie.posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
               </div>
 
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <TabListWrapper
-                  tabs={Object.values(Tabs)}
-                  onTabClickHandler={this.onTabClickHandler}
-                />
-              </nav>
+              <div className="movie-card__desc">
+                <nav className="movie-nav movie-card__nav">
+                  <TabListWrapper
+                    tabs={Object.values(Tabs)}
+                    onTabClickHandler={this.onTabClickHandler}
+                  />
+                </nav>
 
                 {renderSwitch()}
               </div>
