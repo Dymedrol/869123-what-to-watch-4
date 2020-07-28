@@ -4,11 +4,15 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import Main from '../main/main.jsx';
+import {Player} from '../player/player.jsx';
 import MoviePage from '../moviePage/moviePage.jsx';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre} from '../../reducer/app/selectors.js';
 import {getMovies} from '../../reducer/data/selectors.js';
-import {MovieListStep} from '../../const.js';
+import {MovieListStep, videoPlayerModes} from '../../const.js';
+
+import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
+const PlayerWrapper = withVideoPlayer(Player);
 
 const movieMock = {
   backgroundColor: `#D8E3E5`,
@@ -37,6 +41,7 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
+      isMoviePlaying: false,
       movieListCount: MovieListStep.MAIN,
       currentPage: `main`,
       selectedMovie: null,
@@ -44,22 +49,25 @@ class App extends PureComponent {
 
     this.onMovieCardClickHandler = this.onMovieCardClickHandler.bind(this);
     this.onShowMoreClickHandler = this.onShowMoreClickHandler.bind(this);
+    this.onPlayButtonHandler = this.onPlayButtonHandler.bind(this);
+    this.onExitButtonHandler = this.onExitButtonHandler.bind(this);
   }
 
   _renderApp() {
-    const {movieTitle, movieGenre, moviePromoDate, movies} = this.props;
-    const {currentPage, selectedMovie, movieListCount} = this.state;
+    const {promoMovie, movies} = this.props;
+    const {currentPage, selectedMovie, movieListCount, isMoviePlaying} = this.state;
 
     if (currentPage === `main`) {
       return (
         <Main
-          title={movieTitle}
-          genre={movieGenre}
-          date={moviePromoDate}
+          promoMovie = {promoMovie}
           movies={movies}
           onMovieCardClickHandler = {this.onMovieCardClickHandler}
           onShowMoreClickHandler = {this.onShowMoreClickHandler}
+          onPlayButtonHandler = {this.onPlayButtonHandler}
+          onExitButtonHandler = {this.onExitButtonHandler}
           movieListCount = {movieListCount}
+          isMoviePlaying = {isMoviePlaying}
         />
       );
     }
@@ -68,6 +76,9 @@ class App extends PureComponent {
       return (
         <MoviePage
           movie={selectedMovie}
+          onPlayButtonHandler = {this.onPlayButtonHandler}
+          onExitButtonHandler = {this.onExitButtonHandler}
+          isMoviePlaying = {isMoviePlaying}
         />
       );
     }
@@ -76,6 +87,7 @@ class App extends PureComponent {
   }
 
   render() {
+    const {isMoviePlaying} = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -85,6 +97,18 @@ class App extends PureComponent {
           <Route exact path='/movie-page'>
             <MoviePage
               movie={movieMock}
+              onPlayButtonHandler = {this.onPlayButtonHandler}
+              onExitButtonHandler = {this.onExitButtonHandler}
+              isMoviePlaying = {isMoviePlaying}
+            />
+          </Route>
+          <Route exact path='/player'>
+            <PlayerWrapper
+              movie={movieMock}
+              onPlayButtonHandler = {this.onPlayButtonHandler}
+              onExitButtonHandler = {this.onExitButtonHandler}
+              isMuted={true}
+              videoMode={videoPlayerModes.FULLSCREEN}
             />
           </Route>
         </Switch>
@@ -105,12 +129,22 @@ class App extends PureComponent {
       movieListCount: prevState + MovieListStep.MAIN,
     });
   }
+
+  onPlayButtonHandler() {
+    this.setState({
+      isMoviePlaying: true
+    });
+  }
+
+  onExitButtonHandler() {
+    this.setState({
+      isMoviePlaying: false
+    });
+  }
 }
 
 App.propTypes = {
-  movieTitle: PropTypes.string.isRequired,
-  movieGenre: PropTypes.string.isRequired,
-  moviePromoDate: PropTypes.number.isRequired,
+  promoMovie: PropTypes.object.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     previewImage: PropTypes.string,
     name: PropTypes.string,

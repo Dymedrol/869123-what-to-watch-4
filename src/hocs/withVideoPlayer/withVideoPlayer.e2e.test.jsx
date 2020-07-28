@@ -19,14 +19,14 @@ describe(`Проверка withVideoPlayer `, () => {
 
   const MockComponent = (props) => {
     const {
-      onMouseEnter,
+      playVideo,
       renderPlayer,
     } = props;
 
     return (
       <article
         onMouseEnter={() => {
-          onMouseEnter();
+          playVideo();
         }}
       >
         {renderPlayer(cardData)}
@@ -35,7 +35,7 @@ describe(`Проверка withVideoPlayer `, () => {
   };
 
   MockComponent.propTypes = {
-    onMouseEnter: PropTypes.func.isRequired,
+    playVideo: PropTypes.func.isRequired,
     renderPlayer: PropTypes.func.isRequired,
     cardData: PropTypes.object.isRequired,
   };
@@ -47,6 +47,8 @@ describe(`Проверка withVideoPlayer `, () => {
 
     const wrapper = mount(<MockComponentWrapped
       cardData = {cardData}
+      isMuted = {true}
+      videoMode = {`fullScreen`}
     />);
 
     window.HTMLMediaElement.prototype.play = () => {};

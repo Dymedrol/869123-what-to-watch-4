@@ -22,4 +22,9 @@ const MovieListStep = {
   MOVIEPAGE: 4,
 };
 
-export {Genres, Tabs, MovieListStep};
+const videoPlayerModes = {
+  SMALL: `small`,
+  FULLSCREEN: `fullscreen`,
+};
+
+export {Genres, Tabs, MovieListStep, videoPlayerModes};

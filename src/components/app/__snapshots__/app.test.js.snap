@@ -10,7 +10,7 @@ exports[`Проверка снепшота компонента App 1`] = `
     >
       <img
         alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg"
       />
     </div>
     <h1
@@ -69,9 +69,9 @@ exports[`Проверка снепшота компонента App 1`] = `
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="Moonrise Kingdom"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg"
             width="218"
           />
         </div>
@@ -81,7 +81,7 @@ exports[`Проверка снепшота компонента App 1`] = `
           <h2
             className="movie-card__title"
           >
-            movie title
+            Moonrise Kingdom
           </h2>
           <p
             className="movie-card__meta"
@@ -89,19 +89,18 @@ exports[`Проверка снепшота компонента App 1`] = `
             <span
               className="movie-card__genre"
             >
-              movie genre
+              Adventure
             </span>
             <span
               className="movie-card__year"
-            >
-              2020
-            </span>
+            />
           </p>
           <div
             className="movie-card__buttons"
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg

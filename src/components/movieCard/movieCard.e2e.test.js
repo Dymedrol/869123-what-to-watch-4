@@ -13,30 +13,33 @@ const movie = {
   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
-it(`Simulate click on the title`, () => {
-  const onMouseEnter = jest.fn();
-  const onMouseLeave = jest.fn();
+it(`Проверка наведения на карточку`, () => {
   const renderPlayer = jest.fn();
   const setActiveItem = jest.fn();
   const removeActiveItem = jest.fn();
   const onMovieCardClickHandler = jest.fn();
+  const playVideo = jest.fn();
+  const stopVideo = jest.fn();
 
-  const card = mount(
+  const movieCard = mount(
       <MovieCard
         title={movie.title}
         pic={movie.src}
         cardData={movie}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
         renderPlayer={renderPlayer}
         setActiveItem={setActiveItem}
         removeActiveItem={removeActiveItem}
         onMovieCardClickHandler={onMovieCardClickHandler}
-
+        playVideo={playVideo}
+        stopVideo={stopVideo}
       />
   );
 
-  card.simulate(`mouseenter`);
+  const card = movieCard.find(`.small-movie-card`);
 
-  expect(onMouseEnter).toHaveBeenCalledTimes(1);
+  card.simulate(`mouseenter`);
+  card.simulate(`mouseleave`);
+
+  expect(playVideo).toHaveBeenCalledTimes(1);
+  expect(stopVideo).toHaveBeenCalledTimes(1);
 });

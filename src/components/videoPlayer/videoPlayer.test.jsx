@@ -13,6 +13,7 @@ it(`VideoPlayer is rendered correctly`, () => {
     isPlaying = {true}
     cardData = {movie}
     isMuted = {true}
+    videoMode = {`small`}
   />, {
     createNodeMock: () => {
       return {};
