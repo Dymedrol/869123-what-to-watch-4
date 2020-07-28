@@ -108,7 +108,7 @@ class MoviePage extends PureComponent {
             <div className="movie-card__desc">
               <nav className="movie-nav movie-card__nav">
                 <TabListWrapper
-                  tabs={Tabs}
+                  tabs={Object.values(Tabs)}
                   onTabClickHandler={this.onTabClickHandler}
                 />
               </nav>
