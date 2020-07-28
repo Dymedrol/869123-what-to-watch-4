@@ -11,4 +11,10 @@ const Genres = {
   THRILLERS: `Thrillers`,
 };
 
-export {Genres};
+const Tabs = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`
+};
+
+export {Genres, Tabs};

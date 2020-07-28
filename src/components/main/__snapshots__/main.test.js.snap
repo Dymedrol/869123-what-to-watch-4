@@ -193,39 +193,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
             className="catalog__genres-link"
             href="#"
           >
-            comedy
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-          onClick={[Function]}
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            drama
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-          onClick={[Function]}
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            science fiction
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-          onClick={[Function]}
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
             Crime
           </a>
         </li>
@@ -237,7 +204,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
             className="catalog__genres-link"
             href="#"
           >
-            Documentary
+            Adventure
           </a>
         </li>
       </ul>
@@ -255,7 +222,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <video
               className="player__video"
-              poster="img/macbeth.jpg"
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
             />
           </div>
           <h3
@@ -264,7 +231,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
             <a
               className="small-movie-card__link"
             >
-              Macbeth
+              Gangs of new york
             </a>
           </h3>
         </article>
@@ -279,7 +246,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <video
               className="player__video"
-              poster="img/johnny-english.jpg"
+              poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg"
             />
           </div>
           <h3
@@ -288,151 +255,7 @@ exports[`Проверка снепшота компонента Main 1`] = `
             <a
               className="small-movie-card__link"
             >
-              Johnny English
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              className="player__video"
-              poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              className="player__video"
-              poster="img/aviator.jpg"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Aviator
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              className="player__video"
-              poster="img/we-need-to-talk-about-kevin.jpg"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              We need to talk about Kevin
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              className="player__video"
-              poster="img/what-we-do-in-the-shadows.jpg"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              What We Do in the Shadows
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              className="player__video"
-              poster="img/revenant.jpg"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Revenant
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <video
-              className="player__video"
-              poster="img/bohemian-rhapsody.jpg"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Bohemian Rhapsody
+              Moonrise Kingdom
             </a>
           </h3>
         </article>
