@@ -9,33 +9,33 @@ import MoviePage from '../moviePage/moviePage.jsx';
 import SignIn from '../signIn/signIn.jsx';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre} from '../../reducer/app/selectors.js';
-import {getMovies} from '../../reducer/data/selectors.js';
+import {getMovies, getPromo} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import {MovieListStep, videoPlayerModes} from '../../const.js';
 
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 const PlayerWrapper = withVideoPlayer(Player);
 
-const movieMock = {
-  backgroundColor: `#D8E3E5`,
-  backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
-  description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
-  director: `Wes Anderson`,
-  genre: `Adventure`,
-  id: 2,
-  isFavorite: false,
-  name: `Moonrise Kingdom`,
-  posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg`,
-  previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg`,
-  previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  rating: 7.9,
-  ratingString: `good`,
-  released: 2012,
-  runTime: 94,
-  scoresCount: 291183,
-  starring: [`Jared Gilman`, `Kara Hayward`, `Bruce Willis`],
-  videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
-};
+// const movieMock = {
+//   backgroundColor: `#D8E3E5`,
+//   backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
+//   description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
+//   director: `Wes Anderson`,
+//   genre: `Adventure`,
+//   id: 2,
+//   isFavorite: false,
+//   name: `Moonrise Kingdom`,
+//   posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg`,
+//   previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg`,
+//   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+//   rating: 7.9,
+//   ratingString: `good`,
+//   released: 2012,
+//   runTime: 94,
+//   scoresCount: 291183,
+//   starring: [`Jared Gilman`, `Kara Hayward`, `Bruce Willis`],
+//   videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
+// };
 
 class App extends PureComponent {
 
@@ -90,7 +90,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {isMoviePlaying} = this.state;
+    const {isMoviePlaying, promoMovie} = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -99,7 +99,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path='/movie-page'>
             <MoviePage
-              movie={movieMock}
+              movie={promoMovie}
               onPlayButtonHandler = {this.onPlayButtonHandler}
               onExitButtonHandler = {this.onExitButtonHandler}
               isMoviePlaying = {isMoviePlaying}
@@ -107,7 +107,7 @@ class App extends PureComponent {
           </Route>
           <Route exact path='/player'>
             <PlayerWrapper
-              movie={movieMock}
+              movie={promoMovie}
               onPlayButtonHandler = {this.onPlayButtonHandler}
               onExitButtonHandler = {this.onExitButtonHandler}
               isMuted={true}
@@ -161,6 +161,7 @@ const mapStateToProps = (state) => ({
   genre: getGenre(state),
   movies: getMovies(state),
   authorizationStatus: getAuthorizationStatus(state),
+  promoMovie: getPromo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

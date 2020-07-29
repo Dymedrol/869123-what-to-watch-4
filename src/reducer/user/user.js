@@ -32,7 +32,7 @@ const formatAvatarUrl = (url) => {
 };
 
 const Operation = {
-  requiredAuthorization: () => (dispatch, getState, api) => {
+  requestAuthorization: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
         const avatarUrl = formatAvatarUrl(response.data.avatar_url);
@@ -50,7 +50,7 @@ const Operation = {
         throw err;
       });
   },
-  login: (authData) => (dispatch, getState, api) => {
+  loginUser: (authData) => (dispatch, getState, api) => {
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
@@ -61,7 +61,6 @@ const Operation = {
       const userData = {
         email: response.data.email,
         avatar: `${response.config.baseURL}/${avatarUrl}`,
-        statusCode: response.status
       };
 
       dispatch(ActionCreator.setAuthorization(LoginStatus.AUTH));
