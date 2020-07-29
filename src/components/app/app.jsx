@@ -10,6 +10,7 @@ import SignIn from '../signIn/signIn.jsx';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre} from '../../reducer/app/selectors.js';
 import {getMovies} from '../../reducer/data/selectors.js';
+import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
 import {MovieListStep, videoPlayerModes} from '../../const.js';
 
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
@@ -55,20 +56,20 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies} = this.props;
+    const {promoMovie, authorizationStatus} = this.props;
     const {currentPage, selectedMovie, movieListCount, isMoviePlaying} = this.state;
 
     if (currentPage === `main`) {
       return (
         <Main
           promoMovie = {promoMovie}
-          movies={movies}
           onMovieCardClickHandler = {this.onMovieCardClickHandler}
           onShowMoreClickHandler = {this.onShowMoreClickHandler}
           onPlayButtonHandler = {this.onPlayButtonHandler}
           onExitButtonHandler = {this.onExitButtonHandler}
           movieListCount = {movieListCount}
           isMoviePlaying = {isMoviePlaying}
+          authorizationStatus = {authorizationStatus}
         />
       );
     }
@@ -80,6 +81,7 @@ class App extends PureComponent {
           onPlayButtonHandler = {this.onPlayButtonHandler}
           onExitButtonHandler = {this.onExitButtonHandler}
           isMoviePlaying = {isMoviePlaying}
+          authorizationStatus = {authorizationStatus}
         />
       );
     }
@@ -158,6 +160,7 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   genre: getGenre(state),
   movies: getMovies(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

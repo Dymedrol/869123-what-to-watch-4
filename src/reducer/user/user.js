@@ -4,28 +4,21 @@ import {LoginStatus} from '../../const.js';
 const initialState = {
   authorizationStatus: LoginStatus.NO_AUTH,
   userAvatar: ``,
-  authorizationStatusCode: null
 };
 
 const ActionType = {
-  REQUIRED_AUTHORIZATION: `requiredAuthorization`,
-  BAD_AUTHORIZATION: `badAuthorization`,
-  CORRECT_AUTHORIZATION: `correctAuthorization`
+  SET_AUTHORIZATION: `setAuthorization`,
+  SET_USER_DATA: `setUserData`
 };
 
 const ActionCreator = {
-  requiredAuthorization: (status) => ({
-    type: ActionType.REQUIRED_AUTHORIZATION,
+  setAuthorization: (status) => ({
+    type: ActionType.SET_AUTHORIZATION,
     payload: status
   }),
 
-  badAuthorization: (response) => ({
-    type: ActionType.BAD_AUTHORIZATION,
-    payload: response
-  }),
-
-  correctAuthorization: (response) => ({
-    type: ActionType.CORRECT_AUTHORIZATION,
+  setUserData: (response) => ({
+    type: ActionType.SET_USER_DATA,
     payload: response
   })
 };
@@ -50,29 +43,44 @@ const Operation = {
           statusCode: response.status
         };
 
-        dispatch(ActionCreator.requiredAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.correctAuthorization(userData));
+        dispatch(ActionCreator.setAuthorization(LoginStatus.AUTH));
+        dispatch(ActionCreator.setUserData(userData));
       })
       .catch((err) => {
         throw err;
       });
   },
+  login: (authData) => (dispatch, getState, api) => {
+    return api.post(`/login`, {
+      email: authData.login,
+      password: authData.password,
+    })
+    .then((response) => {
+      const avatarUrl = formatAvatarUrl(response.data.avatar_url);
+
+      const userData = {
+        email: response.data.email,
+        avatar: `${response.config.baseURL}/${avatarUrl}`,
+        statusCode: response.status
+      };
+
+      dispatch(ActionCreator.setAuthorization(LoginStatus.AUTH));
+      dispatch(ActionCreator.setUserData(userData));
+    })
+    .catch((err) => {
+      throw err;
+    });
+  }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.REQUIRED_AUTHORIZATION:
+    case ActionType.SET_AUTHORIZATION:
       return extend(state, {authorizationStatus: action.payload});
 
-    case ActionType.BAD_AUTHORIZATION:
-      return extend(state, {
-        authorizationStatusCode: action.payload
-      });
-
-    case ActionType.CORRECT_AUTHORIZATION:
+    case ActionType.SET_USER_DATA:
       return extend(state, {
         userAvatar: action.payload.avatar,
-        authorizationStatusCode: action.payload.statusCode,
       });
   }
 

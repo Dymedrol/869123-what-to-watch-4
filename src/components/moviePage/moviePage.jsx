@@ -12,6 +12,7 @@ import {MovieList} from '../movieList/movieList.jsx';
 import {getMovies} from '../../reducer/data/selectors.js';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 import {Player} from '../player/player.jsx';
+import {Header} from '../header/header.jsx';
 
 const MovieListWrapper = withActiveItem(MovieList);
 const PlayerWrapper = withVideoPlayer(Player);
@@ -28,7 +29,7 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {movie, allMovies, onPlayButtonHandler, onExitButtonHandler, isMoviePlaying} = this.props;
+    const {movie, allMovies, onPlayButtonHandler, onExitButtonHandler, isMoviePlaying, authorizationStatus} = this.props;
     const backgroundStyle = {
       background: movie.backgroundColor,
     };
@@ -66,21 +67,7 @@ class MoviePage extends PureComponent {
 
             <h1 className="visually-hidden">WTW</h1>
 
-            <header className="page-header movie-card__head">
-              <div className="logo">
-                <a href="main.html" className="logo__link">
-                  <span className="logo__letter logo__letter--1">W</span>
-                  <span className="logo__letter logo__letter--2">T</span>
-                  <span className="logo__letter logo__letter--3">W</span>
-                </a>
-              </div>
-
-              <div className="user-block">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </div>
-            </header>
+            <Header authorizationStatus = {authorizationStatus} />
 
             <div className="movie-card__wrap">
               <div className="movie-card__desc">
