@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import App from './app.jsx';
 
-import {Genres} from "../../const.js";
+import {Genres, LoginStatus} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
 import NameSpace from "../../reducer/nameSpace.js";
 
@@ -46,6 +46,10 @@ it(`Проверка снепшота компонента App`, () => {
     },
     [NameSpace.DATA]: {
       movies: MOVIES,
+      promo: promoMovie,
+    },
+    [NameSpace.USER]: {
+      authorizationStatus: LoginStatus.NO_AUTH,
     },
   });
   const tree = renderer.create(
@@ -54,6 +58,9 @@ it(`Проверка снепшота компонента App`, () => {
           promoMovie={promoMovie}
           movies={movies}
           onMovieCardClickHandler={() => {}}
+          userAvatar={``}
+          authorizationStatus = {LoginStatus.NO_AUTH}
+          authorizationCode = {``}
         />
       </Provider>, {
         createNodeMock: () => {

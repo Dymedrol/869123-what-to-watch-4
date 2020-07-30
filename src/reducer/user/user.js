@@ -4,11 +4,13 @@ import {LoginStatus} from '../../const.js';
 const initialState = {
   authorizationStatus: LoginStatus.NO_AUTH,
   userAvatar: ``,
+  authorizationCode: null
 };
 
 const ActionType = {
   SET_AUTHORIZATION: `setAuthorization`,
-  SET_USER_DATA: `setUserData`
+  SET_USER_DATA: `setUserData`,
+  SET_AUTHORIZATION_CODE: `setAutorizationCode`,
 };
 
 const ActionCreator = {
@@ -19,6 +21,10 @@ const ActionCreator = {
 
   setUserData: (response) => ({
     type: ActionType.SET_USER_DATA,
+    payload: response
+  }),
+  setAuthorizationCode: (response) => ({
+    type: ActionType.SET_AUTHORIZATION_CODE,
     payload: response
   })
 };
@@ -50,10 +56,10 @@ const Operation = {
         throw err;
       });
   },
-  loginUser: (authData) => (dispatch, getState, api) => {
+  loginUser: (data) => (dispatch, getState, api) => {
     return api.post(`/login`, {
-      email: authData.login,
-      password: authData.password,
+      email: data.formData.login,
+      password: data.formData.password,
     })
     .then((response) => {
       const avatarUrl = formatAvatarUrl(response.data.avatar_url);
@@ -67,6 +73,7 @@ const Operation = {
       dispatch(ActionCreator.setUserData(userData));
     })
     .catch((err) => {
+      dispatch(ActionCreator.setAuthorizationCode(err.response.status));
       throw err;
     });
   }
@@ -80,6 +87,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_USER_DATA:
       return extend(state, {
         userAvatar: action.payload.avatar,
+      });
+
+    case ActionType.SET_AUTHORIZATION_CODE:
+      return extend(state, {
+        authorizationCode: action.payload,
       });
   }
 

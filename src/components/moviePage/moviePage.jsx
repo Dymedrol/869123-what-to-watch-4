@@ -29,7 +29,7 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {movie, allMovies, onPlayButtonHandler, onExitButtonHandler, isMoviePlaying, authorizationStatus} = this.props;
+    const {movie, allMovies, onPlayButtonHandler, onExitButtonHandler, isMoviePlaying, authorizationStatus, userAvatar} = this.props;
     const backgroundStyle = {
       background: movie.backgroundColor,
     };
@@ -67,7 +67,7 @@ class MoviePage extends PureComponent {
 
             <h1 className="visually-hidden">WTW</h1>
 
-            <Header authorizationStatus = {authorizationStatus} />
+            <Header authorizationStatus={authorizationStatus} userAvatar={userAvatar}/>
 
             <div className="movie-card__wrap">
               <div className="movie-card__desc">
@@ -102,13 +102,13 @@ class MoviePage extends PureComponent {
                 <img src={movie.posterImage} alt="The Grand Budapest Hotel poster" width="218" height="327" />
               </div>
 
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <TabListWrapper
-                  tabs={Object.values(Tabs)}
-                  onTabClickHandler={this.onTabClickHandler}
-                />
-              </nav>
+              <div className="movie-card__desc">
+                <nav className="movie-nav movie-card__nav">
+                  <TabListWrapper
+                    tabs={Object.values(Tabs)}
+                    onTabClickHandler={this.onTabClickHandler}
+                  />
+                </nav>
 
                 {renderSwitch()}
               </div>
@@ -180,6 +180,8 @@ MoviePage.propTypes = {
   onPlayButtonHandler: PropTypes.func.isRequired,
   onExitButtonHandler: PropTypes.func.isRequired,
   isMoviePlaying: PropTypes.bool.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  userAvatar: PropTypes.string.isRequired,
 };
 
 export {MoviePage};

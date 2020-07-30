@@ -10,32 +10,12 @@ import SignIn from '../signIn/signIn.jsx';
 import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre} from '../../reducer/app/selectors.js';
 import {getMovies, getPromo} from '../../reducer/data/selectors.js';
-import {getAuthorizationStatus} from '../../reducer/user/selectors.js';
+import {getAuthorizationStatus, getAuthorizationCode, getUserAvatar} from '../../reducer/user/selectors.js';
 import {MovieListStep, videoPlayerModes} from '../../const.js';
+import {Operation as userOperation} from "../../reducer/user/user.js";
 
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 const PlayerWrapper = withVideoPlayer(Player);
-
-// const movieMock = {
-//   backgroundColor: `#D8E3E5`,
-//   backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
-//   description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
-//   director: `Wes Anderson`,
-//   genre: `Adventure`,
-//   id: 2,
-//   isFavorite: false,
-//   name: `Moonrise Kingdom`,
-//   posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg`,
-//   previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg`,
-//   previewVideoLink: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-//   rating: 7.9,
-//   ratingString: `good`,
-//   released: 2012,
-//   runTime: 94,
-//   scoresCount: 291183,
-//   starring: [`Jared Gilman`, `Kara Hayward`, `Bruce Willis`],
-//   videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
-// };
 
 class App extends PureComponent {
 
@@ -56,7 +36,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, authorizationStatus} = this.props;
+    const {promoMovie, authorizationStatus, userAvatar} = this.props;
     const {currentPage, selectedMovie, movieListCount, isMoviePlaying} = this.state;
 
     if (currentPage === `main`) {
@@ -70,6 +50,7 @@ class App extends PureComponent {
           movieListCount = {movieListCount}
           isMoviePlaying = {isMoviePlaying}
           authorizationStatus = {authorizationStatus}
+          userAvatar = {userAvatar}
         />
       );
     }
@@ -82,6 +63,7 @@ class App extends PureComponent {
           onExitButtonHandler = {this.onExitButtonHandler}
           isMoviePlaying = {isMoviePlaying}
           authorizationStatus = {authorizationStatus}
+          userAvatar = {userAvatar}
         />
       );
     }
@@ -91,6 +73,7 @@ class App extends PureComponent {
 
   render() {
     const {isMoviePlaying, promoMovie} = this.state;
+    const {onSignInSubmit, authorizationCode} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -115,7 +98,10 @@ class App extends PureComponent {
             />
           </Route>
           <Route exact path='/login'>
-            <SignIn/>
+            <SignIn
+              onSignInSubmit={onSignInSubmit}
+              authorizationCode = {authorizationCode}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -147,6 +133,7 @@ class App extends PureComponent {
       isMoviePlaying: false
     });
   }
+
 }
 
 App.propTypes = {
@@ -155,18 +142,27 @@ App.propTypes = {
     previewImage: PropTypes.string,
     name: PropTypes.string,
   })).isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  userAvatar: PropTypes.string,
+  onSignInSubmit: PropTypes.func.isRequired,
+  authorizationCode: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   genre: getGenre(state),
   movies: getMovies(state),
   authorizationStatus: getAuthorizationStatus(state),
+  authorizationCode: getAuthorizationCode(state),
+  userAvatar: getUserAvatar(state),
   promoMovie: getPromo(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
     dispatch(ActionCreator.changeGenre(genre));
+  },
+  onSignInSubmit(formData) {
+    dispatch(userOperation.loginUser({formData}));
   }
 });
 

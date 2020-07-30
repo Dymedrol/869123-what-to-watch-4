@@ -47,10 +47,6 @@ const store = createStore(
 );
 
 store.dispatch(userOperation.requestAuthorization());
-// store.dispatch(userOperation.loginUser({
-//       login: 'dmi@dfsfd.ru',
-//       password: 'sdfsdfds',
-//     }));
 store.dispatch(dataOperation.loadMovies());
 store.dispatch(dataOperation.loadPromo());
 

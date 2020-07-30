@@ -29,6 +29,7 @@ const Main = (props) => {
     onExitButtonHandler,
     isMoviePlaying,
     authorizationStatus,
+    userAvatar,
   } = props;
 
   const renderMainPage = () => {
@@ -43,7 +44,7 @@ const Main = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header authorizationStatus = {authorizationStatus} />
+        <Header authorizationStatus={authorizationStatus} userAvatar={userAvatar}/>
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">

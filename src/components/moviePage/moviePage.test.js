@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 
 import MoviePage from "./moviePage.jsx";
 import NameSpace from "../../reducer/nameSpace.js";
-import {Genres} from "../../const.js";
+import {Genres, LoginStatus} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
 
 const mockStore = configureStore([]);
@@ -49,6 +49,8 @@ it(`Проверка снепшота компонента MoviePage`, () => {
           onPlayButtonHandler={() => {}}
           onExitButtonHandler={() => {}}
           isMoviePlaying={isMoviePlaying}
+          authorizationStatus = {LoginStatus.NO_AUTH}
+          userAvatar={``}
         />
       </Provider>, {
         createNodeMock: () => {
