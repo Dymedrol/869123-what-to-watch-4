@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {Tabs, MovieListStep, videoPlayerModes} from '../../const.js';
+import {Tabs, MovieListStep, videoPlayerModes, LoginStatus} from '../../const.js';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
 import TabList from '../tabList/tabList.jsx';
 import MoviePageOverview from './../moviePageOverview/moviePageOverview.jsx';
@@ -54,6 +54,13 @@ class MoviePage extends PureComponent {
       return null;
     };
 
+    const renderAddreviewButton = () => {
+      if (authorizationStatus === LoginStatus.AUTH) {
+        return <a className="btn movie-card__button">Add review</a>;
+      }
+      return null;
+    };
+
     const renderMoviePage = () => {
       if (isMoviePlaying) {
         return <PlayerWrapper movie={movie} onExitButtonHandler={onExitButtonHandler} isMuted={true} videoMode={videoPlayerModes.FULLSCREEN}/>;
@@ -90,7 +97,7 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  {renderAddreviewButton()}
                 </div>
               </div>
             </div>

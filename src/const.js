@@ -37,4 +37,9 @@ const LoginStatus = {
   NO_AUTH: `NO_AUTH`
 };
 
-export {Genres, Tabs, MovieListStep, videoPlayerModes, Errors, LoginStatus};
+const reviewLength = {
+  MIN: 1,
+  MAX: 400,
+};
+
+export {Genres, Tabs, MovieListStep, videoPlayerModes, Errors, LoginStatus, reviewLength};
