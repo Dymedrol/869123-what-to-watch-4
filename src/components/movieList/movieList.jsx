@@ -10,7 +10,6 @@ const MovieCardWrapper = withVideoPlayer(MovieCard);
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -32,11 +31,11 @@ class MovieList extends PureComponent {
   }
 }
 
-MovieList.propTypes = {
-  movies: PropTypes.array.isRequired,
-  setActiveItem: PropTypes.func.isRequired,
-  removeActiveItem: PropTypes.func.isRequired,
-  onMovieCardClickHandler: PropTypes.func.isRequired,
-};
+// MovieList.propTypes = {
+//   movies: PropTypes.array.isRequired,
+//   setActiveItem: PropTypes.func.isRequired,
+//   removeActiveItem: PropTypes.func.isRequired,
+//   onMovieCardClickHandler: PropTypes.func.isRequired,
+// };
 
 export {MovieList};

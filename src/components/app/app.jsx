@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import Main from '../main/main.jsx';
@@ -11,9 +11,11 @@ import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre} from '../../reducer/app/selectors.js';
 import {getMovies, getPromo} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getAuthorizationCode, getUserAvatar} from '../../reducer/user/selectors.js';
-import {MovieListStep, videoPlayerModes} from '../../const.js';
+import {MovieListStep, videoPlayerModes, AppRoute} from '../../const.js';
 import {Operation as userOperation} from "../../reducer/user/user.js";
 import {AddReview} from '../add-review/add-review.jsx';
+import {PrivateRoute} from '../private-route/private-route.jsx';
+import MyList from '../my-list/my-list.jsx';
 
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 const PlayerWrapper = withVideoPlayer(Player);
@@ -57,82 +59,93 @@ class App extends PureComponent {
     this.onExitButtonHandler = this.onExitButtonHandler.bind(this);
   }
 
-  _renderApp() {
-    const {promoMovie, authorizationStatus, userAvatar} = this.props;
-    const {currentPage, selectedMovie, movieListCount, isMoviePlaying} = this.state;
-
-    if (currentPage === `main`) {
-      return (
-        <Main
-          promoMovie = {promoMovie}
-          onMovieCardClickHandler = {this.onMovieCardClickHandler}
-          onShowMoreClickHandler = {this.onShowMoreClickHandler}
-          onPlayButtonHandler = {this.onPlayButtonHandler}
-          onExitButtonHandler = {this.onExitButtonHandler}
-          movieListCount = {movieListCount}
-          isMoviePlaying = {isMoviePlaying}
-          authorizationStatus = {authorizationStatus}
-          userAvatar = {userAvatar}
-        />
-      );
-    }
-
-    if (currentPage === `movie`) {
-      return (
-        <MoviePage
-          movie={selectedMovie}
-          onPlayButtonHandler = {this.onPlayButtonHandler}
-          onExitButtonHandler = {this.onExitButtonHandler}
-          isMoviePlaying = {isMoviePlaying}
-          authorizationStatus = {authorizationStatus}
-          userAvatar = {userAvatar}
-        />
-      );
-    }
-
-    return null;
-  }
-
   render() {
-    const {isMoviePlaying, promoMovie} = this.state;
-    const {onSignInSubmit, authorizationCode, authorizationStatus, userAvatar, onReviewSubmit} = this.props;
+    const {isMoviePlaying, movieListCount} = this.state;
+    const {onSignInSubmit, authorizationCode, authorizationStatus, userAvatar, onReviewSubmit, promoMovie, movies} = this.props;
+
     return (
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <Switch>
-          <Route exact path='/'>
-            {this._renderApp()}
+          <Route exact path={AppRoute.ROOT}>
+            <Main
+              promoMovie = {promoMovie}
+              onMovieCardClickHandler = {this.onMovieCardClickHandler}
+              onShowMoreClickHandler = {this.onShowMoreClickHandler}
+              onPlayButtonHandler = {this.onPlayButtonHandler}
+              onExitButtonHandler = {this.onExitButtonHandler}
+              movieListCount = {movieListCount}
+              isMoviePlaying = {isMoviePlaying}
+              authorizationStatus = {authorizationStatus}
+              userAvatar = {userAvatar}
+            />
           </Route>
-          <Route exact path='/movie-page'>
+          <Route exact path={AppRoute.MOVIE_PAGE}>
             <MoviePage
-              movie={promoMovie}
+              movie={mockMovie}
               onPlayButtonHandler = {this.onPlayButtonHandler}
               onExitButtonHandler = {this.onExitButtonHandler}
               isMoviePlaying = {isMoviePlaying}
+              authorizationStatus = {authorizationStatus}
+              userAvatar = {userAvatar}
             />
           </Route>
-          <Route exact path='/player'>
-            <PlayerWrapper
-              movie={promoMovie}
-              onPlayButtonHandler = {this.onPlayButtonHandler}
-              onExitButtonHandler = {this.onExitButtonHandler}
-              isMuted={true}
-              videoMode={videoPlayerModes.FULLSCREEN}
-            />
-          </Route>
-          <Route exact path='/login'>
+          <Route exact path={AppRoute.LOGIN}>
             <SignIn
               onSignInSubmit={onSignInSubmit}
               authorizationCode = {authorizationCode}
             />
           </Route>
-          <Route exact path='/dev-review'>
+{/*          <Route exact path={AppRoute.ADD_REVIEW}>
             <AddReview
               authorizationStatus = {authorizationStatus}
               userAvatar = {userAvatar}
               onReviewSubmit = {onReviewSubmit}
               movie= {mockMovie}
             />
-          </Route>
+          </Route>*/}
+          <PrivateRoute
+            authorizationStatus = {authorizationStatus}
+            exact
+            path={AppRoute.ADD_REVIEW}
+            render={() => {
+              return (
+                <AddReview
+                  authorizationStatus = {authorizationStatus}
+                  userAvatar = {userAvatar}
+                  onReviewSubmit = {onReviewSubmit}
+                  movie= {mockMovie}
+                />
+              );
+            }}
+          />
+          <PrivateRoute
+            authorizationStatus = {authorizationStatus}
+            exact
+            path={AppRoute.MY_LIST}
+            render={() => {
+              return (
+                <MyList
+                  authorizationStatus = {authorizationStatus}
+                  userAvatar = {userAvatar}
+                  myList = {movies}
+                  onMovieCardClickHandler = {this.onMovieCardClickHandler}
+                />
+              );
+            }}
+          />
+          <Route
+            render={() => (
+              <React.Fragment>
+                <h1>
+                  404.
+                  <br />
+                  <br />
+                  <small>Page not found</small>
+                </h1>
+                <Link to={AppRoute.ROOT}>Go to main page</Link>
+              </React.Fragment>
+            )}
+          />
         </Switch>
       </BrowserRouter>
     );

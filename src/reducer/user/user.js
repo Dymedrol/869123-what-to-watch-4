@@ -76,6 +76,7 @@ const Operation = {
 
       dispatch(ActionCreator.setAuthorization(LoginStatus.AUTH));
       dispatch(ActionCreator.setUserData(userData));
+
     })
     .catch((err) => {
       dispatch(ActionCreator.setAuthorizationCode(err.response.status));

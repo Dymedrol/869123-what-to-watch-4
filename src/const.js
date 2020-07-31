@@ -42,4 +42,12 @@ const reviewLength = {
   MAX: 400,
 };
 
-export {Genres, Tabs, MovieListStep, videoPlayerModes, Errors, LoginStatus, reviewLength};
+const AppRoute = {
+  ROOT: `/`,
+  MOVIE_PAGE: `/films`,
+  LOGIN: `/login`,
+  ADD_REVIEW: `/review`,
+  MY_LIST: `/mylist`,
+};
+
+export {Genres, Tabs, MovieListStep, videoPlayerModes, Errors, LoginStatus, reviewLength, AppRoute};
