@@ -29,7 +29,17 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {movie, allMovies, onPlayButtonHandler, onExitButtonHandler, isMoviePlaying, authorizationStatus, userAvatar} = this.props;
+    const {
+      movie,
+      allMovies,
+      onPlayButtonHandler,
+      onExitButtonHandler,
+      isMoviePlaying,
+      authorizationStatus,
+      userAvatar,
+      onMyListClick,
+    } = this.props;
+
     const backgroundStyle = {
       background: movie.backgroundColor,
     };
@@ -59,6 +69,38 @@ class MoviePage extends PureComponent {
         return <a className="btn movie-card__button">Add review</a>;
       }
       return null;
+    };
+
+    const myListButton = () => {
+      if (movie.isFavorite) {
+        return <button
+          className="btn btn--list movie-card__button"
+          type="button"
+          onClick={
+            () => {
+              onMyListClick(movie.id, movie.isFavorite);
+            }
+          }>
+          <svg viewBox="0 0 18 14" width="18" height="14">
+            <use xlinkHref="#in-list"></use>
+          </svg>
+          <span>My list</span>
+        </button>;
+      }
+
+      return <button
+        className="btn btn--list movie-card__button"
+        type="button"
+        onClick={
+          () => {
+            onMyListClick(movie.id, movie.isFavorite);
+          }
+        }>
+        <svg viewBox="0 0 19 20" width="19" height="20">
+          <use xlinkHref="#add"></use>
+        </svg>
+        <span>My list</span>
+      </button>;
     };
 
     const renderMoviePage = () => {
@@ -91,12 +133,7 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
+                  {myListButton()}
                   {renderAddreviewButton()}
                 </div>
               </div>
@@ -182,6 +219,8 @@ MoviePage.propTypes = {
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
   allMovies: PropTypes.array.isRequired,
   onPlayButtonHandler: PropTypes.func.isRequired,
@@ -189,6 +228,8 @@ MoviePage.propTypes = {
   isMoviePlaying: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
+  onMyListClick: PropTypes.func.isRequired,
+
 };
 
 export {MoviePage};

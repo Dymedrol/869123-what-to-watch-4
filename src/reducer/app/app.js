@@ -7,6 +7,7 @@ const initialState = {
 
 const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
+  CHANGE_ACTIVE_MOVIE: `CHANGE_ACTIVE_MOVIE`,
 };
 
 const ActionCreator = {
@@ -16,7 +17,6 @@ const ActionCreator = {
       payload: genre,
     };
   },
-
 };
 
 const reducer = (state = initialState, action) => {

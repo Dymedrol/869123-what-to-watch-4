@@ -27,13 +27,15 @@ Array [
         WTW
       </h1>
       <header
-        className="page-header movie-card__head"
+        className="page-header movie-card__head undefined"
       >
         <div
           className="logo"
         >
           <a
             className="logo__link"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -57,6 +59,8 @@ Array [
         >
           <a
             className="user-block__link"
+            href="/login"
+            onClick={[Function]}
           >
             Sign in
           </a>
@@ -110,6 +114,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg

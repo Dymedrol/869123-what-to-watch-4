@@ -4,21 +4,17 @@ import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import Main from '../main/main.jsx';
-import {Player} from '../player/player.jsx';
 import MoviePage from '../moviePage/moviePage.jsx';
 import SignIn from '../signIn/signIn.jsx';
 import {ActionCreator} from '../../reducer/app/app.js';
+import {Operation} from '../../reducer/data/data.js';
 import {getGenre} from '../../reducer/app/selectors.js';
-import {getMovies, getPromo} from '../../reducer/data/selectors.js';
+import {getMovies, getPromo, getfavoriteMovies} from '../../reducer/data/selectors.js';
 import {getAuthorizationStatus, getAuthorizationCode, getUserAvatar} from '../../reducer/user/selectors.js';
-import {MovieListStep, videoPlayerModes, AppRoute} from '../../const.js';
+import {MovieListStep, AppRoute} from '../../const.js';
 import {Operation as userOperation} from "../../reducer/user/user.js";
 import {AddReview} from '../add-review/add-review.jsx';
-import {PrivateRoute} from '../private-route/private-route.jsx';
 import MyList from '../my-list/my-list.jsx';
-
-import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
-const PlayerWrapper = withVideoPlayer(Player);
 
 const mockMovie = {
   backgroundColor: `#A6B7AC`,
@@ -27,7 +23,7 @@ const mockMovie = {
   director: `Martin Scorsese`,
   genre: `Crime`,
   id: 1,
-  isFavorite: false,
+  isFavorite: true,
   name: `Gangs of new york`,
   posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
   previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`,
@@ -61,7 +57,16 @@ class App extends PureComponent {
 
   render() {
     const {isMoviePlaying, movieListCount} = this.state;
-    const {onSignInSubmit, authorizationCode, authorizationStatus, userAvatar, onReviewSubmit, promoMovie, movies} = this.props;
+    const {
+      onSignInSubmit,
+      authorizationCode,
+      authorizationStatus,
+      userAvatar,
+      onReviewSubmit,
+      promoMovie,
+      favoriteMovies,
+      onMyListClick,
+    } = this.props;
 
     return (
       <BrowserRouter history={history}>
@@ -77,6 +82,7 @@ class App extends PureComponent {
               isMoviePlaying = {isMoviePlaying}
               authorizationStatus = {authorizationStatus}
               userAvatar = {userAvatar}
+              onMyListClick = {onMyListClick}
             />
           </Route>
           <Route exact path={AppRoute.MOVIE_PAGE}>
@@ -87,6 +93,7 @@ class App extends PureComponent {
               isMoviePlaying = {isMoviePlaying}
               authorizationStatus = {authorizationStatus}
               userAvatar = {userAvatar}
+              onMyListClick = {onMyListClick}
             />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
@@ -95,44 +102,22 @@ class App extends PureComponent {
               authorizationCode = {authorizationCode}
             />
           </Route>
-{/*          <Route exact path={AppRoute.ADD_REVIEW}>
+          <Route exact path={AppRoute.ADD_REVIEW}>
             <AddReview
               authorizationStatus = {authorizationStatus}
               userAvatar = {userAvatar}
               onReviewSubmit = {onReviewSubmit}
               movie= {mockMovie}
             />
-          </Route>*/}
-          <PrivateRoute
-            authorizationStatus = {authorizationStatus}
-            exact
-            path={AppRoute.ADD_REVIEW}
-            render={() => {
-              return (
-                <AddReview
-                  authorizationStatus = {authorizationStatus}
-                  userAvatar = {userAvatar}
-                  onReviewSubmit = {onReviewSubmit}
-                  movie= {mockMovie}
-                />
-              );
-            }}
-          />
-          <PrivateRoute
-            authorizationStatus = {authorizationStatus}
-            exact
-            path={AppRoute.MY_LIST}
-            render={() => {
-              return (
-                <MyList
-                  authorizationStatus = {authorizationStatus}
-                  userAvatar = {userAvatar}
-                  myList = {movies}
-                  onMovieCardClickHandler = {this.onMovieCardClickHandler}
-                />
-              );
-            }}
-          />
+          </Route>
+          <Route exact path={AppRoute.MY_LIST}>
+            <MyList
+              authorizationStatus = {authorizationStatus}
+              userAvatar = {userAvatar}
+              myList = {favoriteMovies}
+              onMovieCardClickHandler = {this.onMovieCardClickHandler}
+            />
+          </Route>
           <Route
             render={() => (
               <React.Fragment>
@@ -190,6 +175,8 @@ App.propTypes = {
   onSignInSubmit: PropTypes.func.isRequired,
   authorizationCode: PropTypes.string,
   onReviewSubmit: PropTypes.func.isRequired,
+  favoriteMovies: PropTypes.array.isRequired,
+  onMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -199,6 +186,7 @@ const mapStateToProps = (state) => ({
   authorizationCode: getAuthorizationCode(state),
   userAvatar: getUserAvatar(state),
   promoMovie: getPromo(state),
+  favoriteMovies: getfavoriteMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -211,6 +199,12 @@ const mapDispatchToProps = (dispatch) => ({
   onReviewSubmit(review) {
     dispatch(userOperation.sendReview(review));
   },
+  changeActiveMovie(movie) {
+    dispatch(ActionCreator.changeActiveMovie(movie));
+  },
+  onMyListClick(movieId, isFavourite) {
+    dispatch(Operation.changeFavoriteStatus(movieId, isFavourite));
+  }
 });
 
 export {App};

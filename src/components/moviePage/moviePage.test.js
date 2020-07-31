@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {BrowserRouter} from 'react-router-dom';
 
 import MoviePage from "./moviePage.jsx";
 import NameSpace from "../../reducer/nameSpace.js";
@@ -43,16 +44,20 @@ it(`Проверка снепшота компонента MoviePage`, () => {
     },
   });
   const tree = renderer.create(
-      <Provider store={store}>
-        <MoviePage
-          movie={movie}
-          onPlayButtonHandler={() => {}}
-          onExitButtonHandler={() => {}}
-          isMoviePlaying={isMoviePlaying}
-          authorizationStatus = {LoginStatus.NO_AUTH}
-          userAvatar={``}
-        />
-      </Provider>, {
+      <BrowserRouter>
+        <Provider store={store}>
+          <MoviePage
+            movie={movie}
+            onPlayButtonHandler={() => {}}
+            onExitButtonHandler={() => {}}
+            isMoviePlaying={isMoviePlaying}
+            authorizationStatus = {LoginStatus.NO_AUTH}
+            userAvatar={``}
+            onMyListClick = {() => {}}
+          />
+        </Provider>
+      </BrowserRouter>
+      , {
         createNodeMock: () => {
           return {};
         }})

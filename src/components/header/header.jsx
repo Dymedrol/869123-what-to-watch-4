@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 import {LoginStatus, AppRoute} from '../../const.js';
 
@@ -22,19 +22,22 @@ const Header = (props) => {
       );
     } else {
       return <Link
-          className="user-block__link"
-          to={AppRoute.LOGIN}
-        >Sign in</Link>;
+        className="user-block__link"
+        to={AppRoute.LOGIN}
+      >Sign in</Link>;
     }
   };
 
   return <header className={`page-header movie-card__head ${additionalClass}`}>
     <div className="logo">
-      <a className="logo__link">
+      <Link
+        className="logo__link"
+        to={AppRoute.ROOT}
+      >
         <span className="logo__letter logo__letter--1">W</span>
         <span className="logo__letter logo__letter--2">T</span>
         <span className="logo__letter logo__letter--3">W</span>
-      </a>
+      </Link>
     </div>
 
     <div className="user-block">
@@ -46,6 +49,7 @@ const Header = (props) => {
 Header.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   userAvatar: PropTypes.string,
+  additionalClass: PropTypes.string,
 };
 
 export {Header};

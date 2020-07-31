@@ -82,7 +82,7 @@ const Operation = {
     .catch((err) => {
       throw err;
     });
-  }
+  },
 };
 
 const reducer = (state = initialState, action) => {

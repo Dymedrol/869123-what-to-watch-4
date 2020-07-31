@@ -7,6 +7,10 @@ export const getGenre = (state) => {
   return state[NameSpace.APP].genre;
 };
 
+export const getIsfavorite = (state) => {
+  return state[NameSpace.APP].isFavorite;
+};
+
 export const getMoviesByGenre = createSelector(
     [getGenre, getMovies],
     (genre, movies) => {

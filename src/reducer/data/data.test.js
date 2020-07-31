@@ -51,6 +51,7 @@ it(`Проверка initState`, () => {
   expect(reducer(void 0, {})).toEqual({
     movies: [],
     promo: {},
+    favoriteMovies: [],
   });
 });
 
@@ -72,13 +73,15 @@ it(`Проверка вызова к апи /films`, function () {
 it(`Reducer при не правильном ActionType возвращает initState`, () => {
   expect(reducer({
     movies: [],
-    promo: {}
+    promo: {},
+    favoriteMovies: [],
   }, {
     type: null,
     payload: testMovies
   })).toEqual({
     movies: [],
-    promo: {}
+    promo: {},
+    favoriteMovies: [],
   });
 });
 
@@ -92,6 +95,21 @@ it(`Проверка вызова к апи /films/promo`, function () {
     .reply(200, [{fake: true}]);
 
   return loadPromo(dispatch, () => {}, api)
+    .then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+    });
+});
+
+it(`Проверка вызова к апи /favorite`, function () {
+  const apiMock = new MockAdapter(api);
+  const dispatch = jest.fn();
+  const loadFavorite = Operation.loadFavorite();
+
+  apiMock
+    .onGet(`/favorite`)
+    .reply(200, [{fake: true}]);
+
+  return loadFavorite(dispatch, () => {}, api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
     });

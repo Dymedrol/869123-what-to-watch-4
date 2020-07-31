@@ -47,6 +47,7 @@ it(`Проверка снепшота компонента App`, () => {
     [NameSpace.DATA]: {
       movies: MOVIES,
       promo: promoMovie,
+      favoriteMovies: MOVIES,
     },
     [NameSpace.USER]: {
       authorizationStatus: LoginStatus.NO_AUTH,
@@ -61,6 +62,7 @@ it(`Проверка снепшота компонента App`, () => {
           userAvatar={``}
           authorizationStatus = {LoginStatus.NO_AUTH}
           authorizationCode = {``}
+          favoriteMovies = {movies}
         />
       </Provider>, {
         createNodeMock: () => {

@@ -31,11 +31,11 @@ class MovieList extends PureComponent {
   }
 }
 
-// MovieList.propTypes = {
-//   movies: PropTypes.array.isRequired,
-//   setActiveItem: PropTypes.func.isRequired,
-//   removeActiveItem: PropTypes.func.isRequired,
-//   onMovieCardClickHandler: PropTypes.func.isRequired,
-// };
+MovieList.propTypes = {
+  movies: PropTypes.array.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+  removeActiveItem: PropTypes.func.isRequired,
+  onMovieCardClickHandler: PropTypes.func.isRequired,
+};
 
 export {MovieList};
