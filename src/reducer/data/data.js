@@ -2,10 +2,12 @@ import {extend} from "../../utils.js";
 
 const initialState = {
   movies: [],
+  promo: {},
 };
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
+  LOAD_PROMO: `LOAD_PROMO`,
 };
 
 const ActionCreator = {
@@ -15,6 +17,12 @@ const ActionCreator = {
       payload: allMovies.map(parceMovietoCamalCase),
     };
   },
+  loadPromo: (promo) => {
+    return {
+      type: ActionType.LOAD_PROMO,
+      payload: parceMovietoCamalCase(promo),
+    };
+  }
 };
 
 const Operation = {
@@ -22,6 +30,12 @@ const Operation = {
     return api.get(`/films`)
       .then((response) => {
         dispatch(ActionCreator.loadMovies(response.data));
+      });
+  },
+  loadPromo: () => (dispatch, getState, api) => {
+    return api.get(`/films/promo`)
+      .then((response) => {
+        dispatch(ActionCreator.loadPromo(response.data));
       });
   },
 };
@@ -67,10 +81,13 @@ const parceMovietoCamalCase = (movie) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         movies: action.payload
+      });
+    case ActionType.LOAD_PROMO:
+      return extend(state, {
+        promo: action.payload
       });
   }
 

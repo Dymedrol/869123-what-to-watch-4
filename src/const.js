@@ -27,4 +27,14 @@ const videoPlayerModes = {
   FULLSCREEN: `fullscreen`,
 };
 
-export {Genres, Tabs, MovieListStep, videoPlayerModes};
+const Errors = {
+  UNAUTHORIZED: 401,
+  BAD_REQUEST: 400,
+};
+
+const LoginStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`
+};
+
+export {Genres, Tabs, MovieListStep, videoPlayerModes, Errors, LoginStatus};

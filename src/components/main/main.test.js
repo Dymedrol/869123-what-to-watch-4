@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from './main.jsx';
 
-import {Genres} from "../../const.js";
+import {Genres, LoginStatus} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
 
 import NameSpace from "../../reducer/nameSpace.js";
@@ -58,6 +58,8 @@ it(`Проверка снепшота компонента Main`, () => {
           onShowMoreClickHandler={() => {}}
           movieListCount={8}
           promoMovie={promoMovie}
+          authorizationStatus = {LoginStatus.NO_AUTH}
+          userAvatar={``}
         />
       </Provider>, {
         createNodeMock: () => {
