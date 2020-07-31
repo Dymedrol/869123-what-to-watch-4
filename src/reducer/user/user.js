@@ -29,23 +29,13 @@ const ActionCreator = {
   })
 };
 
-const formatAvatarUrl = (url) => {
-  const splittedUrl = url.split(`/`);
-  const newLinkArr = splittedUrl.slice(2, splittedUrl.length);
-  const newUrl = newLinkArr.join(`/`);
-
-  return newUrl;
-};
-
 const Operation = {
   requestAuthorization: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        const avatarUrl = formatAvatarUrl(response.data.avatar_url);
-
         const userData = {
           email: response.data.email,
-          avatar: `${response.config.baseURL}/${avatarUrl}`,
+          avatar: `https://4.react.pages.academy${response.data.avatar_url}`,
           statusCode: response.status
         };
 
@@ -62,11 +52,10 @@ const Operation = {
       password: data.formData.password,
     })
     .then((response) => {
-      const avatarUrl = formatAvatarUrl(response.data.avatar_url);
 
       const userData = {
         email: response.data.email,
-        avatar: `${response.config.baseURL}/${avatarUrl}`,
+        avatar: `${response.config.baseURL}/${response.data.avatar_url}`,
       };
 
       dispatch(ActionCreator.setAuthorization(LoginStatus.AUTH));
