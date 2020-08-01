@@ -7,36 +7,49 @@ class AddReview extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isFormCorrect: null,
-    };
-
     this._formRef = React.createRef();
+    this._buttonRef = React.createRef();
+    this._textAreaRef = React.createRef();
     this.onSubmit = this.onSubmit.bind(this);
+    this.onTextareaChange = this.onTextareaChange.bind(this);
+    this.toggleFormDisability = this.toggleFormDisability.bind(this);
   }
 
+  toggleFormDisability() {
+    console.log(this._textAreaRef.current.disabled);
+    this._textAreaRef.current.disabled = !this._textAreaRef.current.disabled;
+    this._buttonRef.current.disabled = !this._buttonRef.current.disabled;
+    console.log(this._textAreaRef.current.disabled);
+  }
+
+  onTextareaChange(e) {
+    const form = this._formRef.current;
+    const rating = form.querySelector(`.rating__input:checked`).value;
+    const comment = form.querySelector(`#review-text`).value;
+    const id = this.props.movie.id;
+
+    if (comment.length > reviewLength.MIN && comment.length < reviewLength.MAX) {
+      this._buttonRef.current.disabled = false;
+    }
+  }
 
   onSubmit(e) {
     e.preventDefault();
+
+    this.toggleFormDisability();
 
     const form = this._formRef.current;
     const rating = form.querySelector(`.rating__input:checked`).value;
     const comment = form.querySelector(`#review-text`).value;
     const id = this.props.movie.id;
 
-    if (comment.length < reviewLength.MIN || comment.length > reviewLength.MAX) {
-      this.setState({
-        isFormCorrect: false,
-      });
-      return;
-    }
     const review = {
       id,
       rating,
       comment,
     };
 
-    this.props.onReviewSubmit(review);
+    this.props.onReviewSubmit(review, this.toggleFormDisability);
   }
 
   render() {
@@ -83,9 +96,17 @@ class AddReview extends PureComponent {
             </div>
 
             <div className="add-review__text">
-              <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" minLength={reviewLength.MIN} maxLength={reviewLength.MAX}></textarea>
+              <textarea
+                ref={this._textAreaRef}
+                className="add-review__textarea"
+                name="review-text" id="review-text"
+                placeholder="Review text"
+                minLength={reviewLength.MIN}
+                maxLength={reviewLength.MAX}
+                onChange={this.onTextareaChange}>
+              </textarea>
               <div className="add-review__submit">
-                <button className="add-review__btn" type="submit">Post</button>
+                <button className="add-review__btn" type="submit" ref={this._buttonRef} disabled={true}>Post</button>
               </div>
 
             </div>
