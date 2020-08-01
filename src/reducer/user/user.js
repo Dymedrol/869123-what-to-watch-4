@@ -14,7 +14,6 @@ const ActionType = {
   SET_USER_DATA: `setUserData`,
   SET_AUTHORIZATION_CODE: `setAutorizationCode`,
   SEND_REVIEW: `createReview`,
-  LOAD_REVIEW: `loadReview`,
 };
 
 const ActionCreator = {
@@ -33,10 +32,6 @@ const ActionCreator = {
   }),
   createReview: (review) => ({
     type: ActionType.SEND_REVIEW,
-    payload: review
-  }),
-  loadReview: (review) => ({
-    type: ActionType.LOAD_REVIEW,
     payload: review
   })
 };
@@ -79,7 +74,7 @@ const Operation = {
       throw err;
     });
   },
-  sendReview: (review) => (dispatch, getState, api) => {
+  sendReview: (review, callback) => (dispatch, getState, api) => {
     return api.post(`/comments/${review.id}`, {
       rating: review.rating,
       comment: review.comment

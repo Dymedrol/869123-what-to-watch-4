@@ -208,8 +208,8 @@ const mapDispatchToProps = (dispatch) => ({
   onSignInSubmit(formData) {
     dispatch(userOperation.loginUser({formData}));
   },
-  onReviewSubmit(review) {
-    dispatch(userOperation.sendReview(review));
+  onReviewSubmit(review, callback) {
+    dispatch(userOperation.sendReview(review, callback));
   },
   changeActiveMovie(movie) {
     dispatch(ActionCreator.changeActiveMovie(movie));
