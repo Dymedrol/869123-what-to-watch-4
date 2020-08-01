@@ -80,6 +80,7 @@ const Operation = {
       comment: review.comment
     })
     .then(() => {
+      callback();
       history.push(`/films/${review.id}`);
       location.reload();
     })
