@@ -6,6 +6,8 @@ import {connect} from "react-redux";
 import Main from '../main/main.jsx';
 import MoviePage from '../moviePage/moviePage.jsx';
 import SignIn from '../signIn/signIn.jsx';
+import {AddReview} from '../add-review/add-review.jsx';
+
 import {ActionCreator} from '../../reducer/app/app.js';
 import {Operation} from '../../reducer/data/data.js';
 import {getGenre} from '../../reducer/app/selectors.js';
@@ -13,8 +15,8 @@ import {getMovies, getPromo, getfavoriteMovies} from '../../reducer/data/selecto
 import {getAuthorizationStatus, getAuthorizationCode, getUserAvatar} from '../../reducer/user/selectors.js';
 import {MovieListStep, AppRoute} from '../../const.js';
 import {Operation as userOperation} from "../../reducer/user/user.js";
-import {AddReview} from '../add-review/add-review.jsx';
 import MyList from '../my-list/my-list.jsx';
+import history from "../../history.js";
 
 const mockMovie = {
   backgroundColor: `#A6B7AC`,
@@ -66,6 +68,7 @@ class App extends PureComponent {
       promoMovie,
       favoriteMovies,
       onMyListClick,
+      movies,
     } = this.props;
 
     return (
@@ -85,29 +88,38 @@ class App extends PureComponent {
               onMyListClick = {onMyListClick}
             />
           </Route>
-          <Route exact path={AppRoute.MOVIE_PAGE}>
-            <MoviePage
-              movie={mockMovie}
-              onPlayButtonHandler = {this.onPlayButtonHandler}
-              onExitButtonHandler = {this.onExitButtonHandler}
-              isMoviePlaying = {isMoviePlaying}
-              authorizationStatus = {authorizationStatus}
-              userAvatar = {userAvatar}
-              onMyListClick = {onMyListClick}
-            />
-          </Route>
+          <Route
+            exact
+            path={`${AppRoute.MOVIE_PAGE}/:id/`}
+            render={(props) =>
+              <MoviePage
+                {...props}
+                movie={mockMovie}
+                onPlayButtonHandler = {this.onPlayButtonHandler}
+                onExitButtonHandler = {this.onExitButtonHandler}
+                isMoviePlaying = {isMoviePlaying}
+                authorizationStatus = {authorizationStatus}
+                userAvatar = {userAvatar}
+                onMyListClick = {onMyListClick}
+
+              />}
+          />
+          <Route
+            exact
+            path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.ADD_REVIEW}`}
+            render={(props) =>
+              <AddReview
+                {...props}
+                userAvatar = {userAvatar}
+                authorizationStatus = {authorizationStatus}
+                onReviewSubmit = {onReviewSubmit}
+                allMovies = {movies}
+              />}
+          />
           <Route exact path={AppRoute.LOGIN}>
             <SignIn
               onSignInSubmit={onSignInSubmit}
               authorizationCode = {authorizationCode}
-            />
-          </Route>
-          <Route exact path={AppRoute.ADD_REVIEW}>
-            <AddReview
-              authorizationStatus = {authorizationStatus}
-              userAvatar = {userAvatar}
-              onReviewSubmit = {onReviewSubmit}
-              movie= {mockMovie}
             />
           </Route>
           <Route exact path={AppRoute.MY_LIST}>
@@ -204,7 +216,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onMyListClick(movieId, isFavourite) {
     dispatch(Operation.changeFavoriteStatus(movieId, isFavourite));
-  }
+  },
 });
 
 export {App};

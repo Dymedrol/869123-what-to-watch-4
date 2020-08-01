@@ -11,3 +11,7 @@ export const getUserAvatar = (state) => {
 export const getAuthorizationCode = (state) => {
   return state[NameSpace.USER].authorizationCode;
 };
+
+export const getReviews = (state) => {
+  return state[NameSpace.USER].reviews;
+};

@@ -6,7 +6,6 @@ exports[`Проверка снепшота компонента MovieList 1`] = 
 >
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -23,6 +22,8 @@ exports[`Проверка снепшота компонента MovieList 1`] = 
     >
       <a
         className="small-movie-card__link"
+        href="/films/1/"
+        onClick={[Function]}
       >
         Gangs of new york
       </a>
@@ -30,7 +31,6 @@ exports[`Проверка снепшота компонента MovieList 1`] = 
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -47,6 +47,8 @@ exports[`Проверка снепшота компонента MovieList 1`] = 
     >
       <a
         className="small-movie-card__link"
+        href="/films/2/"
+        onClick={[Function]}
       >
         Moonrise Kingdom
       </a>

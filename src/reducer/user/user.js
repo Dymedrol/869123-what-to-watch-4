@@ -1,10 +1,12 @@
 import {extend} from "../../utils.js";
 import {LoginStatus} from '../../const.js';
+import history from "../../history.js";
 
 const initialState = {
   authorizationStatus: LoginStatus.NO_AUTH,
   userAvatar: ``,
-  authorizationCode: null
+  authorizationCode: null,
+  reviews: [],
 };
 
 const ActionType = {
@@ -12,6 +14,7 @@ const ActionType = {
   SET_USER_DATA: `setUserData`,
   SET_AUTHORIZATION_CODE: `setAutorizationCode`,
   SEND_REVIEW: `createReview`,
+  LOAD_REVIEW: `loadReview`,
 };
 
 const ActionCreator = {
@@ -30,6 +33,10 @@ const ActionCreator = {
   }),
   createReview: (review) => ({
     type: ActionType.SEND_REVIEW,
+    payload: review
+  }),
+  loadReview: (review) => ({
+    type: ActionType.LOAD_REVIEW,
     payload: review
   })
 };
@@ -78,10 +85,21 @@ const Operation = {
       comment: review.comment
     })
     .then(() => {
+      history.push(`/films/${review.id}`);
+      location.reload();
     })
     .catch((err) => {
       throw err;
     });
+  },
+  loadReview: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadReview(response.data));
+      })
+      .catch((err) => {
+        throw err;
+      });
   },
 };
 
@@ -98,6 +116,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_AUTHORIZATION_CODE:
       return extend(state, {
         authorizationCode: action.payload,
+      });
+
+    case ActionType.LOAD_REVIEW:
+      return extend(state, {
+        reviews: action.payload,
       });
   }
 

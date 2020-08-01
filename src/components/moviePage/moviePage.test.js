@@ -42,6 +42,9 @@ it(`Проверка снепшота компонента MoviePage`, () => {
     [NameSpace.DATA]: {
       movies: MOVIES,
     },
+    [NameSpace.USER]: {
+      reviews: [],
+    },
   });
   const tree = renderer.create(
       <BrowserRouter>
@@ -54,6 +57,7 @@ it(`Проверка снепшота компонента MoviePage`, () => {
             authorizationStatus = {LoginStatus.NO_AUTH}
             userAvatar={``}
             onMyListClick = {() => {}}
+            match={{params: {id: '1'}, isExact: true, path: "", url: ""}}
           />
         </Provider>
       </BrowserRouter>

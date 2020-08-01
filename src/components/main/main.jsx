@@ -22,7 +22,6 @@ const Main = (props) => {
   const {
     promoMovie,
     movies,
-    onMovieCardClickHandler,
     onShowMoreClickHandler,
     movieListCount,
     onPlayButtonHandler,
@@ -118,7 +117,6 @@ const Main = (props) => {
           </ul>
 
           <MovieListWrapper
-            onMovieCardClickHandler = {onMovieCardClickHandler}
             movies = {filtredMovies}
           />
 
@@ -159,7 +157,6 @@ const mapStateToProps = (state) => ({
 });
 
 Main.propTypes = {
-  onMovieCardClickHandler: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
   onShowMoreClickHandler: PropTypes.func.isRequired,
   movieListCount: PropTypes.number.isRequired,

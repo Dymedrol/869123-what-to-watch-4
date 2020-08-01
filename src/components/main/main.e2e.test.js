@@ -62,7 +62,7 @@ describe(`Main e2e test`, () => {
           </Provider>
         </BrowserRouter>
     );
-    const titles = main.find(`.small-movie-card__link`);
-    expect(titles).toHaveLength(MOVIES.length);
+    const cards = main.find(`.small-movie-card`);
+    expect(cards).toHaveLength(MOVIES.length);
   });
 });
