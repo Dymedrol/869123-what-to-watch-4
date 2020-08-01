@@ -26,7 +26,7 @@ const ActionCreator = {
   setAuthorizationCode: (response) => ({
     type: ActionType.SET_AUTHORIZATION_CODE,
     payload: response
-  })
+  }),
 };
 
 const Operation = {
@@ -63,6 +63,18 @@ const Operation = {
     })
     .catch((err) => {
       dispatch(ActionCreator.setAuthorizationCode(err.response.status));
+      throw err;
+    });
+  },
+  sendReview: (review, callback) => (dispatch, getState, api) => {
+    return api.post(`/comments/${review.id}`, {
+      rating: review.rating,
+      comment: review.comment
+    })
+    .then(() => {
+      callback();
+    })
+    .catch((err) => {
       throw err;
     });
   }
