@@ -38,7 +38,7 @@ const LoginStatus = {
 };
 
 const reviewLength = {
-  MIN: 1,
+  MIN: 50,
   MAX: 400,
 };
 
