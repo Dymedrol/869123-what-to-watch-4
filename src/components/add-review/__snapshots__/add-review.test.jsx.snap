@@ -156,8 +156,9 @@ exports[`ПРоверка снепшота компонента AddReview 1`] = 
           className="add-review__textarea"
           id="review-text"
           maxLength={400}
-          minLength={1}
+          minLength={50}
           name="review-text"
+          onChange={[Function]}
           placeholder="Review text"
         />
         <div
@@ -165,6 +166,7 @@ exports[`ПРоверка снепшота компонента AddReview 1`] = 
         >
           <button
             className="add-review__btn"
+            disabled={true}
             type="submit"
           >
             Post

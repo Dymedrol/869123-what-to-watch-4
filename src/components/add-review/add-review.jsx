@@ -16,17 +16,13 @@ class AddReview extends PureComponent {
   }
 
   toggleFormDisability() {
-    console.log(this._textAreaRef.current.disabled);
     this._textAreaRef.current.disabled = !this._textAreaRef.current.disabled;
     this._buttonRef.current.disabled = !this._buttonRef.current.disabled;
-    console.log(this._textAreaRef.current.disabled);
   }
 
-  onTextareaChange(e) {
+  onTextareaChange() {
     const form = this._formRef.current;
-    const rating = form.querySelector(`.rating__input:checked`).value;
     const comment = form.querySelector(`#review-text`).value;
-    const id = this.props.movie.id;
 
     if (comment.length > reviewLength.MIN && comment.length < reviewLength.MAX) {
       this._buttonRef.current.disabled = false;
@@ -46,7 +42,7 @@ class AddReview extends PureComponent {
     const review = {
       id,
       rating,
-      comment,
+      comment
     };
 
     this.props.onReviewSubmit(review, this.toggleFormDisability);
