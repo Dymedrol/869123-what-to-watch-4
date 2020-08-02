@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import MovieCard from "./movieCard.jsx";
+import {BrowserRouter} from 'react-router-dom';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -22,17 +23,19 @@ it(`Проверка наведения на карточку`, () => {
   const stopVideo = jest.fn();
 
   const movieCard = mount(
-      <MovieCard
-        title={movie.title}
-        pic={movie.src}
-        cardData={movie}
-        renderPlayer={renderPlayer}
-        setActiveItem={setActiveItem}
-        removeActiveItem={removeActiveItem}
-        onMovieCardClickHandler={onMovieCardClickHandler}
-        playVideo={playVideo}
-        stopVideo={stopVideo}
-      />
+      <BrowserRouter>
+        <MovieCard
+          title={movie.title}
+          pic={movie.src}
+          cardData={movie}
+          renderPlayer={renderPlayer}
+          setActiveItem={setActiveItem}
+          removeActiveItem={removeActiveItem}
+          onMovieCardClickHandler={onMovieCardClickHandler}
+          playVideo={playVideo}
+          stopVideo={stopVideo}
+        />
+      </BrowserRouter>
   );
 
   const card = movieCard.find(`.small-movie-card`);

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const moviePageOverview = (props) => {
-  const {movie} = props;
+  const {movie, ratings} = props;
 
   return (
     <React.Fragment>
@@ -10,7 +10,7 @@ const moviePageOverview = (props) => {
         <div className="movie-rating__score">{movie.rating}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{movie.ratingString}</span>
-          <span className="movie-rating__count">{movie.runTime} ratings</span>
+          <span className="movie-rating__count">{ratings} ratings</span>
         </p>
       </div>
 
@@ -43,6 +43,7 @@ moviePageOverview.propTypes = {
     ratingString: PropTypes.string.isRequired,
     runTime: PropTypes.number.isRequired,
   }).isRequired,
+  ratings: PropTypes.number.isRequired,
 };
 
 export default moviePageOverview;

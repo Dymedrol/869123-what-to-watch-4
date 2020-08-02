@@ -10,6 +10,7 @@ it(`Проверяет снепшот компонента FilmPageDetalis`, () 
   const tree = renderer.create(
       <MoviePageOverview
         movie={movie}
+        ratings={5}
       />
   ).toJSON();
 

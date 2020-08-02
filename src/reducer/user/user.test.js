@@ -5,7 +5,8 @@ it(`Проверка initState`, () => {
   expect(reducer(void 0, {})).toEqual({
     authorizationStatus: LoginStatus.NO_AUTH,
     userAvatar: ``,
-    authorizationCode: null
+    authorizationCode: null,
+    reviews: [],
   });
 });
 
@@ -13,14 +14,16 @@ it(`Проверка setAuthorization`, () => {
   expect(reducer({
     authorizationStatus: LoginStatus.NO_AUTH,
     userAvatar: ``,
-    authorizationCode: null
+    authorizationCode: null,
+    reviews: [],
   }, {
     type: ActionType.SET_AUTHORIZATION,
     payload: LoginStatus.AUTH
   })).toEqual({
     authorizationStatus: LoginStatus.AUTH,
     userAvatar: ``,
-    authorizationCode: null
+    authorizationCode: null,
+    reviews: [],
   });
 });
 

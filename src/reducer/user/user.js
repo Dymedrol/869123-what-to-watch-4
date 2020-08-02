@@ -1,16 +1,20 @@
 import {extend} from "../../utils.js";
 import {LoginStatus} from '../../const.js';
+import history from "../../history.js";
 
 const initialState = {
   authorizationStatus: LoginStatus.NO_AUTH,
   userAvatar: ``,
-  authorizationCode: null
+  authorizationCode: null,
+  reviews: [],
 };
 
 const ActionType = {
   SET_AUTHORIZATION: `setAuthorization`,
   SET_USER_DATA: `setUserData`,
   SET_AUTHORIZATION_CODE: `setAutorizationCode`,
+  SEND_REVIEW: `createReview`,
+  LOAD_REVIEW: `loadReview`,
 };
 
 const ActionCreator = {
@@ -27,6 +31,14 @@ const ActionCreator = {
     type: ActionType.SET_AUTHORIZATION_CODE,
     payload: response
   }),
+  createReview: (review) => ({
+    type: ActionType.SEND_REVIEW,
+    payload: review
+  }),
+  loadReview: (review) => ({
+    type: ActionType.LOAD_REVIEW,
+    payload: review
+  })
 };
 
 const Operation = {
@@ -60,6 +72,7 @@ const Operation = {
 
       dispatch(ActionCreator.setAuthorization(LoginStatus.AUTH));
       dispatch(ActionCreator.setUserData(userData));
+
     })
     .catch((err) => {
       dispatch(ActionCreator.setAuthorizationCode(err.response.status));
@@ -73,11 +86,22 @@ const Operation = {
     })
     .then(() => {
       callback();
+      history.push(`/films/${review.id}`);
+      location.reload();
     })
     .catch((err) => {
       throw err;
     });
-  }
+  },
+  loadReview: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadReview(response.data));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -93,6 +117,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_AUTHORIZATION_CODE:
       return extend(state, {
         authorizationCode: action.payload,
+      });
+
+    case ActionType.LOAD_REVIEW:
+      return extend(state, {
+        reviews: action.payload,
       });
   }
 

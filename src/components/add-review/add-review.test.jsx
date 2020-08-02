@@ -2,6 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {AddReview} from './add-review.jsx';
 import {LoginStatus} from "../../const.js";
+import {BrowserRouter} from 'react-router-dom';
+import MOVIES from "../../mocks/films.js";
 
 const movie = {
   backgroundColor: `#D8E3E5`,
@@ -26,13 +28,17 @@ const movie = {
 
 it(`ПРоверка снепшота компонента AddReview`, () => {
   const tree = renderer.create(
-      <AddReview
-        movie={movie}
-        authorizationStatus = {LoginStatus.NO_AUTH}
-        authorizationCode = {``}
-        onReviewSubmit = {() => {}}
-
-      />, {
+      <BrowserRouter>
+        <AddReview
+          movie={movie}
+          authorizationStatus = {LoginStatus.NO_AUTH}
+          authorizationCode = {``}
+          onReviewSubmit = {() => {}}
+          match={{params: {id: `1`}, isExact: true, path: ``, url: ``}}
+          allMovies={MOVIES}
+        />
+      </BrowserRouter>
+      , {
         createNodeMock: () => {
           return {
             addEventListener: () => {}

@@ -19,13 +19,15 @@ exports[`Проверка снепшота компонента Main 1`] = `
       WTW
     </h1>
     <header
-      className="page-header movie-card__head"
+      className="page-header movie-card__head undefined"
     >
       <div
         className="logo"
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -49,6 +51,8 @@ exports[`Проверка снепшота компонента Main 1`] = `
       >
         <a
           className="user-block__link"
+          href="/login"
+          onClick={[Function]}
         >
           Sign in
         </a>
@@ -116,38 +120,23 @@ exports[`Проверка снепшота компонента Main 1`] = `
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
-                height="20px"
-                version="1.1"
+                height="20"
                 viewBox="0 0 19 20"
-                width="19px"
+                width="19"
               >
-                <title>
-                  +
-                </title>
-                <desc>
-                  Created with Sketch.
-                </desc>
-                <g
-                  fill="none"
-                  fillRule="evenodd"
-                  id="Page-1"
-                  stroke="none"
-                  strokeWidth="1"
-                >
-                  <polygon
-                    fill="#EEE5B5"
-                    id="+"
-                    points="10.777832 11.2880859 10.777832 19.5527344 8.41650391 19.5527344 8.41650391 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 8.41650391 8.92675781 8.41650391 0.662109375 10.777832 0.662109375 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"
-                  />
-                </g>
+                <use
+                  xlinkHref="#add"
+                />
               </svg>
               <span>
                 My list
               </span>
             </button>
+            ;
           </div>
         </div>
       </div>
@@ -206,7 +195,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
       >
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -223,6 +211,8 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
+              href="/films/1/"
+              onClick={[Function]}
             >
               Gangs of new york
             </a>
@@ -230,7 +220,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -247,6 +236,8 @@ exports[`Проверка снепшота компонента Main 1`] = `
           >
             <a
               className="small-movie-card__link"
+              href="/films/2/"
+              onClick={[Function]}
             >
               Moonrise Kingdom
             </a>

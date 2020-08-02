@@ -1,8 +1,9 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Link} from 'react-router-dom';
 
-import {Tabs, MovieListStep, videoPlayerModes, LoginStatus} from '../../const.js';
+import {Tabs, MovieListStep, videoPlayerModes, LoginStatus, AppRoute} from '../../const.js';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
 import TabList from '../tabList/tabList.jsx';
 import MoviePageOverview from './../moviePageOverview/moviePageOverview.jsx';
@@ -10,9 +11,11 @@ import MoviePageDetails from '../moviePageDetails/moviePageDetails.jsx';
 import MoviePageReviews from '../moviePageReviews/moviePageReviews.jsx';
 import {MovieList} from '../movieList/movieList.jsx';
 import {getMovies} from '../../reducer/data/selectors.js';
+import {getReviews} from '../../reducer/user/selectors.js';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 import {Player} from '../player/player.jsx';
 import {Header} from '../header/header.jsx';
+import {Operation as userOperation} from "../../reducer/user/user.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
 const PlayerWrapper = withVideoPlayer(Player);
@@ -28,13 +31,35 @@ class MoviePage extends PureComponent {
     this.onTabClickHandler = this.onTabClickHandler.bind(this);
   }
 
+  componentDidMount() {
+    const {loadReviews} = this.props;
+    const movieId = parseInt(this.props.match.params.id, 10);
+    loadReviews(movieId);
+  }
+
   render() {
-    const {movie, allMovies, onPlayButtonHandler, onExitButtonHandler, isMoviePlaying, authorizationStatus, userAvatar} = this.props;
-    const backgroundStyle = {
-      background: movie.backgroundColor,
+    const {
+      allMovies,
+      onPlayButtonHandler,
+      onExitButtonHandler,
+      isMoviePlaying,
+      authorizationStatus,
+      userAvatar,
+      onMyListClick,
+      reviews,
+    } = this.props;
+
+    const getCurentMovie = (movies, movieId) => {
+      return movies.find((movie) => movie.id === movieId);
     };
+
+    const movieId = parseInt(this.props.match.params.id, 10);
+
+    const movie = getCurentMovie(allMovies, movieId);
+
     const TabListWrapper = withActiveItem(TabList);
     const movieListrestriction = MovieListStep.MOVIEPAGE - 1;
+
     let filtredMovies = allMovies.filter((item) => item.genre === movie.genre);
     filtredMovies = filtredMovies.slice(0, movieListrestriction);
 
@@ -42,13 +67,13 @@ class MoviePage extends PureComponent {
     const renderSwitch = () => {
       switch (this.state.activeTab) {
         case Tabs.OVERVIEW:
-          return <MoviePageOverview movie={movie}/>;
+          return <MoviePageOverview movie={movie} ratings={reviews.length}/>;
 
         case Tabs.DETAILS:
           return <MoviePageDetails movie={movie}/>;
 
         case Tabs.REVIEWS:
-          return <MoviePageReviews movie={movie}/>;
+          return <MoviePageReviews reviews={reviews}/>;
       }
 
       return null;
@@ -56,17 +81,55 @@ class MoviePage extends PureComponent {
 
     const renderAddreviewButton = () => {
       if (authorizationStatus === LoginStatus.AUTH) {
-        return <a className="btn movie-card__button">Add review</a>;
+        return <Link
+          className="btn movie-card__button"
+          to={`${AppRoute.MOVIE_PAGE}/${movie.id}${AppRoute.ADD_REVIEW}`}
+        >Add review</Link>;
       }
       return null;
     };
 
+    const myListButton = () => {
+      if (movie.isFavorite) {
+        return <button
+          className="btn btn--list movie-card__button"
+          type="button"
+          onClick={
+            () => {
+              onMyListClick(movie.id, movie.isFavorite);
+            }
+          }>
+          <svg viewBox="0 0 18 14" width="18" height="14">
+            <use xlinkHref="#in-list"></use>
+          </svg>
+          <span>My list</span>
+        </button>;
+      }
+
+      return <button
+        className="btn btn--list movie-card__button"
+        type="button"
+        onClick={
+          () => {
+            onMyListClick(movie.id, movie.isFavorite);
+          }
+        }>
+        <svg viewBox="0 0 19 20" width="19" height="20">
+          <use xlinkHref="#add"></use>
+        </svg>
+        <span>My list</span>
+      </button>;
+    };
+
     const renderMoviePage = () => {
+      if (!movie) {
+        return <h2>Loading...</h2>;
+      }
       if (isMoviePlaying) {
         return <PlayerWrapper movie={movie} onExitButtonHandler={onExitButtonHandler} isMuted={true} videoMode={videoPlayerModes.FULLSCREEN}/>;
       }
       return <React.Fragment>
-        <section className="movie-card movie-card--full" style={backgroundStyle}>
+        <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
           <div className="movie-card__hero">
             <div className="movie-card__bg">
               <img src={movie.backgroundImage} alt="The Grand Budapest Hotel" />
@@ -91,12 +154,7 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
+                  {myListButton()}
                   {renderAddreviewButton()}
                 </div>
               </div>
@@ -164,6 +222,13 @@ class MoviePage extends PureComponent {
 
 const mapStateToProps = (state) => ({
   allMovies: getMovies(state),
+  reviews: getReviews(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadReviews(id) {
+    dispatch(userOperation.loadReview(id));
+  },
 });
 
 MoviePage.propTypes = {
@@ -182,6 +247,8 @@ MoviePage.propTypes = {
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.array.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
   allMovies: PropTypes.array.isRequired,
   onPlayButtonHandler: PropTypes.func.isRequired,
@@ -189,7 +256,15 @@ MoviePage.propTypes = {
   isMoviePlaying: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
+  onMyListClick: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  }),
+  loadReviews: PropTypes.func.isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
 export {MoviePage};
-export default connect(mapStateToProps)(MoviePage);
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

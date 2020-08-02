@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from './main.jsx';
+import {BrowserRouter} from 'react-router-dom';
 
 import {Genres, LoginStatus} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
@@ -50,18 +51,21 @@ it(`Проверка снепшота компонента Main`, () => {
     },
   });
   const tree = renderer.create(
-      <Provider store={store}>
-        <Main
-          movies={movies}
-          onMovieTitleClickHandler = {() => {}}
-          onMovieCardClickHandler={() => {}}
-          onShowMoreClickHandler={() => {}}
-          movieListCount={8}
-          promoMovie={promoMovie}
-          authorizationStatus = {LoginStatus.NO_AUTH}
-          userAvatar={``}
-        />
-      </Provider>, {
+      <BrowserRouter>
+        <Provider store={store}>
+          <Main
+            movies={movies}
+            onMovieTitleClickHandler = {() => {}}
+            onMovieCardClickHandler={() => {}}
+            onShowMoreClickHandler={() => {}}
+            movieListCount={8}
+            promoMovie={promoMovie}
+            authorizationStatus = {LoginStatus.NO_AUTH}
+            userAvatar={``}
+          />
+        </Provider>
+      </BrowserRouter>
+      , {
         createNodeMock: () => {
           return {};
         }})

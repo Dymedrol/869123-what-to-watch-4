@@ -6,7 +6,7 @@ import {MovieList} from '../movieList/movieList.jsx';
 import GenreList from '../genreList/genreList.jsx';
 import ShowMore from '../showMore/showMore.jsx';
 import {Player} from '../player/player.jsx';
-import {PlayS, Add} from '../svg/svg.jsx';
+import {PlayS} from '../svg/svg.jsx';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 import {getMoviesByGenre} from '../../reducer/app/selectors.js';
@@ -22,7 +22,6 @@ const Main = (props) => {
   const {
     promoMovie,
     movies,
-    onMovieCardClickHandler,
     onShowMoreClickHandler,
     movieListCount,
     onPlayButtonHandler,
@@ -30,12 +29,27 @@ const Main = (props) => {
     isMoviePlaying,
     authorizationStatus,
     userAvatar,
+    onMyListClick,
   } = props;
 
+  const myListButton = () => {
+    if (promoMovie.isFavorite) {
+      return <svg viewBox="0 0 18 14" width="18" height="14">
+        <use xlinkHref="#in-list"></use>
+      </svg>;
+    }
+
+    return <svg viewBox="0 0 19 20" width="19" height="20">
+      <use xlinkHref="#add"></use>
+    </svg>;
+  };
+
   const renderMainPage = () => {
+
     if (isMoviePlaying) {
       return <PlayerWrapper movie={promoMovie} onExitButtonHandler={onExitButtonHandler} isMuted={true} videoMode={videoPlayerModes.FULLSCREEN}/>;
     }
+
     return <div>
       <section className="movie-card">
         <div className="movie-card__bg">
@@ -64,10 +78,20 @@ const Main = (props) => {
                   <PlayS/>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <Add/>
+
+
+                <button
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                  onClick={
+                    () => {
+                      onMyListClick(promoMovie.id, promoMovie.isFavorite);
+                    }
+                  }>
+                  {myListButton()}
                   <span>My list</span>
-                </button>
+                </button>;
+
               </div>
             </div>
           </div>
@@ -84,7 +108,6 @@ const Main = (props) => {
           </ul>
 
           <MovieListWrapper
-            onMovieCardClickHandler = {onMovieCardClickHandler}
             movies = {filtredMovies}
           />
 
@@ -125,7 +148,6 @@ const mapStateToProps = (state) => ({
 });
 
 Main.propTypes = {
-  onMovieCardClickHandler: PropTypes.func.isRequired,
   movies: PropTypes.array.isRequired,
   onShowMoreClickHandler: PropTypes.func.isRequired,
   movieListCount: PropTypes.number.isRequired,

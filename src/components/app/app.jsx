@@ -1,22 +1,22 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import Main from '../main/main.jsx';
-import {Player} from '../player/player.jsx';
 import MoviePage from '../moviePage/moviePage.jsx';
 import SignIn from '../signIn/signIn.jsx';
-import {ActionCreator} from '../../reducer/app/app.js';
-import {getGenre} from '../../reducer/app/selectors.js';
-import {getMovies, getPromo} from '../../reducer/data/selectors.js';
-import {getAuthorizationStatus, getAuthorizationCode, getUserAvatar} from '../../reducer/user/selectors.js';
-import {MovieListStep, videoPlayerModes} from '../../const.js';
-import {Operation as userOperation} from "../../reducer/user/user.js";
 import {AddReview} from '../add-review/add-review.jsx';
 
-import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
-const PlayerWrapper = withVideoPlayer(Player);
+import {ActionCreator} from '../../reducer/app/app.js';
+import {Operation} from '../../reducer/data/data.js';
+import {getGenre} from '../../reducer/app/selectors.js';
+import {getMovies, getPromo, getfavoriteMovies} from '../../reducer/data/selectors.js';
+import {getAuthorizationStatus, getAuthorizationCode, getUserAvatar} from '../../reducer/user/selectors.js';
+import {MovieListStep, AppRoute} from '../../const.js';
+import {Operation as userOperation} from "../../reducer/user/user.js";
+import MyList from '../my-list/my-list.jsx';
+import history from "../../history.js";
 
 const mockMovie = {
   backgroundColor: `#A6B7AC`,
@@ -25,7 +25,7 @@ const mockMovie = {
   director: `Martin Scorsese`,
   genre: `Crime`,
   id: 1,
-  isFavorite: false,
+  isFavorite: true,
   name: `Gangs of new york`,
   posterImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg`,
   previewImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg`,
@@ -57,82 +57,92 @@ class App extends PureComponent {
     this.onExitButtonHandler = this.onExitButtonHandler.bind(this);
   }
 
-  _renderApp() {
-    const {promoMovie, authorizationStatus, userAvatar} = this.props;
-    const {currentPage, selectedMovie, movieListCount, isMoviePlaying} = this.state;
-
-    if (currentPage === `main`) {
-      return (
-        <Main
-          promoMovie = {promoMovie}
-          onMovieCardClickHandler = {this.onMovieCardClickHandler}
-          onShowMoreClickHandler = {this.onShowMoreClickHandler}
-          onPlayButtonHandler = {this.onPlayButtonHandler}
-          onExitButtonHandler = {this.onExitButtonHandler}
-          movieListCount = {movieListCount}
-          isMoviePlaying = {isMoviePlaying}
-          authorizationStatus = {authorizationStatus}
-          userAvatar = {userAvatar}
-        />
-      );
-    }
-
-    if (currentPage === `movie`) {
-      return (
-        <MoviePage
-          movie={selectedMovie}
-          onPlayButtonHandler = {this.onPlayButtonHandler}
-          onExitButtonHandler = {this.onExitButtonHandler}
-          isMoviePlaying = {isMoviePlaying}
-          authorizationStatus = {authorizationStatus}
-          userAvatar = {userAvatar}
-        />
-      );
-    }
-
-    return null;
-  }
-
   render() {
-    const {isMoviePlaying, promoMovie} = this.state;
-    const {onSignInSubmit, authorizationCode, authorizationStatus, userAvatar, onReviewSubmit} = this.props;
+    const {isMoviePlaying, movieListCount} = this.state;
+    const {
+      onSignInSubmit,
+      authorizationCode,
+      authorizationStatus,
+      userAvatar,
+      onReviewSubmit,
+      promoMovie,
+      favoriteMovies,
+      onMyListClick,
+      movies,
+    } = this.props;
+
     return (
-      <BrowserRouter>
+      <BrowserRouter history={history}>
         <Switch>
-          <Route exact path='/'>
-            {this._renderApp()}
-          </Route>
-          <Route exact path='/movie-page'>
-            <MoviePage
-              movie={promoMovie}
+          <Route exact path={AppRoute.ROOT}>
+            <Main
+              promoMovie = {promoMovie}
+              onMovieCardClickHandler = {this.onMovieCardClickHandler}
+              onShowMoreClickHandler = {this.onShowMoreClickHandler}
               onPlayButtonHandler = {this.onPlayButtonHandler}
               onExitButtonHandler = {this.onExitButtonHandler}
+              movieListCount = {movieListCount}
               isMoviePlaying = {isMoviePlaying}
+              authorizationStatus = {authorizationStatus}
+              userAvatar = {userAvatar}
+              onMyListClick = {onMyListClick}
             />
           </Route>
-          <Route exact path='/player'>
-            <PlayerWrapper
-              movie={promoMovie}
-              onPlayButtonHandler = {this.onPlayButtonHandler}
-              onExitButtonHandler = {this.onExitButtonHandler}
-              isMuted={true}
-              videoMode={videoPlayerModes.FULLSCREEN}
-            />
-          </Route>
-          <Route exact path='/login'>
+          <Route
+            exact
+            path={`${AppRoute.MOVIE_PAGE}/:id/`}
+            render={(props) =>
+              <MoviePage
+                {...props}
+                movie={mockMovie}
+                onPlayButtonHandler = {this.onPlayButtonHandler}
+                onExitButtonHandler = {this.onExitButtonHandler}
+                isMoviePlaying = {isMoviePlaying}
+                authorizationStatus = {authorizationStatus}
+                userAvatar = {userAvatar}
+                onMyListClick = {onMyListClick}
+
+              />}
+          />
+          <Route
+            exact
+            path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.ADD_REVIEW}`}
+            render={(props) =>
+              <AddReview
+                {...props}
+                userAvatar = {userAvatar}
+                authorizationStatus = {authorizationStatus}
+                onReviewSubmit = {onReviewSubmit}
+                allMovies = {movies}
+              />}
+          />
+          <Route exact path={AppRoute.LOGIN}>
             <SignIn
               onSignInSubmit={onSignInSubmit}
               authorizationCode = {authorizationCode}
             />
           </Route>
-          <Route exact path='/dev-review'>
-            <AddReview
+          <Route exact path={AppRoute.MY_LIST}>
+            <MyList
               authorizationStatus = {authorizationStatus}
               userAvatar = {userAvatar}
-              onReviewSubmit = {onReviewSubmit}
-              movie= {mockMovie}
+              myList = {favoriteMovies}
+              onMovieCardClickHandler = {this.onMovieCardClickHandler}
             />
           </Route>
+          <Route
+            render={() => (
+              <React.Fragment>
+                <h1>
+                  404.
+                  <br />
+                  <br />
+                  <small>Page not found</small>
+                </h1>
+                <Link to={AppRoute.ROOT}>Go to main page</Link>
+              </React.Fragment>
+            )}
+          />
         </Switch>
       </BrowserRouter>
     );
@@ -177,6 +187,8 @@ App.propTypes = {
   onSignInSubmit: PropTypes.func.isRequired,
   authorizationCode: PropTypes.string,
   onReviewSubmit: PropTypes.func.isRequired,
+  favoriteMovies: PropTypes.array.isRequired,
+  onMyListClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -186,6 +198,7 @@ const mapStateToProps = (state) => ({
   authorizationCode: getAuthorizationCode(state),
   userAvatar: getUserAvatar(state),
   promoMovie: getPromo(state),
+  favoriteMovies: getfavoriteMovies(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -197,6 +210,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onReviewSubmit(review, callback) {
     dispatch(userOperation.sendReview(review, callback));
+  },
+  changeActiveMovie(movie) {
+    dispatch(ActionCreator.changeActiveMovie(movie));
+  },
+  onMyListClick(movieId, isFavourite) {
+    dispatch(Operation.changeFavoriteStatus(movieId, isFavourite));
   },
 });
 

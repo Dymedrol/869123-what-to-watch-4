@@ -1,13 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const.js';
 
 const MovieCard = (props) => {
-  const {cardData, playVideo, stopVideo, renderPlayer, setActiveItem, removeActiveItem, onMovieCardClickHandler} = props;
-
-  const handleMovieClick = (evt) => {
-    evt.preventDefault();
-    onMovieCardClickHandler(cardData);
-  };
+  const {cardData, playVideo, stopVideo, renderPlayer, setActiveItem, removeActiveItem} = props;
 
   return <article
     className="small-movie-card catalog__movies-card"
@@ -19,13 +16,15 @@ const MovieCard = (props) => {
       stopVideo();
       removeActiveItem();
     }}
-    onClick = {handleMovieClick}
   >
     <div className="small-movie-card__image">
       {renderPlayer(cardData)}
     </div>
     <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link">{cardData.name}</a>
+      <Link
+        className="small-movie-card__link"
+        to={`${AppRoute.MOVIE_PAGE}/${cardData.id}/`}
+      >{cardData.name}</Link>
     </h3>
   </article>;
 };
@@ -35,7 +34,6 @@ MovieCard.propTypes = {
   renderPlayer: PropTypes.func.isRequired,
   setActiveItem: PropTypes.func.isRequired,
   removeActiveItem: PropTypes.func.isRequired,
-  onMovieCardClickHandler: PropTypes.func.isRequired,
   playVideo: PropTypes.func.isRequired,
   stopVideo: PropTypes.func.isRequired,
 };

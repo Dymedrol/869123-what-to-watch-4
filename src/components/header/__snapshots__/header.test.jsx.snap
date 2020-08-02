@@ -2,13 +2,15 @@
 
 exports[`Проверка снепшота компонента Header 1`] = `
 <header
-  className="page-header movie-card__head"
+  className="page-header movie-card__head undefined"
 >
   <div
     className="logo"
   >
     <a
       className="logo__link"
+      href="/"
+      onClick={[Function]}
     >
       <span
         className="logo__letter logo__letter--1"
@@ -30,16 +32,22 @@ exports[`Проверка снепшота компонента Header 1`] = `
   <div
     className="user-block"
   >
-    <div
+    <a
       className="user-block__avatar"
+      href="/mylist"
+      onClick={[Function]}
     >
-      <img
-        alt="User avatar"
-        height="63"
-        src=""
-        width="63"
-      />
-    </div>
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src=""
+          width="63"
+        />
+      </div>
+    </a>
   </div>
 </header>
 `;

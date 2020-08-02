@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
+
 import {Header} from '../header/header.jsx';
 import {reviewLength} from '../../const.js';
 
@@ -37,7 +38,7 @@ class AddReview extends PureComponent {
     const form = this._formRef.current;
     const rating = form.querySelector(`.rating__input:checked`).value;
     const comment = form.querySelector(`#review-text`).value;
-    const id = this.props.movie.id;
+    const id = this.props.match.params.id;
 
     const review = {
       id,
@@ -49,7 +50,19 @@ class AddReview extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus, userAvatar, movie} = this.props;
+    const {authorizationStatus, userAvatar, allMovies} = this.props;
+
+    const getCurentMovie = (movies, movieId) => {
+      return movies.find((movie) => movie.id === movieId);
+    };
+
+    const movieId = parseInt(this.props.match.params.id, 10);
+
+    const movie = getCurentMovie(allMovies, movieId);
+
+    if (!movie) {
+      return <h2>Loading...</h2>;
+    }
 
     return (
       <section className="movie-card movie-card--full">
@@ -117,8 +130,13 @@ class AddReview extends PureComponent {
 AddReview.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   userAvatar: PropTypes.string,
-  movie: PropTypes.object.isRequired,
   onReviewSubmit: PropTypes.func.isRequired,
+  allMovies: PropTypes.array.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  }),
 };
 
 export {AddReview};

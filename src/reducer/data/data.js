@@ -3,11 +3,13 @@ import {extend} from "../../utils.js";
 const initialState = {
   movies: [],
   promo: {},
+  favoriteMovies: [],
 };
 
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO: `LOAD_PROMO`,
+  LOAD_FAVORITE: `LOAD_FAVORITE`,
 };
 
 const ActionCreator = {
@@ -21,6 +23,12 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_PROMO,
       payload: parceMovietoCamalCase(promo),
+    };
+  },
+  loadFavorite: (favoriteMovies) => {
+    return {
+      type: ActionType.LOAD_FAVORITE,
+      payload: favoriteMovies.map(parceMovietoCamalCase),
     };
   }
 };
@@ -36,6 +44,21 @@ const Operation = {
     return api.get(`/films/promo`)
       .then((response) => {
         dispatch(ActionCreator.loadPromo(response.data));
+      });
+  },
+  loadFavorite: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFavorite(response.data));
+      });
+  },
+  changeFavoriteStatus: (movieId, isFavourite) => (dispatch, getState, api) => {
+    return api
+      .post(`/favorite/${movieId}/${isFavourite ? 0 : 1}`)
+      .then(() => {
+        dispatch(Operation.loadMovies());
+        dispatch(Operation.loadPromo());
+        dispatch(Operation.loadFavorite());
       });
   },
 };
@@ -88,6 +111,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO:
       return extend(state, {
         promo: action.payload
+      });
+    case ActionType.LOAD_FAVORITE:
+      return extend(state, {
+        favoriteMovies: action.payload
       });
   }
 

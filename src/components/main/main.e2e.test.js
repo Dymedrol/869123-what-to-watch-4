@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from './main.jsx';
+import {BrowserRouter} from 'react-router-dom';
 
 import {Genres, LoginStatus} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
@@ -49,17 +50,19 @@ describe(`Main e2e test`, () => {
     });
 
     const main = mount(
-        <Provider store={store}>
-          <Main
-            promoMovie={movieMock}
-            onMovieCardClickHandler={() => {}}
-            onShowMoreClickHandler={() => {}}
-            movieListCount={8}
-            authorizationStatus = {LoginStatus.NO_AUTH}
-          />
-        </Provider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <Main
+              promoMovie={movieMock}
+              onMovieCardClickHandler={() => {}}
+              onShowMoreClickHandler={() => {}}
+              movieListCount={8}
+              authorizationStatus = {LoginStatus.NO_AUTH}
+            />
+          </Provider>
+        </BrowserRouter>
     );
-    const titles = main.find(`.small-movie-card__link`);
-    expect(titles).toHaveLength(MOVIES.length);
+    const cards = main.find(`.small-movie-card`);
+    expect(cards).toHaveLength(MOVIES.length);
   });
 });

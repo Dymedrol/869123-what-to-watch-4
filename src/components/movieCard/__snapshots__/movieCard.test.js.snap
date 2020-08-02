@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Проверка снепшота компонента MovieCard 1`] = `
+exports[`Проверка снепшота компонента Header 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -15,6 +14,8 @@ exports[`Проверка снепшота компонента MovieCard 1`] = 
   >
     <a
       className="small-movie-card__link"
+      href="/films/undefined/"
+      onClick={[Function]}
     >
       Movie title
     </a>

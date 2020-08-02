@@ -6,7 +6,7 @@ Array [
     className="movie-card movie-card--full"
     style={
       Object {
-        "background": "#D8E3E5",
+        "background": "#A6B7AC",
       }
     }
   >
@@ -18,7 +18,7 @@ Array [
       >
         <img
           alt="The Grand Budapest Hotel"
-          src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg"
+          src="https://htmlacademy-react-3.appspot.com/wtw/static/film/background/gangs_of_new_york.jpg"
         />
       </div>
       <h1
@@ -27,13 +27,15 @@ Array [
         WTW
       </h1>
       <header
-        className="page-header movie-card__head"
+        className="page-header movie-card__head undefined"
       >
         <div
           className="logo"
         >
           <a
             className="logo__link"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -57,6 +59,8 @@ Array [
         >
           <a
             className="user-block__link"
+            href="/login"
+            onClick={[Function]}
           >
             Sign in
           </a>
@@ -71,7 +75,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Moonrise Kingdom
+            Gangs of new york
           </h2>
           <p
             className="movie-card__meta"
@@ -79,12 +83,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              Adventure
+              Crime
             </span>
             <span
               className="movie-card__year"
             >
-              2012
+              2002
             </span>
           </p>
           <div
@@ -110,6 +114,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -141,7 +146,7 @@ Array [
           <img
             alt="The Grand Budapest Hotel poster"
             height="327"
-            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg"
+            src="https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Gangs_of_New_York_Poster.jpg"
             width="218"
           />
         </div>
@@ -192,7 +197,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              7.9
+              8.8
             </div>
             <p
               className="movie-rating__meta"
@@ -205,7 +210,7 @@ Array [
               <span
                 className="movie-rating__count"
               >
-                94
+                0
                  ratings
               </span>
             </p>
@@ -214,14 +219,14 @@ Array [
             className="movie-card__text"
           >
             <p>
-              A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.
+              In 1862, Amsterdam Vallon returns to the Five Points area of New York City seeking revenge against Bill the Butcher, his father's killer.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Wes Anderson
+                Martin Scorsese
               </strong>
             </p>
             <p
@@ -229,7 +234,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Jared Gilman, Kara Hayward, Bruce Willis
+                Leonardo DiCaprio, Cameron Diaz, Daniel Day-Lewis
                  and other
               </strong>
             </p>
@@ -257,7 +262,6 @@ Array [
         >
           <article
             className="small-movie-card catalog__movies-card"
-            onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -266,7 +270,7 @@ Array [
             >
               <video
                 className="player__video"
-                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg"
+                poster="https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/gangs_of_new_york.jpg"
               />
             </div>
             <h3
@@ -274,8 +278,10 @@ Array [
             >
               <a
                 className="small-movie-card__link"
+                href="/films/1/"
+                onClick={[Function]}
               >
-                Moonrise Kingdom
+                Gangs of new york
               </a>
             </h3>
           </article>
