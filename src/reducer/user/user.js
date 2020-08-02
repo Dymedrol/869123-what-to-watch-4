@@ -14,6 +14,7 @@ const ActionType = {
   SET_USER_DATA: `setUserData`,
   SET_AUTHORIZATION_CODE: `setAutorizationCode`,
   SEND_REVIEW: `createReview`,
+  LOAD_REVIEW: `loadReview`,
 };
 
 const ActionCreator = {
@@ -32,6 +33,10 @@ const ActionCreator = {
   }),
   createReview: (review) => ({
     type: ActionType.SEND_REVIEW,
+    payload: review
+  }),
+  loadReview: (review) => ({
+    type: ActionType.LOAD_REVIEW,
     payload: review
   })
 };
