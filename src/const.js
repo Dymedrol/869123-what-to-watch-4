@@ -48,6 +48,7 @@ const AppRoute = {
   LOGIN: `/login`,
   ADD_REVIEW: `/review`,
   MY_LIST: `/mylist`,
+  PLAYER: `/player`
 };
 
 export {Genres, Tabs, MovieListStep, videoPlayerModes, Errors, LoginStatus, reviewLength, AppRoute};

@@ -1,6 +1,8 @@
 import NameSpace from '../nameSpace.js';
 
 export const getMovies = (state) => {
+    console.log('@@@')
+    console.log(state[NameSpace.DATA].movies)
   return state[NameSpace.DATA].movies;
 };
 

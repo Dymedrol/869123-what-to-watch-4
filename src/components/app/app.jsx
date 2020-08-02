@@ -7,6 +7,7 @@ import Main from '../main/main.jsx';
 import MoviePage from '../moviePage/moviePage.jsx';
 import SignIn from '../signIn/signIn.jsx';
 import {AddReview} from '../add-review/add-review.jsx';
+import {PlayerPage} from '../player-page/player-page.jsx';
 
 import {ActionCreator} from '../../reducer/app/app.js';
 import {Operation} from '../../reducer/data/data.js';
@@ -45,7 +46,6 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      isMoviePlaying: false,
       movieListCount: MovieListStep.MAIN,
       currentPage: `main`,
       selectedMovie: null,
@@ -53,12 +53,10 @@ class App extends PureComponent {
 
     this.onMovieCardClickHandler = this.onMovieCardClickHandler.bind(this);
     this.onShowMoreClickHandler = this.onShowMoreClickHandler.bind(this);
-    this.onPlayButtonHandler = this.onPlayButtonHandler.bind(this);
-    this.onExitButtonHandler = this.onExitButtonHandler.bind(this);
   }
 
   render() {
-    const {isMoviePlaying, movieListCount} = this.state;
+    const {movieListCount} = this.state;
     const {
       onSignInSubmit,
       authorizationCode,
@@ -79,10 +77,7 @@ class App extends PureComponent {
               promoMovie = {promoMovie}
               onMovieCardClickHandler = {this.onMovieCardClickHandler}
               onShowMoreClickHandler = {this.onShowMoreClickHandler}
-              onPlayButtonHandler = {this.onPlayButtonHandler}
-              onExitButtonHandler = {this.onExitButtonHandler}
               movieListCount = {movieListCount}
-              isMoviePlaying = {isMoviePlaying}
               authorizationStatus = {authorizationStatus}
               userAvatar = {userAvatar}
               onMyListClick = {onMyListClick}
@@ -95,9 +90,6 @@ class App extends PureComponent {
               <MoviePage
                 {...props}
                 movie={mockMovie}
-                onPlayButtonHandler = {this.onPlayButtonHandler}
-                onExitButtonHandler = {this.onExitButtonHandler}
-                isMoviePlaying = {isMoviePlaying}
                 authorizationStatus = {authorizationStatus}
                 userAvatar = {userAvatar}
                 onMyListClick = {onMyListClick}
@@ -113,6 +105,15 @@ class App extends PureComponent {
                 userAvatar = {userAvatar}
                 authorizationStatus = {authorizationStatus}
                 onReviewSubmit = {onReviewSubmit}
+                allMovies = {movies}
+              />}
+          />
+          <Route
+            exact
+            path={`${AppRoute.PLAYER}/:id`}
+            render={(props) =>
+              <PlayerPage
+                {...props}
                 allMovies = {movies}
               />}
           />
@@ -161,19 +162,6 @@ class App extends PureComponent {
       movieListCount: prevState + MovieListStep.MAIN,
     });
   }
-
-  onPlayButtonHandler() {
-    this.setState({
-      isMoviePlaying: true
-    });
-  }
-
-  onExitButtonHandler() {
-    this.setState({
-      isMoviePlaying: false
-    });
-  }
-
 }
 
 App.propTypes = {

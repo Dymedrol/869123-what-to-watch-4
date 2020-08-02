@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Link} from 'react-router-dom';
 
 import {MovieList} from '../movieList/movieList.jsx';
 import GenreList from '../genreList/genreList.jsx';
@@ -10,8 +11,9 @@ import {PlayS} from '../svg/svg.jsx';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 import {getMoviesByGenre} from '../../reducer/app/selectors.js';
-import {videoPlayerModes} from '../../const.js';
+import {videoPlayerModes, AppRoute} from '../../const.js';
 import {Header} from '../header/header.jsx';
+
 
 const MovieListWrapper = withActiveItem(MovieList);
 const GenreListWrapper = withActiveItem(GenreList);
@@ -24,7 +26,6 @@ const Main = (props) => {
     movies,
     onShowMoreClickHandler,
     movieListCount,
-    onPlayButtonHandler,
     onExitButtonHandler,
     isMoviePlaying,
     authorizationStatus,
@@ -94,10 +95,10 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonHandler}>
-                  <PlayS/>
-                  <span>Play</span>
-                </button>
+                <Link
+                  className="btn btn--play movie-card__button"
+                  to={`${AppRoute.PLAYER}/${promoMovie.id}/`}
+                >Play</Link>
 
                 {myListButton()}
 

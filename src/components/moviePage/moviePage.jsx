@@ -40,9 +40,6 @@ class MoviePage extends PureComponent {
   render() {
     const {
       allMovies,
-      onPlayButtonHandler,
-      onExitButtonHandler,
-      isMoviePlaying,
       authorizationStatus,
       userAvatar,
       onMyListClick,
@@ -125,9 +122,6 @@ class MoviePage extends PureComponent {
       if (!movie) {
         return <h2>Loading...</h2>;
       }
-      if (isMoviePlaying) {
-        return <PlayerWrapper movie={movie} onExitButtonHandler={onExitButtonHandler} isMuted={true} videoMode={videoPlayerModes.FULLSCREEN}/>;
-      }
       return <React.Fragment>
         <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
           <div className="movie-card__hero">
@@ -148,12 +142,10 @@ class MoviePage extends PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonHandler}>
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button>
+                  <Link
+                    className="btn btn--play movie-card__button"
+                    to={`${AppRoute.PLAYER}/${movie.id}/`}
+                  >Play</Link>
                   {myListButton()}
                   {renderAddreviewButton()}
                 </div>
@@ -251,9 +243,6 @@ MoviePage.propTypes = {
     id: PropTypes.number.isRequired,
   }).isRequired,
   allMovies: PropTypes.array.isRequired,
-  onPlayButtonHandler: PropTypes.func.isRequired,
-  onExitButtonHandler: PropTypes.func.isRequired,
-  isMoviePlaying: PropTypes.bool.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   onMyListClick: PropTypes.func.isRequired,

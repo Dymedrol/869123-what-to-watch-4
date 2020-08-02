@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from 'moment';
+import {Link} from 'react-router-dom';
+
+import {AppRoute} from '../../const.js';
 
 class Player extends React.Component {
   constructor(props) {
@@ -15,7 +18,6 @@ class Player extends React.Component {
 
     const {
       movie,
-      onExitButtonHandler,
       renderPlayer,
       playVideo,
       pauseVideo,
@@ -53,7 +55,10 @@ class Player extends React.Component {
       <div className="player">
         {renderPlayer(movie)}
 
-        <button type="button" className="player__exit" onClick={onExitButtonHandler}>Exit</button>
+        <Link
+          className="player__exit"
+          to={`${AppRoute.MOVIE_PAGE}/${movie.id}/`}
+        >Exit</Link>
 
         <div className="player__controls">
           <div className="player__controls-row">
@@ -94,7 +99,6 @@ class Player extends React.Component {
 Player.propTypes = {
   playVideo: PropTypes.func.isRequired,
   movie: PropTypes.object.isRequired,
-  onExitButtonHandler: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   pauseVideo: PropTypes.func.isRequired,
   changeFullScreen: PropTypes.func.isRequired,
