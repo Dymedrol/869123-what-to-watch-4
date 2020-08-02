@@ -3,13 +3,20 @@ import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {BrowserRouter} from 'react-router-dom';
+import thunk from 'redux-thunk';
 
 import MoviePage from "./moviePage.jsx";
 import NameSpace from "../../reducer/nameSpace.js";
 import {Genres, LoginStatus} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
 
-const mockStore = configureStore([]);
+import {createAPI} from '../../api.js';
+
+const api = createAPI();
+
+const middleware = [thunk.withExtraArgument(api)];
+
+const mockStore = configureStore(middleware);
 
 const movie = {
   backgroundColor: `#D8E3E5`,
@@ -57,7 +64,7 @@ it(`Проверка снепшота компонента MoviePage`, () => {
             authorizationStatus = {LoginStatus.NO_AUTH}
             userAvatar={``}
             onMyListClick = {() => {}}
-            match={{params: {id: '1'}, isExact: true, path: "", url: ""}}
+            match={{params: {id: `1`}, isExact: true, path: ``, url: ``}}
           />
         </Provider>
       </BrowserRouter>

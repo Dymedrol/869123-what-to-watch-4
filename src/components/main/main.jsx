@@ -35,34 +35,14 @@ const Main = (props) => {
 
   const myListButton = () => {
     if (promoMovie.isFavorite) {
-      return <button
-        className="btn btn--list movie-card__button"
-        type="button"
-        onClick={
-          () => {
-            onMyListClick(promoMovie.id, promoMovie.isFavorite);
-          }
-        }>
-        <svg viewBox="0 0 18 14" width="18" height="14">
-          <use xlinkHref="#in-list"></use>
-        </svg>
-        <span>My list</span>
-      </button>;
+      return <svg viewBox="0 0 18 14" width="18" height="14">
+        <use xlinkHref="#in-list"></use>
+      </svg>;
     }
 
-    return <button
-      className="btn btn--list movie-card__button"
-      type="button"
-      onClick={
-        () => {
-          onMyListClick(promoMovie.id, promoMovie.isFavorite);
-        }
-      }>
-      <svg viewBox="0 0 19 20" width="19" height="20">
-        <use xlinkHref="#add"></use>
-      </svg>
-      <span>My list</span>
-    </button>;
+    return <svg viewBox="0 0 19 20" width="19" height="20">
+      <use xlinkHref="#add"></use>
+    </svg>;
   };
 
   const renderMainPage = () => {
@@ -100,7 +80,18 @@ const Main = (props) => {
                   to={`${AppRoute.PLAYER}/${promoMovie.id}/`}
                 >Play</Link>
 
-                {myListButton()}
+
+                <button
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                  onClick={
+                    () => {
+                      onMyListClick(promoMovie.id, promoMovie.isFavorite);
+                    }
+                  }>
+                  {myListButton()}
+                  <span>My list</span>
+                </button>;
 
               </div>
             </div>
