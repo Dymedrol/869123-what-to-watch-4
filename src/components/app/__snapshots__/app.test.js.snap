@@ -137,6 +137,7 @@ exports[`Проверка снепшота компонента App 1`] = `
                 My list
               </span>
             </button>
+            ;
           </div>
         </div>
       </div>

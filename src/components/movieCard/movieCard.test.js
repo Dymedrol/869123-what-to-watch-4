@@ -14,16 +14,16 @@ it(`Проверка снепшота компонента Header`, () => {
     .create(
         <BrowserRouter>
           <MovieCard
-          cardData={card}
-          onCardHoverHandler={() => {}}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
-          renderPlayer={() => {}}
-          setActiveItem={() => {}}
-          removeActiveItem={() => {}}
-          onMovieCardClickHandler={() => {}}
-          playVideo={() => {}}
-          stopVideo={() => {}}
+            cardData={card}
+            onCardHoverHandler={() => {}}
+            onMouseEnter={() => {}}
+            onMouseLeave={() => {}}
+            renderPlayer={() => {}}
+            setActiveItem={() => {}}
+            removeActiveItem={() => {}}
+            onMovieCardClickHandler={() => {}}
+            playVideo={() => {}}
+            stopVideo={() => {}}
           />
         </BrowserRouter>, {
           createNodeMock: () => {

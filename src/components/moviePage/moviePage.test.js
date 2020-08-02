@@ -57,7 +57,7 @@ it(`Проверка снепшота компонента MoviePage`, () => {
             authorizationStatus = {LoginStatus.NO_AUTH}
             userAvatar={``}
             onMyListClick = {() => {}}
-            match={{params: {id: '1'}, isExact: true, path: "", url: ""}}
+            match={{params: {id: `1`}, isExact: true, path: ``, url: ``}}
           />
         </Provider>
       </BrowserRouter>
