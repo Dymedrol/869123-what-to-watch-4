@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Header} from '../header/header.jsx';
-import {MovieList} from '../movieList/movieList.jsx';
-import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
+import {MovieList} from '../movie-list/movie-list.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 
 const MovieListWrapper = withActiveItem(MovieList);
 

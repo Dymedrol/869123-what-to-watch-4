@@ -4,11 +4,12 @@ import {BrowserRouter, Route, Switch, Link} from 'react-router-dom';
 import {connect} from "react-redux";
 
 import Main from '../main/main.jsx';
-import MoviePage from '../moviePage/moviePage.jsx';
-import SignIn from '../signIn/signIn.jsx';
+import MoviePage from '../movie-page/movie-page.jsx';
+import SignIn from '../sign-in/sign-in.jsx';
 import {AddReview} from '../add-review/add-review.jsx';
 import {PlayerPage} from '../player-page/player-page.jsx';
 import {PrivateRoute} from '../private-route/private-route.jsx';
+import MyList from '../my-list/my-list.jsx';
 
 import {ActionCreator} from '../../reducer/app/app.js';
 import {Operation} from '../../reducer/data/data.js';
@@ -17,7 +18,6 @@ import {getMovies, getPromo, getfavoriteMovies} from '../../reducer/data/selecto
 import {getAuthorizationStatus, getAuthorizationCode, getUserAvatar} from '../../reducer/user/selectors.js';
 import {MovieListStep, AppRoute} from '../../const.js';
 import {Operation as userOperation} from "../../reducer/user/user.js";
-import MyList from '../my-list/my-list.jsx';
 import history from "../../history.js";
 
 const mockMovie = {

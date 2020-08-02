@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 
-import {MovieList} from '../movieList/movieList.jsx';
-import GenreList from '../genreList/genreList.jsx';
-import ShowMore from '../showMore/showMore.jsx';
+import {MovieList} from '../movie-list/movie-list.jsx';
+import GenreList from '../genre-list/genre-list.jsx';
+import ShowMore from '../show-more/show-more.jsx';
 import {Player} from '../player/player.jsx';
-import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
-import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import withVideoPlayer from '../../hocs/with-video-player/with-video-player.jsx';
 import {getMoviesByGenre} from '../../reducer/app/selectors.js';
 import {videoPlayerModes, AppRoute} from '../../const.js';
 import {Header} from '../header/header.jsx';

@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import {videoPlayerModes} from '../../const.js';
-import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
+import withVideoPlayer from '../../hocs/with-video-player/with-video-player.jsx';
 import {Player} from '../player/player.jsx';
 
 const PlayerWrapper = withVideoPlayer(Player);

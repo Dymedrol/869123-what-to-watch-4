@@ -8,7 +8,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 import {Genres, LoginStatus} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
-import NameSpace from "../../reducer/nameSpace.js";
+import NameSpace from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 

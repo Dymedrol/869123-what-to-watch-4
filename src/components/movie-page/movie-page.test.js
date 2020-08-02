@@ -1,18 +1,24 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {Provider} from "react-redux";
+import React from "react";
+import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
-import Main from './main.jsx';
+import {Provider} from "react-redux";
 import {BrowserRouter} from 'react-router-dom';
+import thunk from 'redux-thunk';
 
+import MoviePage from "./movie-page.jsx";
+import NameSpace from "../../reducer/name-space.js";
 import {Genres, LoginStatus} from "../../const.js";
 import MOVIES from "../../mocks/films.js";
 
-import NameSpace from "../../reducer/name-space.js";
+import {createAPI} from '../../api.js';
 
-const mockStore = configureStore([]);
+const api = createAPI();
 
-const promoMovie = {
+const middleware = [thunk.withExtraArgument(api)];
+
+const mockStore = configureStore(middleware);
+
+const movie = {
   backgroundColor: `#D8E3E5`,
   backgroundImage: `https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg`,
   description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.`,
@@ -33,15 +39,9 @@ const promoMovie = {
   videoLink: `http://media.xiph.org/mango/tears_of_steel_1080p.webm`,
 };
 
-const movies = [
-  {
-    previewImage: `img/macbeth.jpg`,
-    name: `Macbeth`,
-    previewVideoLink: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  },
-];
+const isMoviePlaying = false;
 
-it(`Проверка снепшота компонента Main`, () => {
+it(`Проверка снепшота компонента MoviePage`, () => {
   const store = mockStore({
     [NameSpace.APP]: {
       genre: Genres.ALL,
@@ -49,19 +49,20 @@ it(`Проверка снепшота компонента Main`, () => {
     [NameSpace.DATA]: {
       movies: MOVIES,
     },
+    [NameSpace.USER]: {
+      reviews: [],
+    },
   });
   const tree = renderer.create(
       <BrowserRouter>
         <Provider store={store}>
-          <Main
-            movies={movies}
-            onMovieTitleClickHandler = {() => {}}
-            onMovieCardClickHandler={() => {}}
-            onShowMoreClickHandler={() => {}}
-            movieListCount={8}
-            promoMovie={promoMovie}
+          <MoviePage
+            movie={movie}
+            isMoviePlaying={isMoviePlaying}
             authorizationStatus = {LoginStatus.NO_AUTH}
             userAvatar={``}
+            onMyListClick = {() => {}}
+            match={{params: {id: `1`}, isExact: true, path: ``, url: ``}}
           />
         </Provider>
       </BrowserRouter>
@@ -73,3 +74,4 @@ it(`Проверка снепшота компонента Main`, () => {
 
   expect(tree).toMatchSnapshot();
 });
+

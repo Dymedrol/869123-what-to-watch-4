@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
 import {Genres} from "./../../const.js";
-import NameSpace from '../nameSpace.js';
+import NameSpace from '../name-space.js';
 import {getMovies} from '../data/selectors.js';
 
 export const getGenre = (state) => {
