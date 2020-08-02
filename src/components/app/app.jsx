@@ -8,6 +8,7 @@ import MoviePage from '../moviePage/moviePage.jsx';
 import SignIn from '../signIn/signIn.jsx';
 import {AddReview} from '../add-review/add-review.jsx';
 import {PlayerPage} from '../player-page/player-page.jsx';
+import {PrivateRoute} from '../private-route/private-route.jsx';
 
 import {ActionCreator} from '../../reducer/app/app.js';
 import {Operation} from '../../reducer/data/data.js';
@@ -96,18 +97,23 @@ class App extends PureComponent {
 
               />}
           />
-          <Route
+          <PrivateRoute
             exact
             path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.ADD_REVIEW}`}
-            render={(props) =>
-              <AddReview
-                {...props}
-                userAvatar = {userAvatar}
-                authorizationStatus = {authorizationStatus}
-                onReviewSubmit = {onReviewSubmit}
-                allMovies = {movies}
-              />}
+            authorizationStatus = {authorizationStatus}
+            render={() => {
+              return (
+                <AddReview
+                  {...props}
+                  userAvatar = {userAvatar}
+                  authorizationStatus = {authorizationStatus}
+                  onReviewSubmit = {onReviewSubmit}
+                  allMovies = {movies}
+                />
+              );
+            }}
           />
+
           <Route
             exact
             path={`${AppRoute.PLAYER}/:id`}
@@ -123,14 +129,21 @@ class App extends PureComponent {
               authorizationCode = {authorizationCode}
             />
           </Route>
-          <Route exact path={AppRoute.MY_LIST}>
-            <MyList
-              authorizationStatus = {authorizationStatus}
-              userAvatar = {userAvatar}
-              myList = {favoriteMovies}
-              onMovieCardClickHandler = {this.onMovieCardClickHandler}
-            />
-          </Route>
+          <PrivateRoute
+            exact
+            path={AppRoute.MY_LIST}
+            authorizationStatus = {authorizationStatus}
+            render={() => {
+              return (
+                <MyList
+                  authorizationStatus = {authorizationStatus}
+                  userAvatar = {userAvatar}
+                  myList = {favoriteMovies}
+                  onMovieCardClickHandler = {this.onMovieCardClickHandler}
+                />
+              );
+            }}
+          />
           <Route
             render={() => (
               <React.Fragment>

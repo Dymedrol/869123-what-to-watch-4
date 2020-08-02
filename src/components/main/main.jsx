@@ -71,7 +71,7 @@ const Main = (props) => {
               <h2 className="movie-card__title">{promoMovie.name}</h2>
               <p className="movie-card__meta">
                 <span className="movie-card__genre">{promoMovie.genre}</span>
-                <span className="movie-card__year">{promoMovie.date}</span>
+                <span className="movie-card__year">{promoMovie.released}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -91,7 +91,7 @@ const Main = (props) => {
                   }>
                   {myListButton()}
                   <span>My list</span>
-                </button>;
+                </button>
 
               </div>
             </div>

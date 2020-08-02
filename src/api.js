@@ -13,14 +13,6 @@ export const createAPI = (onUnauthorized) => {
   const onSuccess = (response) => response;
 
   const onError = (err) => {
-
-    const {config} = err;
-    const {url} = config;
-
-    if (url !== URL.LOGIN) {
-      history.push(AppRoute.LOGIN);
-    }
-
     onUnauthorized();
     throw err;
   };
