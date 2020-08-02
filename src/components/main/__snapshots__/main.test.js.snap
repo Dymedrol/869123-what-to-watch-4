@@ -92,32 +92,20 @@ exports[`Проверка снепшота компонента Main 1`] = `
             </span>
             <span
               className="movie-card__year"
-            />
+            >
+              2012
+            </span>
           </p>
           <div
             className="movie-card__buttons"
           >
-            <button
+            <a
               className="btn btn--play movie-card__button"
-              type="button"
+              href="/player/2/"
+              onClick={[Function]}
             >
-              <svg
-                fill="none"
-                height="19"
-                viewBox="0 0 19 19"
-                width="19"
-              >
-                <path
-                  clipRule="evenodd"
-                  d="M0 0L19 9.5L0 19V0Z"
-                  fill="#EEE5B5"
-                  fillRule="evenodd"
-                />
-              </svg>
-              <span>
-                Play
-              </span>
-            </button>
+              Play
+            </a>
             <button
               className="btn btn--list movie-card__button"
               onClick={[Function]}
@@ -136,7 +124,6 @@ exports[`Проверка снепшота компонента Main 1`] = `
                 My list
               </span>
             </button>
-            ;
           </div>
         </div>
       </div>

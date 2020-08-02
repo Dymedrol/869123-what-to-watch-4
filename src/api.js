@@ -1,7 +1,4 @@
 import axios from 'axios';
-import history from './history.js';
-
-import {AppRoute} from './const.js';
 
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({

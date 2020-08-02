@@ -101,10 +101,10 @@ class App extends PureComponent {
             exact
             path={`${AppRoute.MOVIE_PAGE}/:id${AppRoute.ADD_REVIEW}`}
             authorizationStatus = {authorizationStatus}
-            render={() => {
+            render={(props) => {
               return (
                 <AddReview
-                  {...props}
+                  movieId={props.computedMatch.params.id}
                   userAvatar = {userAvatar}
                   authorizationStatus = {authorizationStatus}
                   onReviewSubmit = {onReviewSubmit}

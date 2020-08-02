@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
 
-import {Tabs, MovieListStep, videoPlayerModes, LoginStatus, AppRoute} from '../../const.js';
+import {Tabs, MovieListStep, LoginStatus, AppRoute} from '../../const.js';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
 import TabList from '../tabList/tabList.jsx';
 import MoviePageOverview from './../moviePageOverview/moviePageOverview.jsx';
@@ -12,13 +12,10 @@ import MoviePageReviews from '../moviePageReviews/moviePageReviews.jsx';
 import {MovieList} from '../movieList/movieList.jsx';
 import {getMovies} from '../../reducer/data/selectors.js';
 import {getReviews} from '../../reducer/user/selectors.js';
-import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
-import {Player} from '../player/player.jsx';
 import {Header} from '../header/header.jsx';
 import {Operation as userOperation} from "../../reducer/user/user.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
-const PlayerWrapper = withVideoPlayer(Player);
 
 class MoviePage extends PureComponent {
   constructor(props) {

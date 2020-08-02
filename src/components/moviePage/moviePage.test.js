@@ -58,8 +58,6 @@ it(`Проверка снепшота компонента MoviePage`, () => {
         <Provider store={store}>
           <MoviePage
             movie={movie}
-            onPlayButtonHandler={() => {}}
-            onExitButtonHandler={() => {}}
             isMoviePlaying={isMoviePlaying}
             authorizationStatus = {LoginStatus.NO_AUTH}
             userAvatar={``}

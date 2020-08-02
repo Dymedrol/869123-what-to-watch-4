@@ -34,8 +34,8 @@ it(`ПРоверка снепшота компонента AddReview`, () => {
           authorizationStatus = {LoginStatus.NO_AUTH}
           authorizationCode = {``}
           onReviewSubmit = {() => {}}
-          match={{params: {id: `1`}, isExact: true, path: ``, url: ``}}
           allMovies={MOVIES}
+          movieId={`1`}
         />
       </BrowserRouter>
       , {

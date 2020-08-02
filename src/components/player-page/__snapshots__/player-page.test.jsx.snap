@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Проверка снепшота компонента PlayerPage 1`] = `
+<h2>
+  Loading...
+</h2>
+`;

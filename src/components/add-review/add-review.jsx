@@ -38,7 +38,7 @@ class AddReview extends PureComponent {
     const form = this._formRef.current;
     const rating = form.querySelector(`.rating__input:checked`).value;
     const comment = form.querySelector(`#review-text`).value;
-    const id = this.props.match.params.id;
+    const id = this.props.movieId;
 
     const review = {
       id,
@@ -56,7 +56,7 @@ class AddReview extends PureComponent {
       return movies.find((movie) => movie.id === movieId);
     };
 
-    const movieId = parseInt(this.props.match.params.id, 10);
+    const movieId = parseInt(this.props.movieId, 10);
 
     const movie = getCurentMovie(allMovies, movieId);
 
@@ -132,11 +132,7 @@ AddReview.propTypes = {
   userAvatar: PropTypes.string,
   onReviewSubmit: PropTypes.func.isRequired,
   allMovies: PropTypes.array.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired
-    })
-  }),
+  movieId: PropTypes.string.isRequired
 };
 
 export {AddReview};

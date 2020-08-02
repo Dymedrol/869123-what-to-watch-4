@@ -7,7 +7,6 @@ import {MovieList} from '../movieList/movieList.jsx';
 import GenreList from '../genreList/genreList.jsx';
 import ShowMore from '../showMore/showMore.jsx';
 import {Player} from '../player/player.jsx';
-import {PlayS} from '../svg/svg.jsx';
 import withActiveItem from '../../hocs/withActiveItem/withActiveItem.jsx';
 import withVideoPlayer from '../../hocs/withVideoPlayer/withVideoPlayer.jsx';
 import {getMoviesByGenre} from '../../reducer/app/selectors.js';

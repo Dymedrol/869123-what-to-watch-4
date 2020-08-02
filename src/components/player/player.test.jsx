@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
+
 import {Player} from './player.jsx';
 
 const movie = {
@@ -25,18 +27,21 @@ const movie = {
 
 it(`ПРоверка снепшота компонента Player`, () => {
   const tree = renderer.create(
-      <Player
-        movie={movie}
-        playVideo={() => {}}
-        onExitButtonHandler={() => {}}
-        renderPlayer={() => {}}
-        pauseVideo={() => {}}
-        changeFullScreen={() => {}}
-        isVideoPlaying={false}
-        isVideoPaused={false}
-        progress={0}
-        duration={100}
-      />, {
+      <BrowserRouter>
+        <Player
+          movie={movie}
+          playVideo={() => {}}
+          onExitButtonHandler={() => {}}
+          renderPlayer={() => {}}
+          pauseVideo={() => {}}
+          changeFullScreen={() => {}}
+          isVideoPlaying={false}
+          isVideoPaused={false}
+          progress={0}
+          duration={100}
+        />
+      </BrowserRouter>
+      , {
         createNodeMock: () => {
           return {
             addEventListener: () => {}
