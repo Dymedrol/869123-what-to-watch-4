@@ -5,21 +5,21 @@ import PropTypes from "prop-types";
 const MoviePageReviews = (props) => {
   const {reviews} = props;
 
-  const leftCol = [];
-  const rightCol = [];
+  const leftColReviews = [];
+  const rightColReviews = [];
 
   reviews.forEach((el, i) => {
     if (i % 2 === 0) {
-      leftCol.push(el);
+      leftColReviews.push(el);
     } else {
-      rightCol.push(el);
+      rightColReviews.push(el);
     }
   });
 
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
-        {leftCol.map((el) => (
+        {leftColReviews.map((el) => (
           <div className="review" key={el.id}>
             <blockquote className="review__quote">
               <p className="review__text">{el.comment}</p>
@@ -35,7 +35,7 @@ const MoviePageReviews = (props) => {
         ))}
       </div>
       <div className="movie-card__reviews-col">
-        {rightCol.map((el) => (
+        {rightColReviews.map((el) => (
           <div className="review" key={el.date}>
             <blockquote className="review__quote">
               <p className="review__text">{el.comment}</p>
