@@ -10,7 +10,7 @@ import {Player} from '../player/player.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import withVideoPlayer from '../../hocs/with-video-player/with-video-player.jsx';
 import {getMoviesByGenre} from '../../reducer/app/selectors.js';
-import {videoPlayerModes, AppRoute} from '../../const.js';
+import {VideoPlayerModes, AppRoute} from '../../const.js';
 import {Header} from '../header/header.jsx';
 
 
@@ -47,7 +47,7 @@ const Main = (props) => {
   const renderMainPage = () => {
 
     if (isMoviePlaying) {
-      return <PlayerWrapper movie={promoMovie} onExitButtonHandler={onExitButtonHandler} isMuted={true} videoMode={videoPlayerModes.FULLSCREEN}/>;
+      return <PlayerWrapper movie={promoMovie} onExitButtonHandler={onExitButtonHandler} isMuted={true} videoMode={VideoPlayerModes.FULLSCREEN}/>;
     }
 
     return <div>
@@ -140,18 +140,17 @@ const Main = (props) => {
   const filtredMoviesLength = filtredMovies.length;
 
   return renderMainPage();
-
 };
-
-const mapStateToProps = (state) => ({
-  movies: getMoviesByGenre(state),
-});
 
 Main.propTypes = {
   movies: PropTypes.array.isRequired,
   onShowMoreClickHandler: PropTypes.func.isRequired,
   movieListCount: PropTypes.number.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  movies: getMoviesByGenre(state),
+});
 
 export {Main};
 export default connect(mapStateToProps)(Main);

@@ -208,17 +208,6 @@ class MoviePage extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
-  allMovies: getMovies(state),
-  reviews: getReviews(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadReviews(id) {
-    dispatch(userOperation.loadReview(id));
-  },
-});
-
 MoviePage.propTypes = {
   movie: PropTypes.shape({
     backgroundImage: PropTypes.string.isRequired,
@@ -250,6 +239,17 @@ MoviePage.propTypes = {
   loadReviews: PropTypes.func.isRequired,
   reviews: PropTypes.array.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  allMovies: getMovies(state),
+  reviews: getReviews(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadReviews(id) {
+    dispatch(userOperation.loadReview(id));
+  },
+});
 
 export {MoviePage};
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePage);

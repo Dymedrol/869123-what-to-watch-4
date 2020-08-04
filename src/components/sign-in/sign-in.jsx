@@ -14,7 +14,6 @@ class SignIn extends PureComponent {
     this.rendeErrors = this.rendeErrors.bind(this);
   }
 
-
   onSubmit(e) {
     e.preventDefault();
 

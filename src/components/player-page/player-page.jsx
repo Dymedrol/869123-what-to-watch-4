@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {videoPlayerModes} from '../../const.js';
+import {VideoPlayerModes} from '../../const.js';
 import withVideoPlayer from '../../hocs/with-video-player/with-video-player.jsx';
 import {Player} from '../player/player.jsx';
 
@@ -21,7 +21,7 @@ const PlayerPage = (props) => {
     return <h2>Loading...</h2>;
   }
 
-  return  <PlayerWrapper movie={movie} isMuted={true} videoMode={videoPlayerModes.FULLSCREEN}/>
+  return  <PlayerWrapper movie={movie} isMuted={true} videoMode={VideoPlayerModes.FULLSCREEN}/>
 };
 
 PlayerPage.propTypes = {

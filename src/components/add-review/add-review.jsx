@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 
 import {Header} from '../header/header.jsx';
-import {reviewLength} from '../../const.js';
+import {ReviewLength} from '../../const.js';
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -25,7 +25,7 @@ class AddReview extends PureComponent {
     const form = this._formRef.current;
     const comment = form.querySelector(`#review-text`).value;
 
-    if (comment.length > reviewLength.MIN && comment.length < reviewLength.MAX) {
+    if (comment.length > ReviewLength.MIN && comment.length < ReviewLength.MAX) {
       this._buttonRef.current.disabled = false;
     }
   }
@@ -110,8 +110,8 @@ class AddReview extends PureComponent {
                 className="add-review__textarea"
                 name="review-text" id="review-text"
                 placeholder="Review text"
-                minLength={reviewLength.MIN}
-                maxLength={reviewLength.MAX}
+                minLength={ReviewLength.MIN}
+                maxLength={ReviewLength.MAX}
                 onChange={this.onTextareaChange}>
               </textarea>
               <div className="add-review__submit">

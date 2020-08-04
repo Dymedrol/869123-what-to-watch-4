@@ -11,25 +11,6 @@ class VideoPlayer extends PureComponent {
     this._timeoutPlayHandler = null;
   }
 
-  _launchFullScreen(element) {
-    if (element.requestFullScreen) {
-      element.requestFullScreen();
-    } else if (element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullScreen) {
-      element.webkitRequestFullScreen();
-    }
-  }
-
-  _changeFullscreen(video) {
-    const {changeFullScreen} = this.props;
-
-    if (video.classList.contains(`fullscreen`)) {
-      video.classList.remove(`fullscreen`);
-      changeFullScreen();
-    }
-  }
-
   componentDidMount() {
     const video = this._videoRef.current;
     const {changeProgress} = this.props;
@@ -97,6 +78,25 @@ class VideoPlayer extends PureComponent {
     if (isFullScreen) {
       this._launchFullScreen(video);
       video.classList.add(`fullscreen`);
+    }
+  }
+
+  _launchFullScreen(element) {
+    if (element.requestFullScreen) {
+      element.requestFullScreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullScreen) {
+      element.webkitRequestFullScreen();
+    }
+  }
+
+  _changeFullscreen(video) {
+    const {changeFullScreen} = this.props;
+
+    if (video.classList.contains(`fullscreen`)) {
+      video.classList.remove(`fullscreen`);
+      changeFullScreen();
     }
   }
 

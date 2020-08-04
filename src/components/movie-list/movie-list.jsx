@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import MovieCard from '../movie-card/movie-card.jsx';
 import withVideoPlayer from '../../hocs/with-video-player/with-video-player.jsx';
-import {videoPlayerModes} from '../../const.js';
+import {VideoPlayerModes} from '../../const.js';
 
 const MovieCardWrapper = withVideoPlayer(MovieCard);
 
@@ -18,7 +18,7 @@ const MovieList = (props) => {
           setActiveItem={setActiveItem}
           removeActiveItem={removeActiveItem}
           isMuted={true}
-          videoMode={videoPlayerModes.SMALL}
+          videoMode={VideoPlayerModes.SMALL}
         />
       ))}
     </div>;

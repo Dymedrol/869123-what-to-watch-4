@@ -27,17 +27,6 @@ const GenreList = (props) => {
     </React.Fragment>;
 };
 
-const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  genre: getGenre(state),
-  genreList: getGenreList(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onClick(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
-  }
-});
 
 GenreList.propTypes = {
   genre: PropTypes.string.isRequired,
@@ -50,6 +39,18 @@ GenreList.propTypes = {
   setActiveItem: PropTypes.func.isRequired,
   genreList: PropTypes.array.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  movies: getMovies(state),
+  genre: getGenre(state),
+  genreList: getGenreList(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+  }
+});
 
 export {GenreList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenreList);

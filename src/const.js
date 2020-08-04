@@ -22,7 +22,7 @@ const MovieListStep = {
   MOVIEPAGE: 4,
 };
 
-const videoPlayerModes = {
+const VideoPlayerModes = {
   SMALL: `small`,
   FULLSCREEN: `fullscreen`,
 };
@@ -37,7 +37,7 @@ const LoginStatus = {
   NO_AUTH: `NO_AUTH`
 };
 
-const reviewLength = {
+const ReviewLength = {
   MIN: 50,
   MAX: 400,
 };
@@ -51,4 +51,4 @@ const AppRoute = {
   PLAYER: `/player`
 };
 
-export {Genres, Tabs, MovieListStep, videoPlayerModes, Errors, LoginStatus, reviewLength, AppRoute};
+export {Genres, Tabs, MovieListStep, VideoPlayerModes, Errors, LoginStatus, ReviewLength, AppRoute};
