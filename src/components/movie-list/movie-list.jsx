@@ -11,17 +11,17 @@ const MovieList = (props) => {
   const {movies, setActiveItem, removeActiveItem} = props;
 
   return <div className="catalog__movies-list">
-      {movies.map((card) => (
-        <MovieCardWrapper
-          key={card.previewImage}
-          cardData={card}
-          setActiveItem={setActiveItem}
-          removeActiveItem={removeActiveItem}
-          isMuted={true}
-          videoMode={VideoPlayerModes.SMALL}
-        />
-      ))}
-    </div>;
+    {movies.map((card) => (
+      <MovieCardWrapper
+        key={card.previewImage}
+        cardData={card}
+        setActiveItem={setActiveItem}
+        removeActiveItem={removeActiveItem}
+        isMuted={true}
+        videoMode={VideoPlayerModes.SMALL}
+      />
+    ))}
+  </div>;
 };
 
 MovieList.propTypes = {

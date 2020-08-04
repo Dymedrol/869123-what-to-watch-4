@@ -10,21 +10,21 @@ const GenreList = (props) => {
   const {onClick, setActiveItem, genreList, genre} = props;
 
   return <React.Fragment>
-      {genreList.map((item) => {
-        const activeClass = genre === item ? `catalog__genres-item--active` : ``;
+    {genreList.map((item) => {
+      const activeClass = genre === item ? `catalog__genres-item--active` : ``;
 
-        return <li
-          key={item}
-          className={`catalog__genres-item ${activeClass}`}
-          onClick={() => {
-            onClick(item);
-            setActiveItem(item);
-          }}
-        >
-          <a href="#" className="catalog__genres-link">{item}</a>
-        </li>;
-      })}
-    </React.Fragment>;
+      return <li
+        key={item}
+        className={`catalog__genres-item ${activeClass}`}
+        onClick={() => {
+          onClick(item);
+          setActiveItem(item);
+        }}
+      >
+        <a href="#" className="catalog__genres-link">{item}</a>
+      </li>;
+    })}
+  </React.Fragment>;
 };
 
 

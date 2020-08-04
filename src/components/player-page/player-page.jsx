@@ -21,7 +21,7 @@ const PlayerPage = (props) => {
     return <h2>Loading...</h2>;
   }
 
-  return  <PlayerWrapper movie={movie} isMuted={true} videoMode={VideoPlayerModes.FULLSCREEN}/>
+  return <PlayerWrapper movie={movie} isMuted={true} videoMode={VideoPlayerModes.FULLSCREEN}/>;
 };
 
 PlayerPage.propTypes = {

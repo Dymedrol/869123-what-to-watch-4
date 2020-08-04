@@ -51,7 +51,7 @@ class SignIn extends PureComponent {
     const {authorizationCode, authorizationStatus} = this.props;
 
     if (authorizationStatus === LoginStatus.AUTH) {
-      return <Redirect to={AppRoute.ROOT} />
+      return <Redirect to={AppRoute.ROOT} />;
     }
 
     return (
@@ -112,6 +112,7 @@ class SignIn extends PureComponent {
 SignIn.propTypes = {
   authorizationCode: PropTypes.string,
   onSignInSubmit: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string,
 };
 
 export default SignIn;
