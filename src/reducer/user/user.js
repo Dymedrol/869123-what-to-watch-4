@@ -67,7 +67,7 @@ const Operation = {
 
       const userData = {
         email: response.data.email,
-        avatar: `${response.config.baseURL}/${response.data.avatar_url}`,
+        avatar: `https://4.react.pages.academy${response.data.avatar_url}`,
       };
 
       dispatch(ActionCreator.setAuthorization(LoginStatus.AUTH));

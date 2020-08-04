@@ -127,6 +127,7 @@ class App extends PureComponent {
             <SignIn
               onSignInSubmit={onSignInSubmit}
               authorizationCode = {authorizationCode}
+              authorizationStatus = {authorizationStatus}
             />
           </Route>
           <PrivateRoute

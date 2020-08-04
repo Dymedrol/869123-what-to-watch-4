@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
-import {Errors} from '../../const.js';
+import {Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
+
+import {Errors, LoginStatus, AppRoute} from '../../const.js';
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -46,7 +48,11 @@ class SignIn extends PureComponent {
   }
 
   render() {
-    const {authorizationCode} = this.props;
+    const {authorizationCode, authorizationStatus} = this.props;
+
+    if (authorizationStatus === LoginStatus.AUTH) {
+      return <Redirect to={AppRoute.ROOT} />
+    }
 
     return (
       <div className="user-page">
