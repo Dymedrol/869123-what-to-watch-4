@@ -16,6 +16,7 @@ import {Header} from '../header/header.jsx';
 import {Operation as userOperation} from "../../reducer/user/user.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
+const TabListWrapper = withActiveItem(TabList);
 
 class MoviePage extends PureComponent {
   constructor(props) {
@@ -50,8 +51,6 @@ class MoviePage extends PureComponent {
     const movieId = parseInt(this.props.match.params.id, 10);
 
     const movie = getCurentMovie(allMovies, movieId);
-
-    const TabListWrapper = withActiveItem(TabList);
     const movieListrestriction = MovieListStep.MOVIEPAGE - 1;
 
     let filtredMovies = allMovies.filter((item) => item.genre === movie.genre);
