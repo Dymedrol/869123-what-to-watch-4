@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from 'react-router-dom';
+
 import {Header} from '../header/header.jsx';
 import {MovieList} from '../movie-list/movie-list.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import {AppRoute} from '../../const.js';
 
 const MovieListWrapper = withActiveItem(MovieList);
 
@@ -24,11 +27,14 @@ const MyList = (props) => {
 
     <footer className="page-footer">
       <div className="logo">
-        <a href="main.html" className="logo__link logo__link--light">
+        <Link
+          className="logo__link logo__link--light"
+          to={AppRoute.ROOT}
+        >
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
-        </a>
+        </Link>
       </div>
 
       <div className="copyright">
