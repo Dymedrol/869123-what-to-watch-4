@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 
 import MovieCard from '../movie-card/movie-card.jsx';
@@ -7,15 +7,10 @@ import {videoPlayerModes} from '../../const.js';
 
 const MovieCardWrapper = withVideoPlayer(MovieCard);
 
-class MovieList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const MovieList = (props) => {
+  const {movies, setActiveItem, removeActiveItem} = props;
 
-  render() {
-    const {movies, setActiveItem, removeActiveItem} = this.props;
-
-    return <div className="catalog__movies-list">
+  return <div className="catalog__movies-list">
       {movies.map((card) => (
         <MovieCardWrapper
           key={card.previewImage}
@@ -27,8 +22,7 @@ class MovieList extends PureComponent {
         />
       ))}
     </div>;
-  }
-}
+};
 
 MovieList.propTypes = {
   movies: PropTypes.array.isRequired,

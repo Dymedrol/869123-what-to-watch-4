@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
@@ -6,15 +6,10 @@ import {ActionCreator} from '../../reducer/app/app.js';
 import {getGenre, getGenreList} from '../../reducer/app/selectors.js';
 import {getMovies} from '../../reducer/data/selectors.js';
 
-class GenreList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const GenreList = (props) => {
+  const {onClick, setActiveItem, genreList, genre} = props;
 
-  render() {
-    const {onClick, setActiveItem, genreList, genre} = this.props;
-
-    return <React.Fragment>
+  return <React.Fragment>
       {genreList.map((item) => {
         const activeClass = genre === item ? `catalog__genres-item--active` : ``;
 
@@ -30,8 +25,7 @@ class GenreList extends PureComponent {
         </li>;
       })}
     </React.Fragment>;
-  }
-}
+};
 
 const mapStateToProps = (state) => ({
   movies: getMovies(state),

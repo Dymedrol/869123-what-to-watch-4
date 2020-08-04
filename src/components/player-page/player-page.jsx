@@ -7,39 +7,22 @@ import {Player} from '../player/player.jsx';
 
 const PlayerWrapper = withVideoPlayer(Player);
 
-class PlayerPage extends PureComponent {
-  constructor(props) {
-    super(props);
+const PlayerPage = (props) => {
+  const {allMovies} = props;
+
+  const getCurentMovie = (movies, movieId) => {
+    return movies.find((movie) => movie.id === movieId);
+  };
+
+  const movieId = parseInt(props.match.params.id, 10);
+  const movie = getCurentMovie(allMovies, movieId);
+
+  if (!movie) {
+    return <h2>Loading...</h2>;
   }
 
-  render() {
-    const {
-      allMovies,
-    } = this.props;
-
-    const getCurentMovie = (movies, movieId) => {
-      return movies.find((movie) => movie.id === movieId);
-    };
-
-    const movieId = parseInt(this.props.match.params.id, 10);
-    const movie = getCurentMovie(allMovies, movieId);
-
-    if (!movie) {
-      return <h2>Loading...</h2>;
-    }
-
-    return (
-      <PlayerWrapper movie={movie} isMuted={true} videoMode={videoPlayerModes.FULLSCREEN}/>
-    );
-
-  }
-
-  onTabClickHandler(tab) {
-    this.setState({
-      activeTab: tab,
-    });
-  }
-}
+  return  <PlayerWrapper movie={movie} isMuted={true} videoMode={videoPlayerModes.FULLSCREEN}/>
+};
 
 PlayerPage.propTypes = {
   allMovies: PropTypes.array.isRequired,
